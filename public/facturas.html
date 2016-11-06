@@ -5,6 +5,7 @@
             <th>Serie</th>
             <th>n° factura</th>
             <th>Fecha</th>
+            <th>Productos</th>
             <th>Sub Total</th>
             <th>IGV</th>
             <th>Total</th>
@@ -13,6 +14,7 @@
                 <td ng-if="!editing">{{factura.serie}}</td>
                 <td ng-if="!editing">{{factura.num_fact}}</td>
                 <td ng-if="!editing">{{factura.fecha}}</td>
+                <td>productos</td>
                 <td ng-if="!editing">{{factura.sub_total}}</td>
                 <td ng-if="!editing">{{factura.igv}}</td>
                 <td ng-if="!editing">{{factura.total}}</td>
@@ -29,7 +31,7 @@
                 	<input type="text" ng-model="factura.sub_total" class="form-control" style="width:60px;">
                 </td>
                 <td ng-if="editing">
-                	<input type="text" ng-model="factura.igv" class="form-control" style="width:60px;">
+                	<input type="text" ng-model="factura.igv" class="form-control" style="width:60px;" ng-controller="IgvCtrl">
                 </td>
                 <td ng-if="editing">
                 	<input type="text" ng-model="factura.total" class="form-control" style="width:60px;">

@@ -3,7 +3,7 @@ var app = angular.module('app', ['ngRoute']);
 
 
 app.config(function ($routeProvider) {
-	$routeProvider.when('/', {
+	$routeProvider.when('/facturas', {
 		controller: 'FacturaCtrl',
 		controllerAs: 'vm',
 		templateUrl: 'facturas.html'
@@ -54,3 +54,6 @@ app.controller('FacturaCtrl', function ($http) {
 	}
 	
 });
+app.controller('IgvCtrl', function($scope){
+	$scope.factura.igv = $scope.factura.sub_total * 0.18;
+})
