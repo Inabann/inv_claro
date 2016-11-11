@@ -8,6 +8,12 @@ app.config(function ($routeProvider) {
 		controllerAs: 'vm',
 		templateUrl: 'facturas.html'
 	});
+	$routeProvider.when('/productos',{
+		controller: 'ProductoCtrl',
+		controllerAs: 'vm',
+		templateUrl: 'productos.html'
+		
+	});
 	//$routeProvider.otherwhise('/');
 
 });
@@ -54,6 +60,48 @@ app.controller('FacturaCtrl', function ($http) {
 	}
 	
 });
-app.controller('IgvCtrl', function($scope){
-	$scope.factura.igv = $scope.factura.sub_total * 0.18;
-})
+
+//controller productos
+app.controller('ProductoCtrl', function ($http) {
+	var vm = this;
+	vm.productos = [];
+	vm.getProductos = function(){
+		$http.get('/inv/productos').then(function(res){
+			vm.productos = res.data;
+		});
+	}
+	vm.getProductos();
+	
+	vm.updateProducto = function(producto){
+		if(producto){
+			$http.put('/inv/productos', producto).then(function(res){
+				console.log('update producto');
+				vm.getProductos();
+			})
+		}
+	}
+	
+	vm.removeProducto = function(producto){
+		if(producto){
+			$http.delete('/inv/productos/'+ producto._id).then(function(res){
+				vm.getProductos();
+			});
+		}
+	}
+	
+	vm.addProducto = function(producto){
+		if(producto && producto.codigo){
+			console.log("producto creado");
+			
+			$http.post('/inv/productos', producto).then(function(res){
+				vm.getProductos();
+				vm.productos="";
+				vm.addproducto = false;
+			});
+		}
+		else {
+			console.log("faltan datos");
+		}
+	}
+	
+});

@@ -28,6 +28,9 @@ app.use(express.static(__dirname+'/public'));
 var facturas = require('./routes/facturas');
 app.use('/inv/facturas', facturas);
 
+var productos = require('./routes/productos');
+app.use('/inv/productos', productos);
+
 app.listen(3000, function(){
 	console.log('server en el puerto 3000');
 })

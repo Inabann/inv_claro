@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="container productos-container">
+    <h1>Productos</h1>
+        <table class="table table-bordered table-striped table-hovered table-condensed">
+            <th>Codigo</th>
+            <th>Descripción</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Valor Unitario</th>
+            <th>Total</th>
+            <th>Opciones</th>
+            
+            <tr ng-repeat="producto in vm.productos">
+                <td ng-if="!editing">{{producto.codigo}}</td>
+                <td ng-if="!editing">{{producto.descripcion}}</td>
+                <td ng-if="!editing">{{producto.cantidad}}</td>
+                <td ng-if="!editing">{{producto.precio_u}}</td>
+                <td ng-if="!editing">{{producto.valor_u}}</td>
+                <td ng-if="!editing">{{producto.total}}</td>
+                <td ng-if="editing">
+                	<input type="text" ng-model="producto.codigo" class="form-control" style="width:60px;">
+                </td>
+                <td ng-if="editing">
+                	<input type="text" ng-model="producto.descripcion" class="form-control" style="width:60px;">
+                </td>
+                <td ng-if="editing">
+                	<input type="text" ng-model="producto.cantidad" class="form-control" style="width:120px;">
+                </td>
+                <td ng-if="editing">
+                	<input type="text" ng-model="producto.precio_u" class="form-control" style="width:60px;">
+                </td>
+                <td ng-if="editing">
+                	<input type="text" ng-model="producto.valor_u" class="form-control" style="width:60px;">
+                </td>
+                <td ng-if="editing">
+                	<input type="text" ng-model="producto.total" class="form-control" style="width:60px;">
+                </td>
+                <td>
+                    <button ng-hide="editing" class="btn btn-warning" ng-click="editing=!editing">Edit</button>
+                    <button ng-hide="!editing" class="btn btn-success" ng-click="vm.updateProducto(producto);editing=false;">Save</button>
+                    <button class="btn btn-primary" ng-hide="!editing" ng-click="editing=!editing">Back</button>
+                    <button class="btn btn-danger" ng-click="vm.removeProducto(producto);" ng-hide="editing">Delete</button>
+                </td>
+            </tr>
+        </table>
+        <button class="btn btn-primary btn-md" ng-hide="vm.addproducto == true" ng-click="vm.addproducto=!vm.addproducto">Agregar Producto</button>
+    </div>
+    <div class="container create-producto" ng-hide="!vm.addproducto">
+        <div class="form-group">
+            <label for="codigo">Codigo</label>
+            <input required type="text" id="codigo" class="form-control" style="width:90px;" ng-model="vm.producto.codigo">
+        </div>
+        <div class="form-group">
+            <label for="descripcion">Descripcion</label>
+            <input required type="text" id="descripcion" class="form-control" style="width:90px;" ng-model="vm.producto.descripcion">
+        </div>
+        <div class="form-group">
+            <label for="cantidad">Cantidad</label>
+            <input type="text" id="cantidad" class="form-control" style="width:100px;" ng-model="vm.producto.cantidad">
+        </div>
+        <div class="form-group">
+            <label for="precio_u">Precio Unitario</label>
+            <input type="text" id="precio_u" class="form-control" style="width:90px;" ng-model="vm.producto.precio_u">
+        </div>
+        <div class="form-group">
+            <label for="valor_u">Valor Unitario</label>
+            <input type="text" id="valor_u" class="form-control" style="width:90px;" ng-model="vm.producto.valor_u">
+        </div>
+        <div class="form-group">
+            <label for="total">Total</label>
+            <input type="text" id="total" class="form-control" style="width:90px;" ng-model="vm.producto.total">
+        </div>
+        <button class="btn btn-success"  ng-disabled="!vm.producto.codigo || !vm.producto.descripcion || !vm.producto.cantidad || !vm.producto.precio_u || !vm.producto.valor_u" ng-click = "vm.addProducto(vm.producto)">Add</button>
+        <button class="btn btn-primary" ng-click="vm.addproducto = false;" >Back</button>
+    </div>
+</div>
