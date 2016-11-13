@@ -17,6 +17,9 @@ app.config(function ($routeProvider) {
 	//$routeProvider.otherwhise('/');
 
 });
+
+
+
 app.controller('FacturaCtrl', function ($http) {
 	var vm = this;
 	vm.facturas = [];
