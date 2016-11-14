@@ -1,7 +1,7 @@
 <div class="container">
     <div class="container facturas-container">
-    <h1>Facturas</h1>
-        <table class="table table-bordered table-striped table-hovered table-condensed">
+    <h1 ng-hide="vm.detailed">Facturas</h1>
+        <table class="table table-bordered table-striped table-hovered table-condensed" ng-hide="vm.detailed">
             <th>Serie</th>
             <th>n° factura</th>
             <th>Fecha</th>
@@ -11,9 +11,9 @@
             <th>Total</th>
             <th>Actions</th>
             <tr ng-repeat="factura in vm.facturas">
-                <td ng-if="!editing">{{factura.serie}}</td>
+                <td ng-if="!editing" ng-click="vm.showDetails(factura)" style="cursor: pointer;">{{factura.serie}}</td>
                 <td ng-if="!editing">{{factura.num_fact}}</td>
-                <td ng-if="!editing">{{factura.fecha}}</td>
+                <td ng-if="!editing">{{factura.fecha | date:"dd/MM/y"}}</td>
                 <td>productos</td>
                 <td ng-if="!editing">{{factura.sub_total}}</td>
                 <td ng-if="!editing">{{factura.igv}}</td>
@@ -44,7 +44,7 @@
                 </td>
             </tr>
         </table>
-        <button class="btn btn-primary btn-md" ng-hide="vm.addfactura == true" ng-click="vm.addfactura=!vm.addfactura">Agregar Factura</button>
+        <button class="btn btn-primary btn-md" ng-hide="vm.detailed== true || vm.addfactura == true" ng-click="vm.addfactura=!vm.addfactura">Agregar Factura</button>
     </div>
     <div class="container create-facturas" ng-hide="!vm.addfactura">
         <div class="form-group">
@@ -73,5 +73,12 @@
         </div>
         <button class="btn btn-success"  ng-disabled="!vm.factura.serie || !vm.factura.num_fact || !vm.factura.sub_total || !vm.factura.igv || !vm.factura.total" ng-click = "vm.addFactura(vm.factura)">Add</button>
         <button class="btn btn-primary" ng-click="vm.addfactura = false;" >Back</button>
+    </div>
+    <div class="container details-container" ng-if="vm.detailed === true">
+        <div class="jumbotron">
+            <h3>Factura</h3>
+            <h4>{{vm.detailedFactura.serie}} N°{{vm.detailedFactura.num_fact}}</h4><br>
+            <btn class="btn btn-danger" ng-click="vm.detailed=false">Back</btn>
+        </div>
     </div>
 </div>

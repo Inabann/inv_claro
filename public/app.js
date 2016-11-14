@@ -23,6 +23,14 @@ app.config(function ($routeProvider) {
 app.controller('FacturaCtrl', function ($http) {
 	var vm = this;
 	vm.facturas = [];
+
+	vm.detailedFactura;
+
+	vm.showDetails = function(factura){
+		vm.detailedFactura = factura;
+		vm.detailed = true;
+
+	}
 	vm.getFacturas = function(){
 		$http.get('/inv/facturas').then(function(res){
 			vm.facturas = res.data;
