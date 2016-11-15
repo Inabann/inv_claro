@@ -14,6 +14,14 @@ app.config(function ($routeProvider) {
 		templateUrl: 'productos.html'
 		
 	});
+	$routeProvider.when('/logins',{
+		controller: 'loginCtrl',
+		controllerAs: 'vm',		
+		templateUrl: 'login.html'
+		})
+		.when('/dashboard',{
+			templateUrl: 'dashboard.html'
+	});
 	//$routeProvider.otherwhise('/');
 
 });
@@ -115,4 +123,17 @@ app.controller('ProductoCtrl', function ($http) {
 		}
 	}
 	
+});
+//controller login
+app.controller('loginCtrl',function($scope,$location){
+	scope.submit = function(){
+		var uname = $scope.username;
+		var password = $scope.password;
+		if($scope.username == 'marco' && $scope.password == '123456'){
+			$location.path('/dashboard');
+		}
+		else{
+			alert('nombre o password incorrecto');
+		}
+	};
 });

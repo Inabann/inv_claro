@@ -44,41 +44,49 @@
                 </td>
             </tr>
         </table>
-        <button class="btn btn-primary btn-md" ng-hide="vm.detailed== true || vm.addfactura == true" ng-click="vm.addfactura=!vm.addfactura">Agregar Factura</button>
+        <button href="#ventana1" class="btn btn-primary btn-md" data-toggle="modal">Agregar Factura</button>
+        <div class="modal fade" id="ventana1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h2 class="modal-tittle">Facturas</h2>  
+                    </div>
+                    <div class="modal-body">
+                        <div class="container create-facturas">
+                            <div class="form-group">
+                                <label for="serie">Serie</label>
+                                <input required type="text" id="serie" class="form-control" style="width:90px;" ng-model="vm.factura.serie">
+                            </div>
+                            <div class="form-group">
+                                <label for="num_fact">N° Factura</label>
+                                <input required type="text" id="num_fact" class="form-control" style="width:90px;" ng-model="vm.factura.num_fact">
+                            </div>
+                            <div class="form-group">
+                                <label for="fecha">Fecha</label>
+                                <input type="datetime" id="fecha" class="form-control" style="width:100px;" ng-model="vm.factura.fecha">
+                            </div>
+                            <div class="form-group">
+                                <label for="sub_total">Sub Total</label>
+                                <input type="text" id="sub_total" class="form-control" style="width:90px;" ng-model="vm.factura.sub_total">
+                            </div>
+                            <div class="form-group">
+                                <label for="igv">IGV</label>
+                                <input type="text" id="igv" class="form-control" style="width:90px;" ng-model="vm.factura.igv">
+                            </div>
+                            <div class="form-group">
+                                <label for="total">Total</label>
+                                <input type="text" id="total" class="form-control" style="width:90px;" ng-model="vm.factura.total">
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success"  ng-disabled="!vm.factura.serie || !vm.factura.num_fact || !vm.factura.sub_total || !vm.factura.igv || !vm.factura.total" ng-click = "vm.addFactura(vm.factura)" data-dismiss="modal">Add</button>
+                        <button class="btn btn-primary" data-dismiss="modal" >Back</button>
+                    </div>                 
+                </div>  
+            </div>
+        </div>
     </div>
-    <div class="container create-facturas" ng-hide="!vm.addfactura">
-        <div class="form-group">
-            <label for="serie">Serie</label>
-            <input required type="text" id="serie" class="form-control" style="width:90px;" ng-model="vm.factura.serie">
-        </div>
-        <div class="form-group">
-            <label for="num_fact">N° Factura</label>
-            <input required type="text" id="num_fact" class="form-control" style="width:90px;" ng-model="vm.factura.num_fact">
-        </div>
-        <div class="form-group">
-            <label for="fecha">Fecha</label>
-            <input type="datetime" id="fecha" class="form-control" style="width:100px;" ng-model="vm.factura.fecha">
-        </div>
-        <div class="form-group">
-            <label for="sub_total">Sub Total</label>
-            <input type="text" id="sub_total" class="form-control" style="width:90px;" ng-model="vm.factura.sub_total">
-        </div>
-        <div class="form-group">
-            <label for="igv">IGV</label>
-            <input type="text" id="igv" class="form-control" style="width:90px;" ng-model="vm.factura.igv">
-        </div>
-        <div class="form-group">
-            <label for="total">Total</label>
-            <input type="text" id="total" class="form-control" style="width:90px;" ng-model="vm.factura.total">
-        </div>
-        <button class="btn btn-success"  ng-disabled="!vm.factura.serie || !vm.factura.num_fact || !vm.factura.sub_total || !vm.factura.igv || !vm.factura.total" ng-click = "vm.addFactura(vm.factura)">Add</button>
-        <button class="btn btn-primary" ng-click="vm.addfactura = false;" >Back</button>
-    </div>
-    <div class="container details-container" ng-if="vm.detailed === true">
-        <div class="jumbotron">
-            <h3>Factura</h3>
-            <h4>{{vm.detailedFactura.serie}} N°{{vm.detailedFactura.num_fact}}</h4><br>
-            <btn class="btn btn-danger" ng-click="vm.detailed=false">Back</btn>
-        </div>
+    
     </div>
 </div>

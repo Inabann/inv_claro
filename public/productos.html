@@ -43,34 +43,48 @@
                 </td>
             </tr>
         </table>
-        <button class="btn btn-primary btn-md" ng-hide="vm.addproducto == true" ng-click="vm.addproducto=!vm.addproducto">Agregar Producto</button>
+        <button href="#ventana1" class="btn btn-primary btn-md" data-toggle="modal">Agregar Producto</button>
+        <div class="modal fade" id="ventana1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h2 class="modal-tittle">Productos</h2>                         
+                    </div>
+                    <div class="modal-body">
+                        <div class="container create-producto">
+                            <div class="form-group">
+                                <label for="codigo">Codigo</label>
+                                <input required type="text" id="codigo" class="form-control" style="width:90px;" ng-model="vm.producto.codigo">
+                            </div>
+                            <div class="form-group">
+                                <label for="descripcion">Descripcion</label>
+                                <input required type="text" id="descripcion" class="form-control" style="width:90px;" ng-model="vm.producto.descripcion">
+                            </div>
+                            <div class="form-group">
+                                <label for="cantidad">Cantidad</label>
+                                <input type="text" id="cantidad" class="form-control" style="width:100px;" ng-model="vm.producto.cantidad">
+                            </div>
+                            <div class="form-group">
+                                <label for="precio_u">Precio Unitario</label>
+                                <input type="text" id="precio_u" class="form-control" style="width:90px;" ng-model="vm.producto.precio_u">
+                            </div>
+                            <div class="form-group">
+                                <label for="valor_u">Valor Unitario</label>
+                                <input type="text" id="valor_u" class="form-control" style="width:90px;" ng-model="vm.producto.valor_u">
+                            </div>
+                            <div class="form-group">
+                                <label for="total">Total</label>
+                                <input type="text" id="total" class="form-control" style="width:90px;" ng-model="vm.producto.total">
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success"  ng-disabled="!vm.producto.codigo || !vm.producto.descripcion || !vm.producto.cantidad || !vm.producto.precio_u || !vm.producto.valor_u" ng-click = "vm.addProducto(vm.producto)" data-dismiss="modal">Add</button>
+                        <button class="btn btn-primary" data-dismiss="modal" >Back</button>                        
+                    </div>
+                </div>
+            </div>   
+        </div>
     </div>
-    <div class="container create-producto" ng-hide="!vm.addproducto">
-        <div class="form-group">
-            <label for="codigo">Codigo</label>
-            <input required type="text" id="codigo" class="form-control" style="width:90px;" ng-model="vm.producto.codigo">
-        </div>
-        <div class="form-group">
-            <label for="descripcion">Descripcion</label>
-            <input required type="text" id="descripcion" class="form-control" style="width:90px;" ng-model="vm.producto.descripcion">
-        </div>
-        <div class="form-group">
-            <label for="cantidad">Cantidad</label>
-            <input type="text" id="cantidad" class="form-control" style="width:100px;" ng-model="vm.producto.cantidad">
-        </div>
-        <div class="form-group">
-            <label for="precio_u">Precio Unitario</label>
-            <input type="text" id="precio_u" class="form-control" style="width:90px;" ng-model="vm.producto.precio_u">
-        </div>
-        <div class="form-group">
-            <label for="valor_u">Valor Unitario</label>
-            <input type="text" id="valor_u" class="form-control" style="width:90px;" ng-model="vm.producto.valor_u">
-        </div>
-        <div class="form-group">
-            <label for="total">Total</label>
-            <input type="text" id="total" class="form-control" style="width:90px;" ng-model="vm.producto.total">
-        </div>
-        <button class="btn btn-success"  ng-disabled="!vm.producto.codigo || !vm.producto.descripcion || !vm.producto.cantidad || !vm.producto.precio_u || !vm.producto.valor_u" ng-click = "vm.addProducto(vm.producto)">Add</button>
-        <button class="btn btn-primary" ng-click="vm.addproducto = false;" >Back</button>
     </div>
 </div>
