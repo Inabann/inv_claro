@@ -2,6 +2,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var pro = require('./producto');
 var Productos = pro.model;
+var guia = require('./guia');
+var Guia = guia.model;
+//var Productos = require('mongoose').model('Productos').schema;
 
 var FacturaSchema = new Schema({
 	serie: String,
@@ -10,7 +13,8 @@ var FacturaSchema = new Schema({
 	productos: [{ type: Schema.ObjectId, ref: "Productos" }] ,
 	sub_total: Number,
 	igv: Number,
-	total: Number
+	total: Number,
+	guia: { type: Schema.ObjectId, ref: "Guia" }
 
 	//guia: populate, falta agregar guia de remision
 });
