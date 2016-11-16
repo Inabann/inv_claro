@@ -19,7 +19,7 @@ var FacturaSchema = new Schema({
 		type: String,
 		required: true,
 		unique: true,	
-		validate: [function(seriefact){return (seriefact.length<=18 && seriefact.length>6);},'dato incorrecto']
+		validate: [function(seriefact){return (seriefact.length<=8 && seriefact.length>7);},'dato incorrecto']
 	},
 	fecha: Date,
 	productos: [{ type: Schema.ObjectId, ref: "Productos" }] ,
