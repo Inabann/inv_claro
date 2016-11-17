@@ -18,25 +18,20 @@ app.config(function ($routeProvider) {
 		controller: 'loginCtrl',
 		controllerAs: 'vm',		
 		templateUrl: 'login.html'
-		})
-		.when('/dashboard',{
-			templateUrl: 'dashboard.html'
+	});
 	});
 	//$routeProvider.otherwhise('/');
-
-});
-
 
 
 app.controller('FacturaCtrl', function ($http) {
 	var vm = this;
 	vm.facturas = [];
 
-	vm.detailedFactura;
+	vm.detalleFactura;
 
-	vm.showDetails = function(factura){
-		vm.detailedFactura = factura;
-		vm.detailed = true;
+	vm.showDetalles = function(factura){
+		vm.detalleFactura = factura;
+		vm.detalle = true;
 
 	}
 	vm.getFacturas = function(){

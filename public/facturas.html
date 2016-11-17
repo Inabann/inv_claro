@@ -1,7 +1,7 @@
 <div class="container">
     <div class="container facturas-container">
-    <h1 ng-hide="vm.detailed">Facturas</h1>
-        <table class="table table-bordered table-striped table-hovered table-condensed" ng-hide="vm.detailed">
+    <h1 ng-hide="vm.detalle">Facturas</h1>
+        <table class="table table-bordered table-striped table-hovered table-condensed" ng-hide="vm.detalle">
             <th>Serie</th>
             <th>n° factura</th>
             <th>Fecha</th>
@@ -11,10 +11,10 @@
             <th>Total</th>
             <th>Actions</th>
             <tr ng-repeat="factura in vm.facturas">
-                <td ng-if="!editing" ng-click="vm.showDetails(factura)" style="cursor: pointer;">{{factura.serie}}</td>
+                <td ng-if="!editing" >{{factura.serie}}</td>
                 <td ng-if="!editing">{{factura.num_fact}}</td>
                 <td ng-if="!editing">{{factura.fecha | date:"dd/MM/y"}}</td>
-                <td>productos</td>
+                <td ><button class="btn btn-primary" ng-click="vm.showDetalles(factura)">productos</button></td>
                 <td ng-if="!editing">{{factura.sub_total}}</td>
                 <td ng-if="!editing">{{factura.igv}}</td>
                 <td ng-if="!editing">{{factura.total}}</td>
@@ -44,7 +44,7 @@
                 </td>
             </tr>
         </table>
-        <button href="#ventana1" class="btn btn-primary btn-md" data-toggle="modal">Agregar Factura</button>
+        <button href="#ventana1" class="btn btn-primary btn-md" data-toggle="modal" ng-hide="vm.detalle">Agregar Factura</button>
         <div class="modal fade" id="ventana1">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -87,6 +87,36 @@
             </div>
         </div>
     </div>
-    
+    <div class="container detalles-container" ng-if="vm.detalle === true">
+        <div class="jumbotron">
+        <h2>Detalle Factura</h2>
+        <h3>{{vm.detalleFactura.serie}} N°{{vm.detalleFactura.num_fact}}</h3><h5>Fecha: {{vm.detalleFactura.fecha | date:"dd/MM/y"}}</h5>
+        <button class="btn btn-primary">agregar producto</button>
+            <br>
+            <br>
+            <table class="table table-bordered table-striped table-hovered table-condensed">
+                <th>Codigo</th>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Valor Unitario</th>
+                <th>Total</th>
+                <th>Actions</th>
+                <tr ng-repeat = "producto in vm.detalleFactura.productos">
+                    <td>{{producto.codigo}}</td>
+                    <td>{{producto.descripcion}}</td>
+                    <td>{{producto.cantidad}}</td>
+                    <td>{{producto.precio_u}}</td>
+                    <td>{{producto.valor_u}}</td>
+                    <td>{{producto.total}}</td>
+                    
+                </tr>
+            </table>
+
+            <div>
+            <br>
+                <button class="btn btn-danger" ng-click="vm.detalle=false">Back</button>
+            </div>
+        </div>
     </div>
 </div>

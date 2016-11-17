@@ -1,4 +1,5 @@
 var facturaModel = require('../models/factura.js');
+var Producto = require('../models/producto.js');
 var mogoose = require('mongoose');
 var express = require('express');
 var router = express.Router();
@@ -10,9 +11,12 @@ router.get('/',function(req, res){
 			res.status(404).send(err);
 		}
 		else {
-			res.status(200).send(facturas)
-		}
-	})
+			Producto.populate(facturas, {path: "productos"}, function(err, facturas){
+				res.status(200).send(facturas);
+			});
+			
+		};
+	});
 });
 
 //agregar
