@@ -34,17 +34,58 @@ app.controller('FacturaCtrl', function ($http) {
 		vm.detalle = true;
 
 	}
+	
 	vm.getFacturas = function(){
 		$http.get('/inv/facturas').then(function(res){
 			vm.facturas = res.data;
 		});
 	}
 	vm.getFacturas();
+
+	vm.addProducto = function(producto) {
+    if (producto && producto.codigo) {
+        console.log(producto);
+        var productoJSON ={
+        	codigo: producto.codigo,
+        	descripcion: producto.descripcion,
+        	cantidad: producto.cantidad,
+        	precio_u: producto.precio_u,
+        	valor_u: producto.valor_u,
+        	total: producto.total
+        };
+
+        $http.post('/inv/productos', productoJSON).then(function(res) {
+        	vm.detalleFactura.productos.push(res.data._id);
+        	console.log(vm.detalleFactura._id);
+        	var facturaJSON = {
+        		_id : vm.detalleFactura._id,
+        		serie : vm.detalleFactura.serie,
+				num_fact : vm.detalleFactura.num_fact,
+				fecha : vm.detalleFactura.fecha,
+				productos: vm.detalleFactura.productos,
+				sub_total : vm.detalleFactura.sub_total,
+				igv : vm.detalleFactura.igv,
+				total : vm.detalleFactura.total
+        	}
+
+        	$http.put('/inv/facturas', facturaJSON).then(function(res){
+        		console.log('producto agregado a la factura');
+        		vm.getFacturas();
+        	})
+        	productoJSON= "";
+        });
+    } else {
+        console.log("faltan datos");
+    }
+	}
+
+
+	
 	
 	vm.updateFactura = function(factura){
 		if(factura){
 			$http.put('/inv/facturas', factura).then(function(res){
-				console.log('update user');
+				console.log('update factura');
 				vm.getFacturas();
 			})
 		}
@@ -72,7 +113,6 @@ app.controller('FacturaCtrl', function ($http) {
 			console.log("faltan datos");
 		}
 	}
-	
 });
 
 //controller productos
@@ -111,6 +151,7 @@ app.controller('ProductoCtrl', function ($http) {
 				vm.getProductos();
 				vm.productos="";
 				vm.addproducto = false;
+				console.log("prueba:"+res.data._id);
 			});
 		}
 		else {

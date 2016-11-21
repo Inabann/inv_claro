@@ -17,6 +17,7 @@ router.get('/',function(req, res){
 
 //agregar
 router.post('/', function(req,res){
+	console.log(req.body);
 	var model = new productoModel();
 	model.codigo = req.body.codigo;
 	model.descripcion = req.body.descripcion;
@@ -24,13 +25,13 @@ router.post('/', function(req,res){
 	model.precio_u = req.body.precio_u;
 	model.valor_u = req.body.valor_u;
 	model.total = req.body.total;
-
 	model.save(function(err, producto){
 		if(err){
 			res.status(500).send(err);
 		}
 		else{
-			res.status(201).send(producto);
+			console.log(producto._id);
+			res.send(producto);
 		}
 	});
 });

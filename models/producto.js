@@ -7,8 +7,8 @@ var ProductoSchema = new Schema({
 	{
 		type: String,
 		required: true,
-		unique: true,	
-		validate: [function(seriefact){return (seriefact.length<=18 && seriefact.length>6);},'dato incorrecto']
+		unique: true	
+		//validate: [function(seriefact){return (seriefact.length<=18 && seriefact.length>6);},'dato incorrecto']
 	},
 	descripcion: String,
 	num_serie:[String],
