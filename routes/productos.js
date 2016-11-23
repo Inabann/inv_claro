@@ -17,7 +17,6 @@ router.get('/',function(req, res){
 
 //agregar
 router.post('/', function(req,res){
-	console.log(req.body);
 	var model = new productoModel();
 	model.codigo = req.body.codigo;
 	model.descripcion = req.body.descripcion;
@@ -30,7 +29,6 @@ router.post('/', function(req,res){
 			res.status(500).send(err);
 		}
 		else{
-			console.log(producto._id);
 			res.send(producto);
 		}
 	});

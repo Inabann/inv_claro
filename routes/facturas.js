@@ -40,9 +40,7 @@ router.post('/', function(req,res){
 
 //editar factura
 router.put('/',function(req,res){
-		console.log(req.body._id);
-		facturaModel.findById(req.body._id, function(err, factura){
-			console.log(factura);
+		/*facturaModel.findById(req.body._id, function(err, factura){
 			if(err){
 				response.status(404).send(err);
 			}
@@ -56,7 +54,17 @@ router.put('/',function(req,res){
 					}
 				});
 			}
-		})
+		})*/
+		facturaModel.findByIdAndUpdate(req.body._id, {$set:req.body},{new:true}, function(err, factura){
+			if(err){
+				response.status(404).send(err);
+			}
+			else {
+					productoModel.populate(factura, {path: "productos"}, function(err, factura){
+					res.status(200).send(factura);
+					});
+				}
+			})
 });
 
 //eliminar

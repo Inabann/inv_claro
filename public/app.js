@@ -44,7 +44,6 @@ app.controller('FacturaCtrl', function ($http) {
 
 	vm.addProducto = function(producto) {
     if (producto && producto.codigo) {
-        console.log(producto);
         var productoJSON ={
         	codigo: producto.codigo,
         	descripcion: producto.descripcion,
@@ -56,7 +55,6 @@ app.controller('FacturaCtrl', function ($http) {
 
         $http.post('/inv/productos', productoJSON).then(function(res) {
         	vm.detalleFactura.productos.push(res.data._id);
-        	console.log(vm.detalleFactura._id);
         	var facturaJSON = {
         		_id : vm.detalleFactura._id,
         		serie : vm.detalleFactura.serie,
@@ -70,9 +68,13 @@ app.controller('FacturaCtrl', function ($http) {
 
         	$http.put('/inv/facturas', facturaJSON).then(function(res){
         		console.log('producto agregado a la factura');
-        		vm.getFacturas();
+        		console.log(res.data);
+        		vm.detalleFactura = res.data;
+
         	})
         	productoJSON= "";
+        	facturaJSON= "";
+        	
         });
     } else {
         console.log("faltan datos");
