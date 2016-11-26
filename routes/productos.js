@@ -1,16 +1,29 @@
 var productoModel = require('../models/producto.js');
+var facturaModel = require('../models/factura.js');
 var mogoose = require('mongoose');
 var express = require('express');
 var router = express.Router();
 
 //mostar todas los productos
-router.get('/',function(req, res){
-	productoModel.find({}, function(err, productos){
+router.get('/',function(req,res){
+	productoModel.find({},function(err, productos){
+		res.status(200).send(productos);
+	})
+});
+
+
+router.get('/:id',function(req, res){
+	var id = req.params.id;
+	console.log(id);
+	facturaModel.findById(id, function(err, factura){
 		if(err){
 			res.status(404).send(err);
 		}
 		else {
-			res.status(200).send(productos)
+			
+			productoModel.populate(factura, {path: "productos"}, function(err, factura){
+				res.status(200).send(factura);
+		});
 		}
 	})
 });

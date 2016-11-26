@@ -35,12 +35,14 @@ app.controller('FacturaCtrl', function ($http) {
 
 	}
 	
+
 	vm.getFacturas = function(){
 		$http.get('/inv/facturas').then(function(res){
 			vm.facturas = res.data;
 		});
 	}
 	vm.getFacturas();
+
 
 	vm.addProducto = function(producto) {
     if (producto && producto.codigo) {
@@ -55,6 +57,7 @@ app.controller('FacturaCtrl', function ($http) {
 
         $http.post('/inv/productos', productoJSON).then(function(res) {
         	vm.detalleFactura.productos.push(res.data._id);
+        	
         	var facturaJSON = {
         		_id : vm.detalleFactura._id,
         		serie : vm.detalleFactura.serie,
@@ -74,7 +77,7 @@ app.controller('FacturaCtrl', function ($http) {
         	})
         	productoJSON= "";
         	facturaJSON= "";
-        	
+        	vm.getFacturas();
         });
     } else {
         console.log("faltan datos");
@@ -82,7 +85,19 @@ app.controller('FacturaCtrl', function ($http) {
 	}
 
 
-	
+	vm.removeProducto = function(producto){
+		if(producto){
+			$http.delete('/inv/productos/'+ producto._id).then(function(res){
+				console.log("producto eliminado")
+			});
+			vm.getFacturas();
+			$http.get('/inv/productos/'+vm.detalleFactura._id).then(function(res){
+				
+				vm.detalleFactura = res.data;
+				console.log(vm.detalleFactura.productos);
+			});
+		}
+	}
 	
 	vm.updateFactura = function(factura){
 		if(factura){
