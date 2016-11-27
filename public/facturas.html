@@ -108,15 +108,36 @@
                 <th>Total</th>
                 <th>Actions</th>
                 <tr ng-repeat = "producto in vm.detalleFactura.productos">
-                    <td>{{producto.codigo}}</td>
-                    <td>{{producto.descripcion}}</td>
-                    <td>{{producto.cantidad}}</td>
-                    <td>{{producto.precio_u}}</td>
-                    <td>{{producto.valor_u}}</td>
-                    <td>{{producto.total}}</td>
+                    <td ng-if="!editing">{{producto.codigo}}</td>
+                    <td ng-if="!editing">{{producto.descripcion}}</td>
+                    <td ng-if="!editing">{{producto.cantidad}}</td>
+                    <td ng-if="!editing">{{producto.precio_u}}</td>
+                    <td ng-if="!editing">{{producto.valor_u}}</td>
+                    <td ng-if="!editing">{{producto.total}}</td>
+                    <td ng-if="editing">
+                        <input type="text" ng-model="producto.codigo" class="form-control" style="width:80px;">
+                    </td>
+                    <td ng-if="editing">
+                        <input type="text" ng-model="producto.descripcion" class="form-control" style="width:100px;">
+                    </td>
+                    <td ng-if="editing">
+                        <input type="text" ng-model="producto.cantidad" class="form-control" style="width:60px;">
+                    </td>
+                    <td ng-if="editing">
+                        <input type="text" ng-model="producto.precio_u" class="form-control" style="width:60px;">
+                    </td>
+                    <td ng-if="editing">
+                        <input type="text" ng-model="producto.valor_u" class="form-control" style="width:60px;">
+                    </td>
+                    <td ng-if="editing">
+                        <input type="text" ng-model="producto.total" class="form-control" style="width:60px;">
+                    </td>
                     <td>
-                        <button class="btn btn-warning">edit</button>
-                        <button class="btn btn-danger" ng-click="vm.removeProducto(producto)">X</button>
+                        <button class="btn btn-success btn-md" href="#ventana3" data-toggle="modal" ng-click="vm.showNum(producto)">N°serie</button>
+                        <button ng-hide="editing" class="btn btn-warning" ng-click="editing=!editing">Edit</button>
+                        <button ng-hide="!editing" class="btn btn-success" ng-click="vm.updateProducto(producto);editing=false;">Save</button>
+                        <button class="btn btn-primary" ng-hide="!editing" ng-click="editing=!editing">Back</button>
+                        <button class="btn btn-danger" ng-click="vm.removeProducto(producto);" ng-hide="editing">Delete</button>
                     </td>
                     
                 </tr>
@@ -126,7 +147,6 @@
             <br>
                 <button class="btn btn-danger" ng-click="vm.detalle=false">Back</button>
             </div>
-
             <div class="modal fade" id="ventana2">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -167,7 +187,37 @@
                     </div>                 
                 </div>  
             </div>
-        </div>
+            </div>
+                
+            </div>
+            <div class="modal fade" id="ventana3">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h2 class="modal-tittle">N° Serie</h2>  
+                        </div>
+                        <div class="modal-body">
+                            <div class="container show-num_serie">
+                            <div>
+                                 <input type="text" ng-model="num_serie" class="form-control" style="width:150px;">
+                                 <button class="btn btn-success" ng-click="vm.addSerie(num_serie)">+</button>
+                            </div>
+                               
+                                <table class="table table-bordered table-hovered table-condensed">
+                                        <tr ng-repeat="num_serie in vm.detalleProducto.num_serie">
+                                            <td>{{num_serie}}</td>
+                                            <td><button class="btn btn-danger" ng-click="vm.removeSerie(num_serie)">X</button></td>
+                                        </tr>
+                                </table>
+                                
+                            </div>
+                        <div class="modal-footer">
+                            
+                        </div>                 
+                    </div>  
+                </div>
+            </div>
         </div>
     </div>
 </div>

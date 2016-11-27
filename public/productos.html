@@ -1,6 +1,6 @@
 <div class="container">
     <div class="container productos-container">
-    <h1>Productos</h1>
+        <h1>Productos</h1>
         <table class="table table-bordered table-striped table-hovered table-condensed">
             <th>Codigo</th>
             <th>Descripción</th>
@@ -77,14 +77,14 @@
                                 <label for="total">Total</label>
                                 <input type="text" id="total" class="form-control" style="width:90px;" ng-model="vm.producto.total">
                             </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-success"  ng-disabled="!vm.producto.codigo || !vm.producto.descripcion || !vm.producto.cantidad || !vm.producto.precio_u || !vm.producto.valor_u" ng-click = "vm.addProducto(vm.producto)" data-dismiss="modal">Add</button>
+                            <button class="btn btn-primary" data-dismiss="modal" >Back</button>                        
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-success"  ng-disabled="!vm.producto.codigo || !vm.producto.descripcion || !vm.producto.cantidad || !vm.producto.precio_u || !vm.producto.valor_u" ng-click = "vm.addProducto(vm.producto)" data-dismiss="modal">Add</button>
-                        <button class="btn btn-primary" data-dismiss="modal" >Back</button>                        
-                    </div>
-                </div>
-            </div>   
+                </div>   
+            </div>
         </div>
-    </div>
     </div>
 </div>

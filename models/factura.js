@@ -4,26 +4,25 @@ var pro = require('./producto');
 var Productos = pro.model;
 var guia = require('./guia');
 var Guia = guia.model;
-//var Productos = require('mongoose').model('Productos').schema;
 
 var FacturaSchema = new Schema({
 	serie:
 	{
 		type: String,
 		required: true,
-		unique: true,	
-		validate: [function(seriefact){
+		unique: true	
+		/*validate: [function(seriefact){
 			return (seriefact.length<=4 && seriefact.length>3);
-		},'dato incorrecto']
+		},'dato incorrecto']*/
 	},
 	num_fact:
 	{
 		type: String,
 		required: true,
-		unique: true,	
-		validate: [function(numfact){
+		unique: true	
+		/*validate: [function(numfact){
 			return (numfact.length<=8 && numfact.length>7);
-		},'dato incorrecto']
+		},'dato incorrecto']*/
 	},
 	fecha: Date,
 	productos: [{ type: Schema.ObjectId, ref: "Productos" }] ,
@@ -31,8 +30,6 @@ var FacturaSchema = new Schema({
 	igv: Number,
 	total: Number,
 	guia: { type: Schema.ObjectId, ref: "Guia" }
-
-	//guia: populate, falta agregar guia de remision
 });
 
 var model = mongoose.model('Facturas', FacturaSchema);

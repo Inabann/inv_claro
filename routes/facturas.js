@@ -40,31 +40,16 @@ router.post('/', function(req,res){
 
 //editar factura
 router.put('/',function(req,res){
-		/*facturaModel.findById(req.body._id, function(err, factura){
-			if(err){
-				response.status(404).send(err);
-			}
-			else {
-				factura.update(req.body, function(err, success){
-					if(err){
-						res.send(err);
-					}
-					else{
-						res.status(200).send({message: 'success'});
-					}
-				});
-			}
-		})*/
-		facturaModel.findByIdAndUpdate(req.body._id, {$set:req.body},{new:true}, function(err, factura){
-			if(err){
-				response.status(404).send(err);
-			}
-			else {
-					productoModel.populate(factura, {path: "productos"}, function(err, factura){
-					res.status(200).send(factura);
-					});
-				}
-			})
+	facturaModel.findByIdAndUpdate(req.body._id, {$set:req.body},{new:true}, function(err, factura){
+		if(err){
+			response.status(404).send(err);
+		}
+		else {
+			productoModel.populate(factura, {path: "productos"}, function(err, factura){
+				res.status(200).send(factura);
+			});
+		}
+	})
 });
 
 //eliminar

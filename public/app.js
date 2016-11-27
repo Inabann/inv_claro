@@ -43,6 +43,44 @@ app.controller('FacturaCtrl', function ($http) {
 	}
 	vm.getFacturas();
 
+	vm.showNum = function(producto){
+		vm.detalleProducto = producto;
+	}
+
+	vm.productos = [];
+	vm.getProductos = function(){
+		$http.get('/inv/productos').then(function(res){
+			vm.productos = res.data;
+		});
+	}
+	vm.getProductos();
+
+	vm.addSerie = function(num_serie){
+		console.log(num_serie);
+		vm.detalleProducto.num_serie.push(num_serie);
+		$http.put('/inv/productos', vm.detalleProducto).then(function(res){
+			console.log(res.data);
+			//vm.detalleProducto = res.data;
+		});
+		vm.getProductos();
+	}
+
+	vm.removeSerie = function(num_serie){
+		console.log(num_serie);
+		let remove = function(arr, what) {
+		    var found = arr.indexOf(what);
+
+		    while (found !== -1) {
+		        arr.splice(found, 1);
+		        found = arr.indexOf(what);
+		    }
+		};
+		remove(vm.detalleProducto.num_serie, num_serie);
+		console.log(vm.detalleProducto.num_serie);
+		$http.put('/inv/productos', vm.detalleProducto).then(function(res){
+			console.log(res.data);
+		});
+	}
 
 	vm.addProducto = function(producto) {
     if (producto && producto.codigo) {
@@ -71,7 +109,7 @@ app.controller('FacturaCtrl', function ($http) {
 
         	$http.put('/inv/facturas', facturaJSON).then(function(res){
         		console.log('producto agregado a la factura');
-        		console.log(res.data);
+        		//console.log(res.data);
         		vm.detalleFactura = res.data;
 
         	})
@@ -88,13 +126,22 @@ app.controller('FacturaCtrl', function ($http) {
 	vm.removeProducto = function(producto){
 		if(producto){
 			$http.delete('/inv/productos/'+ producto._id).then(function(res){
-				console.log("producto eliminado")
+				//console.log("producto eliminado")
 			});
 			vm.getFacturas();
 			$http.get('/inv/productos/'+vm.detalleFactura._id).then(function(res){
-				
 				vm.detalleFactura = res.data;
-				console.log(vm.detalleFactura.productos);
+			});
+		}
+	}
+
+	vm.updateProducto = function(producto){
+		if(producto){
+			$http.put('/inv/productos', producto).then(function(res){
+				console.log('update producto');
+			});
+			$http.get('/inv/productos/'+vm.detalleFactura._id).then(function(res){
+				vm.detalleFactura = res.data;
 			});
 		}
 	}

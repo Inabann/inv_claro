@@ -14,7 +14,7 @@ router.get('/',function(req,res){
 
 router.get('/:id',function(req, res){
 	var id = req.params.id;
-	console.log(id);
+	//console.log(id);
 	facturaModel.findById(id, function(err, factura){
 		if(err){
 			res.status(404).send(err);
@@ -49,19 +49,12 @@ router.post('/', function(req,res){
 
 //editar factura
 router.put('/',function(req,res){
-	productoModel.findById(req.body._id, function(err, producto){
+	productoModel.findByIdAndUpdate(req.body._id,{$set:req.body},{new:true},function(err, producto){
 		if(err){
-			response.status(404).send(err);
+			res.status(404).send(err);
 		}
 		else {
-			producto.update(req.body, function(err, success){
-				if(err){
-					res.send(err);
-				}
-				else{
-					res.status(200).send({message: 'success'});
-				}
-			});
+			res.status(200).send(producto);
 		}
 	})
 });
