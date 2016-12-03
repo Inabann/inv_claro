@@ -1,6 +1,13 @@
 var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
+var numSchema = new Schema({
+	num: String,
+	vendido: {
+		type: Boolean,
+		default: false
+	}
+},{_id:false});
 
 var ProductoSchema = new Schema({
 	codigo:
@@ -11,7 +18,7 @@ var ProductoSchema = new Schema({
 		//validate: [function(seriefact){return (seriefact.length<=18 && seriefact.length>6);},'dato incorrecto']
 	},
 	descripcion: String,
-	num_serie:[String],
+	num_serie:[numSchema],
 	cantidad: Number,
 	precio_u: Number,
 	valor_u: Number,

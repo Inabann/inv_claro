@@ -195,7 +195,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h2 class="modal-tittle">N° Serie</h2>  
+                            <!--<h2 class="modal-tittle">N° Serie</h2>-->  
                         </div>
                         <div class="modal-body">
                             <div class="container show-num_serie">
@@ -205,8 +205,12 @@
                             </div>
                                
                                 <table class="table table-bordered table-hovered table-condensed">
+                                    <th>Numero de serie</th>
+                                    <!--<th>Vendido</th>-->
+                                    <th></th>
                                         <tr ng-repeat="num_serie in vm.detalleProducto.num_serie">
-                                            <td>{{num_serie}}</td>
+                                            <td>{{num_serie.num}}</td>
+                                            <!--<td>{{num_serie.vendido}}</td>-->
                                             <td><button class="btn btn-danger" ng-click="vm.removeSerie(num_serie)">X</button></td>
                                         </tr>
                                 </table>

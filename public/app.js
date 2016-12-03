@@ -57,7 +57,8 @@ app.controller('FacturaCtrl', function ($http) {
 
 	vm.addSerie = function(num_serie){
 		console.log(num_serie);
-		vm.detalleProducto.num_serie.push(num_serie);
+		vm.detalleProducto.num_serie.push({num : num_serie});
+		console.log(vm.detalleProducto);
 		$http.put('/inv/productos', vm.detalleProducto).then(function(res){
 			console.log(res.data);
 			//vm.detalleProducto = res.data;
@@ -67,15 +68,14 @@ app.controller('FacturaCtrl', function ($http) {
 
 	vm.removeSerie = function(num_serie){
 		console.log(num_serie);
-		let remove = function(arr, what) {
-		    var found = arr.indexOf(what);
-
-		    while (found !== -1) {
-		        arr.splice(found, 1);
-		        found = arr.indexOf(what);
-		    }
+		Array.prototype.removeValue = function(name, value){
+		   var array = $.map(this, function(v,i){
+		      return v[name] === value ? null : v;
+		   });
+		   this.length = 0; //clear original array
+		   this.push.apply(this, array); //push all elements except the one we want to delete
 		};
-		remove(vm.detalleProducto.num_serie, num_serie);
+		vm.detalleProducto.num_serie.removeValue("num", num_serie.num);
 		console.log(vm.detalleProducto.num_serie);
 		$http.put('/inv/productos', vm.detalleProducto).then(function(res){
 			console.log(res.data);
