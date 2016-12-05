@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 
-
 var loginSchema = new Schema({
 	username: String,
 	password: String

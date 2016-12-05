@@ -37,6 +37,7 @@ router.post('/', function(req,res){
 	model.precio_u = req.body.precio_u;
 	model.valor_u = req.body.valor_u;
 	model.total = req.body.total;
+	model.no_vendido = req.body.cantidad;
 	model.save(function(err, producto){
 		if(err){
 			res.status(500).send(err);

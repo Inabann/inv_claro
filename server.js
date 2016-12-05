@@ -31,6 +31,9 @@ app.use('/inv/facturas', facturas);
 var productos = require('./routes/productos');
 app.use('/inv/productos', productos);
 
+var stock = require('./routes/stock');
+app.use('/inv/stock', stock);
+
 app.listen(3000, function(){
 	console.log('server en el puerto 3000');
 })
