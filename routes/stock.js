@@ -7,10 +7,12 @@ router.get('/',function(req,res){
 	productoModel.aggregate([
         {
             $group: {
-                _id: '$codigo',  //$region is the column name in collection
-                count: {$sum: 1}
+                _id: '$codigo',
+                nombre: {$first: '$descripcion'},
+                cantidad_res: {$sum: '$no_vendido'},
             }
         }
+
     ], function (err, result) {
         if (err) {
             res.send(err);

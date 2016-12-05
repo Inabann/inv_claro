@@ -1,7 +1,5 @@
 var app = angular.module('app', ['ngRoute']);
 
-
-
 app.config(function ($routeProvider) {
 	$routeProvider.when('/facturas', {
 		controller: 'FacturaCtrl',
@@ -19,7 +17,12 @@ app.config(function ($routeProvider) {
 		controllerAs: 'vm',		
 		templateUrl: 'login.html'
 	});
+	$routeProvider.when('/stock',{
+		controller: 'StockCtrl',
+		controllerAs: 'vm',
+		templateUrl: 'stock.html'
 	});
+});
 	
 
 //controller login
