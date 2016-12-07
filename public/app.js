@@ -22,6 +22,11 @@ app.config(function ($routeProvider) {
 		controllerAs: 'vm',
 		templateUrl: 'stock.html'
 	});
+	$routeProvider.when('/personal',{
+		controller: 'EmpleadoCtrl',
+		controllerAs: 'vm',
+		templateUrl: 'empleados.html'
+	});
 });
 	
 

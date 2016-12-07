@@ -1,4 +1,3 @@
-var Model = require('./models/factura.js')
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
@@ -33,6 +32,9 @@ app.use('/inv/productos', productos);
 
 var stock = require('./routes/stock');
 app.use('/inv/stock', stock);
+
+var empleados = require('./routes/empleados');
+app.use('/inv/empleados', empleados);
 
 app.listen(3000, function(){
 	console.log('server en el puerto 3000');
