@@ -7,25 +7,21 @@
         <table class="table table-bordered table-striped table-hovered table-condensed">
             <th>DNI</th>
             <th>Nombre</th>
-            <th>Apellidos</th>
             <tr ng-repeat="empleado in vm.empleados">
                 <td ng-if="!editing">{{empleado.dni}}</td>
                 <td ng-if="!editing">{{empleado.nombre}}</td>
-                <td ng-if="!editing">{{empleado.apellido}}</td>
                 <td ng-if="editing">
-                	<input type="text" ng-model="empleado.dni" class="form-control" style="width:60px;">
+                	<input type="text" ng-model="empleado.dni" class="form-control" style="width:130px;">
                 </td>
                 <td ng-if="editing">
-                	<input type="text" ng-model="empleado.nombre" class="form-control" style="width:60px;">
-                </td>
-                <td ng-if="editing">
-                	<input type="text" ng-model="empleado.apellido" class="form-control" style="width:120px;">
+                	<input type="text" ng-model="empleado.nombre" class="form-control" style="width:190px;">
                 </td>
                 <td>
                     <button ng-hide="editing" class="btn btn-warning" ng-click="editing=!editing">Edit</button>
                     <button ng-hide="!editing" class="btn btn-success" ng-click="vm.updateEmpleado(empleado);editing=false;">Save</button>
                     <button class="btn btn-primary" ng-hide="!editing" ng-click="editing=!editing">Back</button>
                     <button class="btn btn-danger" ng-click="vm.removeEmpleado(empleado);" ng-hide="editing">Delete</button>
+                    <button class="btn btn-success" ng-hide="editing" ng-click="vm.detalleVentas(empleado)" data-toggle="modal" data-target="#myModal">Ventas</button>
                 </td>
             </tr>
         </table>
@@ -43,21 +39,53 @@
                                 <input required type="text" id="dni" class="form-control" style="width:90px;" ng-model="vm.empleado.dni">
                             </div>
                             <div class="form-group">
-                                <label for="nombre">Nombres</label>
+                                <label for="nombre">Nombres y apellidos</label>
                                 <input required type="text" id="nombre" class="form-control" style="width:90px;" ng-model="vm.empleado.nombre">
-                            </div>
-                            <div class="form-group">
-                                <label for="apellido">Apellidos</label>
-                                <input type="text" id="apellido" class="form-control" style="width:90px;" ng-model="vm.empleado.apellido">
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-success"  ng-disabled="!vm.empleado.dni || !vm.empleado.nombre || !vm.empleado.apellido" ng-click = "vm.addEmpleado(vm.empleado); vm.empleado=null" data-dismiss="modal">Add</button>
+                            <button class="btn btn-success"  ng-disabled="!vm.empleado.dni || !vm.empleado.nombre" data-dismiss="modal" ng-click = "vm.addEmpleado(vm.empleado)" >Add</button>
                             <button class="btn btn-primary" data-dismiss="modal" ng-click="vm.empleado = null">Back</button>                        
                         </div>
                     </div>
                 </div>   
             </div>
+        </div>
+        <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-lg">
+
+            <!-- Modal content ///// FALTA CAPTURAR EMPLEADO Y MOSTRAR SUS VENTAS POR MES-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Ventas de: {{vm.detalle.nombre}}</h4>
+              </div>
+              <div class="modal-body">
+                <label>Fecha:</label>
+                <input type="date" ng-model="search">
+                <table class="table table-bordered">
+                    <th>Producto</th>
+                    <th>IMEI/ICCID</th>
+                    <th>Cliente</th>
+                    <th>Fecha Venta</th>
+                    <th>Plan</th>
+                    <th>Observación</th>
+                    <tr ng-repeat="venta in vm.ventas | filter:search"><!--el fitro esta MAL-->
+                        <td>{{venta.productos.descripcion}}</td>
+                        <td>{{venta.num_serie}}</td>
+                        <td>{{venta.nombres}}</td>
+                        <td>{{venta.fecha_venta | date:"dd/MM/y"}}</td>
+                        <td>{{venta.plan}}</td>
+                        <td>{{venta.obs}}</td>
+                    </tr>
+                </table>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
         </div>
     </div>
 </div>

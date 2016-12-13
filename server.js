@@ -36,6 +36,9 @@ app.use('/inv/stock', stock);
 var empleados = require('./routes/empleados');
 app.use('/inv/empleados', empleados);
 
+var reg_ventas = require('./routes/reg_ventas');
+app.use('/inv/reg_ventas', reg_ventas);
+
 app.listen(3000, function(){
 	console.log('server en el puerto 3000');
 })

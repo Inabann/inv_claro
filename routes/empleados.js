@@ -5,7 +5,7 @@ var router = express.Router();
 
 //mostar todas los empleados
 router.get('/',function(req,res){
-	empleadoModel.find({},function(err, empleados){
+	empleadoModel.find({activo:true},function(err, empleados){
 		res.status(200).send(empleados);
 	})
 });
@@ -15,7 +15,6 @@ router.post('/', function(req,res){
 	var model = new empleadoModel();
 	model.dni = req.body.dni;
 	model.nombre = req.body.nombre;
-	model.apellido = req.body.apellido;
 	model.save(function(err, empleado){
 		if(err){
 			res.status(500).send(err);

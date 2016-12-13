@@ -4,6 +4,19 @@ var mogoose = require('mongoose');
 var express = require('express');
 var router = express.Router();
 
+router.put('/num_serie',function(req,res){
+	productoModel.update({_id: req.body._id, 'num_serie.num':req.body.num_serie},{$set:{'num_serie.$.vendido': true}},function(err, num_serie){
+		if(err){
+			res.status(404).send(err);
+		}
+		else {
+			res.status(200).send(num_serie);
+		}
+	})
+});
+
+
+
 //mostar todas los productos
 router.get('/',function(req,res){
 	productoModel.find({},function(err, productos){

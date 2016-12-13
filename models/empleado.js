@@ -4,8 +4,7 @@ var Schema = mongoose.Schema;
 var EmpleadoSchema = new Schema ({
 	dni : String,
 	nombre: String,
-	apellido: String
-	//ventas: [String]
+	activo: {type: Boolean, default: true}
 });
 
 var model = mongoose.model('Empleados', EmpleadoSchema);

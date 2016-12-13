@@ -1,0 +1,61 @@
+<div class="container">
+	<div class="container ventas-container">
+		<div class="container create-container" ng-hide="vm.mostrarVentas">
+		<h1 nh-hide="vm.mostrarVentas">Registrar Venta</h1>
+			<div class="form-group">
+			<div class="panel panel-primary">
+			  <div class="panel-heading">Datos del cliente</div>
+			  <div class="panel-body">
+			    <label>Nombres y Apellidos: <input type="text" ng-model="vm.venta.nombres" style="width:240px;"></label>
+				<label>DNI: <input type="text" ng-model="vm.venta.dni"></label>
+				<label>Dirección:<input type="text" ng-model="vm.venta.direccion" style="width:240px;"></label>
+				<label>Referencia de direccioón:<input type="text" ng-model="vm.venta.ref_dir" style="width:190px;"></label>
+				<label>Numero de referencia:<input type="text" ng-model="vm.venta.num_ref"></label>
+			  </div>
+			</div>
+			<div class="panel panel-info">
+			  <div class="panel-heading">Datos del producto</div>
+			  <div class="panel-body">
+			    <label for="producto">Producto:<select class="form-group" ng-model="vm.venta.productos" ng-options="producto._id as producto.nombre for producto in vm.productos" id="producto"></select><label for="num_serie">IMEI/ICCID:<input id="num_serie" type="number" ng-model="vm.venta.num_serie"></label></label><br>
+				
+				<label>Plan:<input type="text" ng-model="vm.venta.plan"></label>
+					<label>Numero vendido:<input type="text" ng-model="vm.venta.num"></label>
+			  </div>
+			  <div class="panel-footer">
+			  <label for="empleado">Vendedor:</label>
+				<select class="form-group" ng-model="vm.venta.empleado" ng-options="empleado as empleado.nombre for empleado in vm.empleados"></select>
+			  	<label>Observaciones:<input type="text" ng-model="vm.venta.obs"></label>
+			  </div>
+			</div>
+			<div>
+				<button class="btn btn-primary" ng-disabled="!vm.venta.dni||!vm.venta.nombres||!vm.venta.num_ref||!vm.venta.empleado" ng-click="vm.addVenta(vm.venta)">Listo</button>
+				<button class="btn btn-success" ng-click="vm.limpiar()">Limpiar</button>
+				<button class="btn btn-danger" ng-click="vm.MostrarVentas()">Ver Ventas</button>
+			</div>
+			</div>
+		</div>
+		<div class="container mostrar-ventas" ng-if = "vm.mostrarVentas === true">
+            <button class="close" ng-click="vm.mostrarVentas=!vm.mostrarVentas" aria-hidden="true">&times;</button>
+            <table class="table table-bordered table-striped table-hovered table-condensed">
+                <th>Vendedor</th>
+                <th>Producto</th>
+                <th>N° serie</th>
+                <th>Fecha de Venta</th>
+                <th>DNI del Cliente</th>
+                <th>Actions</th>
+                <tr ng-repeat="venta in vm.ventas">
+                	<td>{{venta.empleado.nombre}}</td>
+                	<td>{{venta.productos.descripcion}}</td>
+                	<td>{{venta.num_serie}}</td>
+                	<td>{{venta.fecha_venta | date:"dd/MM/y"}}</td>
+                	<td>{{venta.dni}}</td>
+                	<td>
+                		<button class="btn btn-danger" ng-click="vm.removeVenta(venta)">eliminar</button>
+                	</td>
+
+                </tr>
+
+            </table>
+        </div>
+	</div>
+</div>

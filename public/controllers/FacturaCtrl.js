@@ -9,8 +9,6 @@ app.controller('FacturaCtrl', function ($http) {
 		vm.detalle = true;
 
 	}
-	
-
 	vm.getFacturas = function(){
 		$http.get('/inv/facturas').then(function(res){
 			vm.facturas = res.data;
@@ -31,14 +29,18 @@ app.controller('FacturaCtrl', function ($http) {
 	vm.getProductos();
 
 	vm.addSerie = function(num_serie){
-		console.log(num_serie);
-		vm.detalleProducto.num_serie.push({num : num_serie});
-		console.log(vm.detalleProducto);
-		$http.put('/inv/productos', vm.detalleProducto).then(function(res){
-			console.log(res.data);
-			//vm.detalleProducto = res.data;
-		});
-		vm.getProductos();
+		if (typeof num_serie === 'number'){
+			vm.detalleProducto.num_serie.push({num : num_serie});
+			console.log(vm.detalleProducto);
+			$http.put('/inv/productos', vm.detalleProducto).then(function(res){
+				console.log(res.data);
+				//vm.detalleProducto = res.data;
+			});
+			vm.getProductos();
+		}
+		else{
+			console.log("ingrese un numero");
+		}
 	}
 
 	vm.removeSerie = function(num_serie){

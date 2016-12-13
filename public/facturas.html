@@ -83,15 +83,15 @@
                                 <label for="total">Total</label>
                                 <input type="text" id="total" class="form-control" style="width:90px;" ng-model="vm.factura.total">
                             </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-success"  ng-disabled="!vm.factura.serie || !vm.factura.num_fact || !vm.factura.sub_total || !vm.factura.igv || !vm.factura.total" ng-click = "vm.addFactura(vm.factura)" data-dismiss="modal">Add</button>
-                        <button class="btn btn-primary" data-dismiss="modal" >Back</button>
-                    </div>                 
-                </div>  
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-success"  ng-disabled="!vm.factura.serie || !vm.factura.num_fact || !vm.factura.sub_total || !vm.factura.igv || !vm.factura.total" ng-click = "vm.addFactura(vm.factura)" data-dismiss="modal">Add</button>
+                            <button class="btn btn-primary" data-dismiss="modal" >Back</button>
+                        </div>                 
+                    </div>  
+                </div>
             </div>
         </div>
-    </div>
     <div class="container detalles-container" ng-if="vm.detalle === true">
         <div class="jumbotron">
         <h2>Detalle Factura</h2>
@@ -200,17 +200,15 @@
                         <div class="modal-body">
                             <div class="container show-num_serie">
                             <div>
-                                 <input type="text" ng-model="num_serie" class="form-control" style="width:150px;">
+                                 <input type="number" ng-model="num_serie" class="form-control" style="width:150px;">
                                  <button class="btn btn-success" ng-click="vm.addSerie(num_serie)">+</button>
                             </div>
                                
                                 <table class="table table-bordered table-hovered table-condensed">
                                     <th>Numero de serie</th>
-                                    <!--<th>Vendido</th>-->
                                     <th></th>
                                         <tr ng-repeat="num_serie in vm.detalleProducto.num_serie">
                                             <td>{{num_serie.num}}</td>
-                                            <!--<td>{{num_serie.vendido}}</td>-->
                                             <td><button class="btn btn-danger" ng-click="vm.removeSerie(num_serie)">X</button></td>
                                         </tr>
                                 </table>

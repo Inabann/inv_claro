@@ -5,7 +5,7 @@
         <th>Codigo</th>
         <th>Descripcion</th>
         <th>Cantidad</th>
-        <tr ng-repeat="producto in vm.stock | filter : buscarText">
+        <tr ng-repeat="producto in vm.stock | filter:buscarText">
             <td>{{producto._id}}</td>
             <td>{{producto.nombre}}</td>
             <td>{{producto.cantidad_res}}</td>

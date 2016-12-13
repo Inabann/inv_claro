@@ -33,7 +33,6 @@ app.controller('ProductoCtrl', function ($http) {
 				vm.getProductos();
 				vm.productos="";
 				vm.addproducto = false;
-				console.log("prueba:"+res.data._id);
 			});
 		}
 		else {

@@ -27,6 +27,11 @@ app.config(function ($routeProvider) {
 		controllerAs: 'vm',
 		templateUrl: 'empleados.html'
 	});
+	$routeProvider.when('/reg_ventas', {
+		controller: 'RegVentaCtrl',
+		controllerAs: 'vm',
+		templateUrl: 'reg_ventas.html'
+	});
 });
 	
 

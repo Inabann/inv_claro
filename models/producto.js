@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var numSchema = new Schema({
-	num: String,
+	num: Number,
 	vendido: {
 		type: Boolean,
 		default: false
@@ -15,8 +15,7 @@ var ProductoSchema = new Schema({
 	cantidad: Number,
 	precio_u: Number,
 	valor_u: Number,
-	total: Number,
-	no_vendido: Number
+	total: Number
 });
 
 var model = mongoose.model('Productos', ProductoSchema);
