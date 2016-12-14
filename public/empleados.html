@@ -61,20 +61,21 @@
                 <h4 class="modal-title">Ventas de: {{vm.detalle.nombre}}</h4>
               </div>
               <div class="modal-body">
-                <label>Fecha:</label>
-                <input type="date" ng-model="search">
+                <label>Mes:<input type="text" ng-model="f.mes" style="width: 60px;"></label>
+                <label>Año:<input type="text" ng-model="f.ano" style="width: 60px;"></label>
+                <button class="btn btn-success" ng-click="vm.mesVentas(f);">ok</button>
                 <table class="table table-bordered">
                     <th>Producto</th>
                     <th>IMEI/ICCID</th>
                     <th>Cliente</th>
-                    <th>Fecha Venta</th>
+                    <th>Mes de Venta</th>
                     <th>Plan</th>
                     <th>Observación</th>
-                    <tr ng-repeat="venta in vm.ventas | filter:search"><!--el fitro esta MAL-->
+                    <tr ng-repeat="venta in vm.ventas"><!--el fitro esta MAL-->
                         <td>{{venta.productos.descripcion}}</td>
                         <td>{{venta.num_serie}}</td>
                         <td>{{venta.nombres}}</td>
-                        <td>{{venta.fecha_venta | date:"dd/MM/y"}}</td>
+                        <td>{{venta.fecha_venta | date:"dd/MM/yyyy"}}</td>
                         <td>{{venta.plan}}</td>
                         <td>{{venta.obs}}</td>
                     </tr>

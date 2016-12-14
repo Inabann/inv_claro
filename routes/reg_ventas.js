@@ -109,4 +109,31 @@ router.get('/:id', function(req, res){
     });
 });
 
+router.get('/mes/:id/:mes/:ano', function(req, res){
+    var id = req.params.id;
+    var mes = Number(req.params.mes);
+    var año = Number(req.params.ano);
+    var antmes = mes-1;
+    var sigaño = año;
+    if(antmes == 11){
+    	mes = 0;
+    	sigaño = año+1;
+    }
+    ventaModel.find({'empleado':id,fecha_venta: {$gte: new Date(año, antmes, 1), $lt: new Date(sigaño, mes, 1)}}, function (err, ventas) {
+        if (err) {
+            res.send(err);
+        } else {
+        	productoModel.populate(ventas, {path: "productos"}, function(err, ventas){
+				if(err){
+					res.status(404).send(err);
+				}
+				else{
+					res.status(200).send(ventas);
+				}
+			});
+        }
+    });
+});
+
+
 module.exports = router;
