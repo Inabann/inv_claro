@@ -4,6 +4,9 @@ app.controller('FacturaCtrl', function ($http) {
 
 	vm.detalleFactura;
 
+	vm.limpiar = function(factura){
+		vm.factura = "";
+	};
 	vm.showDetalles = function(factura){
 		vm.detalleFactura = factura;
 		vm.detalle = true;

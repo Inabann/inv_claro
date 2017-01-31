@@ -7,6 +7,7 @@
         <table class="table table-bordered table-striped table-hovered table-condensed">
             <th>DNI</th>
             <th>Nombre</th>
+            <th>Opciones</th>
             <tr ng-repeat="empleado in vm.empleados">
                 <td ng-if="!editing">{{empleado.dni}}</td>
                 <td ng-if="!editing">{{empleado.nombre}}</td>
@@ -66,14 +67,18 @@
                 <button class="btn btn-success" ng-click="vm.mesVentas(f);">ok</button>
                 <table class="table table-bordered">
                     <th>Producto</th>
-                    <th>IMEI/ICCID</th>
+                    
+                    <th>ICCID</th>
+                    <th>IMEI</th>
                     <th>Cliente</th>
                     <th>Mes de Venta</th>
                     <th>Plan</th>
                     <th>Observación</th>
                     <tr ng-repeat="venta in vm.ventas"><!--el fitro esta MAL-->
                         <td>{{venta.productos.descripcion}}</td>
+                       
                         <td>{{venta.num_serie}}</td>
+                        <td>{{venta.num_imei}}</td>
                         <td>{{venta.nombres}}</td>
                         <td>{{venta.fecha_venta | date:"dd/MM/yyyy"}}</td>
                         <td>{{venta.plan}}</td>

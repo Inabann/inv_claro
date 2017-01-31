@@ -33,6 +33,7 @@ router.get('/', function(req, res){
 router.post('/', function(req, res){
 	var model = new ventaModel();
 	model.productos = req.body.productos;
+	model.productos2 = req.body.productos2;
 	model.empleado = req.body.empleado;
 	model.nombres = req.body.nombres;
 	model.direccion = req.body.direccion;
@@ -42,6 +43,7 @@ router.post('/', function(req, res){
 	model.plan = req.body.plan;
 	model.num = req.body.num;
 	model.obs = req.body.obs;
+	model.num_imei = req.body.num_imei;
 	model.num_serie = req.body.num_serie;
 	model.save(function(err, venta){
 		if(err){

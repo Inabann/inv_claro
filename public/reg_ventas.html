@@ -16,7 +16,7 @@
 			<div class="panel panel-info">
 			  <div class="panel-heading">Datos del producto</div>
 			  <div class="panel-body">
-			    <label for="producto">Producto:<select class="form-group" ng-model="vm.venta.productos" ng-options="producto._id as producto.nombre for producto in vm.productos" id="producto"></select><label for="num_serie">IMEI/ICCID:<input id="num_serie" type="number" ng-model="vm.venta.num_serie"></label></label><br>
+			    <label for="producto">Producto:<select class="form-group" ng-model="vm.venta.productos" ng-options="producto._id as producto.nombre for producto in vm.productos" id="producto"></select><label for="num_serie">ICCID:<input id="num_serie" type="number" ng-model="vm.venta.num_serie"></label><label for="num_imei">IMEI:<input id="num_imei" type="number" ng-model="vm.venta.num_imei"></label></label><br>
 				
 				<label>Plan:<input type="text" ng-model="vm.venta.plan"></label>
 					<label>Numero vendido:<input type="text" ng-model="vm.venta.num"></label>
@@ -39,14 +39,18 @@
             <table class="table table-bordered table-striped table-hovered table-condensed">
                 <th>Vendedor</th>
                 <th>Producto</th>
+         
                 <th>N° serie</th>
+                <th>N° imei</th>
                 <th>Fecha de Venta</th>
                 <th>DNI del Cliente</th>
                 <th>Actions</th>
                 <tr ng-repeat="venta in vm.ventas">
                 	<td>{{venta.empleado.nombre}}</td>
                 	<td>{{venta.productos.descripcion}}</td>
+                
                 	<td>{{venta.num_serie}}</td>
+                	<td>{{venta.num_imei}}</td>
                 	<td>{{venta.fecha_venta | date:"dd/MM/y"}}</td>
                 	<td>{{venta.dni}}</td>
                 	<td>

@@ -4,7 +4,9 @@ var Productos = require('./producto').model;
 var Empleados = require('./empleado').model;
 var RegVentaSchema = new Schema({
 	productos: {type: Schema.ObjectId, ref: "Productos" },
+	productos2: {type: Schema.ObjectId, ref: "Productos" },
 	num_serie: Number,
+	num_imei: Number,
 	empleado: {type: Schema.ObjectId, ref: "Empleados"},
 	fecha_venta: {type: Date, default: Date.now},
 	nombres: String,

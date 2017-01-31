@@ -2,6 +2,7 @@ app.controller('RegVentaCtrl', function($http){
 	var vm = this;
 	vm.ventas = [];
 	vm.productos = [];
+	vm.productos2 = [];
 	vm.empleados = [];
 	vm.mostrarVentas;
 
@@ -12,6 +13,7 @@ app.controller('RegVentaCtrl', function($http){
 	vm.getProductos = function(){
 		$http.get('/inv/stock/').then(function(res){
 			vm.productos = res.data;
+			vm.productos2 = res.data;
 		});
 	};
 	vm.getProductos();
@@ -53,7 +55,7 @@ app.controller('RegVentaCtrl', function($http){
 				$http.put('/inv/productos/', productoN).then(function(res){
 					console.log('listo');
 				});
-			});
+			});		
 		}
 	}
 	vm.getVentas();
@@ -88,6 +90,34 @@ app.controller('RegVentaCtrl', function($http){
 					});
 				});
 			});
+
+			$http.get('/inv/stock/num_serie/'+ venta.num_imei).then(function(res){
+				console.log(res.data[0]._id);
+				venta.productos = res.data[0]._id;
+				console.log(venta.productos);
+				let findArray = function(array, a){
+					var f = "";
+					for (var i = array.length - 1; i >= 0; i--) {
+						if(array[i].num == a){
+							f = i;
+							break;
+						}
+					}
+					return f;
+				}
+				let f =findArray(res.data[0].num_imei, venta.num_imei);
+				let productoN = res.data[0];
+				productoN.num_imei[f].vendido = true;
+				console.log(productoN);
+				$http.post('/inv/reg_ventas', venta).then(function(res){
+					vm.getVentas();
+					$http.put('/inv/productos/', productoN).then(function(res){
+						console.log('listo');
+						vm.venta = "";
+					});
+				});
+			});
+
 
 			}
 			else{
