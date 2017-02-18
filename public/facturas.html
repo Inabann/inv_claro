@@ -182,7 +182,7 @@
                             </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-success"  ng-disabled="!vm.detalleFactura.productos.codigo || !vm.detalleFactura.productos.descripcion || !vm.detalleFactura.productos.cantidad || !vm.detalleFactura.productos.precio_u || !vm.detalleFactura.productos.valor_u" ng-click = "vm.addProducto(vm.detalleFactura.productos)" data-dismiss="modal">Add</button>
+                        <button class="btn btn-success"  ng-disabled="!vm.detalleFactura.productos.codigo || !vm.detalleFactura.productos.descripcion || !vm.detalleFactura.productos.cantidad || !vm.detalleFactura.productos.precio_u || !vm.detalleFactura.productos.valor_u" ng-click = "vm.addProducto(vm.detalleFactura.productos);vm.addProductoPrecio(vm.detalleFactura.producto_precios)" data-dismiss="modal">Add</button>
                         <button class="btn btn-primary" data-dismiss="modal" >Back</button>
                     </div>                 
                 </div>  

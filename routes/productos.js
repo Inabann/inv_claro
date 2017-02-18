@@ -15,19 +15,6 @@ router.put('/num_serie',function(req,res){
 	})
 });
 
-router.put('/num_imei',function(req,res){
-	productoModel.update({_id: req.body._id, 'num_imei.num':req.body.num_imei},{$set:{'num_imei.$.vendido': true}},function(err, num_imei){
-		if(err){
-			res.status(404).send(err);
-		}
-		else {
-			res.status(200).send(num_imei);
-		}
-	})
-});
-
-
-
 //mostar todas los productos
 router.get('/',function(req,res){
 	productoModel.find({},function(err, productos){

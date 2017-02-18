@@ -1,7 +1,7 @@
 app.controller('FacturaCtrl', function ($http) {
 	var vm = this;
 	vm.facturas = [];
-
+	
 	vm.detalleFactura;
 
 	vm.limpiar = function(factura){
@@ -12,6 +12,7 @@ app.controller('FacturaCtrl', function ($http) {
 		vm.detalle = true;
 
 	}
+
 	vm.getFacturas = function(){
 		$http.get('/inv/facturas').then(function(res){
 			vm.facturas = res.data;
@@ -24,12 +25,15 @@ app.controller('FacturaCtrl', function ($http) {
 	}
 
 	vm.productos = [];
+
 	vm.getProductos = function(){
 		$http.get('/inv/productos').then(function(res){
 			vm.productos = res.data;
 		});
 	}
 	vm.getProductos();
+
+
 
 	vm.addSerie = function(num_serie){
 		if (typeof num_serie === 'number'){
@@ -61,7 +65,7 @@ app.controller('FacturaCtrl', function ($http) {
 			console.log(res.data);
 		});
 	}
-
+	
 	vm.addProducto = function(producto) {
     if (producto && producto.codigo) {
         var productoJSON ={
@@ -71,6 +75,11 @@ app.controller('FacturaCtrl', function ($http) {
         	precio_u: producto.precio_u,
         	valor_u: producto.valor_u,
         	total: producto.total
+        };
+        var productoPrecio ={
+        	codigo: producto.codigo,
+        	descripcion: producto.descripcion
+        	
         };
 
         $http.post('/inv/productos', productoJSON).then(function(res) {
@@ -86,11 +95,15 @@ app.controller('FacturaCtrl', function ($http) {
 				igv : vm.detalleFactura.igv,
 				total : vm.detalleFactura.total
         	}
-
+        	
         	$http.put('/inv/facturas', facturaJSON).then(function(res){
         		console.log('producto agregado a la factura');
         		//console.log(res.data);
         		vm.detalleFactura = res.data;
+
+        		$http.post('/inv/producto_precio', productoPrecio).then(function(res) {
+        		console.log('guardo producto_precio');
+        		})
 
         	})
         	productoJSON= "";
@@ -101,7 +114,8 @@ app.controller('FacturaCtrl', function ($http) {
         console.log("faltan datos");
     }
 	}
-
+	
+	
 
 	vm.removeProducto = function(producto){
 		if(producto){

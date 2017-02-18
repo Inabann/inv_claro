@@ -12,7 +12,6 @@ var ProductoSchema = new Schema({
 	codigo: Number,
 	descripcion: String,
 	num_serie:[numSchema],
-	num_imei:[numSchema],
 	cantidad: Number,
 	precio_u: Number,
 	valor_u: Number,

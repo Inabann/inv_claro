@@ -105,9 +105,9 @@ app.controller('RegVentaCtrl', function($http){
 					}
 					return f;
 				}
-				let f =findArray(res.data[0].num_imei, venta.num_imei);
+				let f =findArray(res.data[0].num_serie, venta.num_serie);
 				let productoN = res.data[0];
-				productoN.num_imei[f].vendido = true;
+				productoN.num_serie[f].vendido = true;
 				console.log(productoN);
 				$http.post('/inv/reg_ventas', venta).then(function(res){
 					vm.getVentas();
