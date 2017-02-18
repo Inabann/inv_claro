@@ -16,12 +16,19 @@ router.get('/', function(req, res){
 					res.status(404).send(err);
 				}
 				else{
-					productoModel.populate(ventas, {path: "productos"}, function(err, ventas){
+					productoModel.populate(ventas, {path: "producto1"}, function(err, ventas){
 						if(err){
 							res.status(404).send(err);
 						}
 						else{
-							res.status(200).send(ventas);
+							productoModel.populate(ventas, {path: "producto2"}, function(err, ventas){
+								if(err){
+									res.status(404).send(err);
+								}
+								else{
+									res.status(200).send(ventas);
+								}
+							});
 						}
 					});
 				};
@@ -31,9 +38,10 @@ router.get('/', function(req, res){
 });
 
 router.post('/', function(req, res){
+	console.log(req.body);
 	var model = new ventaModel();
-	model.productos = req.body.productos;
-	model.productos2 = req.body.productos2;
+	model.producto1 = req.body.producto1;
+	model.producto2 = req.body.producto2;
 	model.empleado = req.body.empleado;
 	model.nombres = req.body.nombres;
 	model.direccion = req.body.direccion;
@@ -66,12 +74,19 @@ router.put('/', function(req, res){
 					res.status(404).send(err);
 				}
 				else{
-					productoModel.populate(venta, {path: "productos"}, function(err, venta){
+					productoModel.populate(venta, {path: "producto1"}, function(err, venta){
 						if(err){
 							res.status(404).send(err);
 						}
 						else{
-							res.status(200).send(venta);
+							productoModel.populate(venta, {path: "producto2"}, function(err, venta){
+								if(err){
+									res.status(404).send(err);
+								}
+								else{
+									res.status(200).send(venta);
+								}
+							});
 						}
 					});
 				};
@@ -99,12 +114,19 @@ router.get('/:id', function(req, res){
         if (err) {
             res.send(err);
         } else {
-        	productoModel.populate(ventas, {path: "productos"}, function(err, ventas){
+        	productoModel.populate(ventas, {path: "producto1"}, function(err, ventas){
 				if(err){
 					res.status(404).send(err);
 				}
 				else{
-					res.status(200).send(ventas);
+					productoModel.populate(ventas, {path: "producto2"}, function(err, ventas){
+						if(err){
+							res.status(404).send(err);
+						}
+						else{
+							res.status(200).send(ventas);
+						}
+					});
 				}
 			});
         }
@@ -125,12 +147,19 @@ router.get('/mes/:id/:mes/:ano', function(req, res){
         if (err) {
             res.send(err);
         } else {
-        	productoModel.populate(ventas, {path: "productos"}, function(err, ventas){
+        	productoModel.populate(ventas, {path: "producto1"}, function(err, ventas){
 				if(err){
 					res.status(404).send(err);
 				}
 				else{
-					res.status(200).send(ventas);
+					productoModel.populate(ventas, {path: "producto2"}, function(err, ventas){
+						if(err){
+							res.status(404).send(err);
+						}
+						else{
+							res.status(200).send(ventas);
+						}
+					});
 				}
 			});
         }

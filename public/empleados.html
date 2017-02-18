@@ -66,18 +66,18 @@
                 <label>Año:<input type="text" ng-model="f.ano" style="width: 60px;"></label>
                 <button class="btn btn-success" ng-click="vm.mesVentas(f);">ok</button>
                 <table class="table table-bordered">
-                    <th>Producto</th>
-                    
+                    <th>Descripcion</th>
                     <th>ICCID</th>
+                    <th>Descripcion</th>
                     <th>IMEI</th>
                     <th>Cliente</th>
                     <th>Mes de Venta</th>
                     <th>Plan</th>
                     <th>Observación</th>
                     <tr ng-repeat="venta in vm.ventas"><!--el fitro esta MAL-->
-                        <td>{{venta.productos.descripcion}}</td>
-                       
+                        <td>{{venta.producto1.descripcion}}</td>
                         <td>{{venta.num_serie}}</td>
+                        <td>{{venta.producto2.descripcion}}</td>
                         <td>{{venta.num_imei}}</td>
                         <td>{{venta.nombres}}</td>
                         <td>{{venta.fecha_venta | date:"dd/MM/yyyy"}}</td>

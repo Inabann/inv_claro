@@ -6,20 +6,26 @@
 			<div class="panel panel-primary">
 			  <div class="panel-heading">Datos del cliente</div>
 			  <div class="panel-body">
-			    <label>Nombres y Apellidos: <input type="text" ng-model="vm.venta.nombres" style="width:240px;"></label>
-				<label>DNI: <input type="text" ng-model="vm.venta.dni"></label>
-				<label>Dirección:<input type="text" ng-model="vm.venta.direccion" style="width:240px;"></label>
-				<label>Referencia de direccioón:<input type="text" ng-model="vm.venta.ref_dir" style="width:190px;"></label>
-				<label>Numero de referencia:<input type="text" ng-model="vm.venta.num_ref"></label>
+			    <label>Nombres y Apellidos: <input type="text" class="form-control" ng-model="vm.venta.nombres" style="width:300px;"></label>
+				<label>DNI: <input type="text" class="form-control" ng-model="vm.venta.dni"></label><br>
+				<label>Dirección:<input class="form-control" type="text" ng-model="vm.venta.direccion" style="width:300px;"></label>
+				<label>Referencia de direccioón:<input type="text" class="form-control" ng-model="vm.venta.ref_dir" style="width:250px;"></label>
+				<label>Numero de referencia:<input type="text" class="form-control" ng-model="vm.venta.num_ref"></label>
 			  </div>
 			</div>
 			<div class="panel panel-info">
 			  <div class="panel-heading">Datos del producto</div>
 			  <div class="panel-body">
-			    <label for="producto">Producto:<select class="form-group" ng-model="vm.venta.productos" ng-options="producto._id as producto.nombre for producto in vm.productos" id="producto"></select><label for="num_serie">ICCID:<input id="num_serie" type="number" ng-model="vm.venta.num_serie"></label><label for="num_imei">IMEI:<input id="num_imei" type="number" ng-model="vm.venta.num_imei"></label></label><br>
+			  	<div class="form-group">
+			    	<label for="producto">Producto:<select class="form-control" ng-model="vm.venta.producto1" ng-options="producto._id as producto.nombre for producto in vm.productos" id="producto"></select></label><label for="num_serie">ICCID:<input id="num_serie" class="form-control" type="number" ng-model="vm.venta.num_serie"></label>
+				</div>
+				<div class="form-group">
+				<label for="producto2">Producto:<select class="form-control" ng-model="vm.venta.producto2" ng-options="producto._id as producto.nombre for producto in vm.productos" id="producto"></select></label>
+			    <label for="num_imei">IMEI:<input id="num_imei" type="number" ng-model="vm.venta.num_imei" class="form-control"></label>
+			    </div>
 				
-				<label>Plan:<input type="text" ng-model="vm.venta.plan"></label>
-					<label>Numero vendido:<input type="text" ng-model="vm.venta.num"></label>
+				<label>Plan:<input class="form-control" type="text" ng-model="vm.venta.plan"></label>
+				<label>Numero vendido:<input type="text" class="form-control" ng-model="vm.venta.num"></label>
 			  </div>
 			  <div class="panel-footer">
 			  <label for="empleado">Vendedor:</label>
@@ -38,19 +44,16 @@
             <button class="close" ng-click="vm.mostrarVentas=!vm.mostrarVentas" aria-hidden="true">&times;</button>
             <table class="table table-bordered table-striped table-hovered table-condensed">
                 <th>Vendedor</th>
-                <th>Producto</th>
-         
-                <th>N° serie</th>
-                <th>N° imei</th>
+                <th>Producto:N° serie</th>
+                <th>Producto:N° imei</th>
                 <th>Fecha de Venta</th>
                 <th>DNI del Cliente</th>
                 <th>Actions</th>
                 <tr ng-repeat="venta in vm.ventas">
                 	<td>{{venta.empleado.nombre}}</td>
-                	<td>{{venta.productos.descripcion}}</td>
+                	<td>{{venta.producto1.descripcion}} : {{venta.num_serie}}</td>
                 
-                	<td>{{venta.num_serie}}</td>
-                	<td>{{venta.num_imei}}</td>
+                	<td>{{venta.producto2.descripcion}} : {{venta.num_imei}}</td>
                 	<td>{{venta.fecha_venta | date:"dd/MM/y"}}</td>
                 	<td>{{venta.dni}}</td>
                 	<td>

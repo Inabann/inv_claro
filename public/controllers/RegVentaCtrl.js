@@ -2,7 +2,6 @@ app.controller('RegVentaCtrl', function($http){
 	var vm = this;
 	vm.ventas = [];
 	vm.productos = [];
-	vm.productos2 = [];
 	vm.empleados = [];
 	vm.mostrarVentas;
 
@@ -13,7 +12,6 @@ app.controller('RegVentaCtrl', function($http){
 	vm.getProductos = function(){
 		$http.get('/inv/stock/').then(function(res){
 			vm.productos = res.data;
-			vm.productos2 = res.data;
 		});
 	};
 	vm.getProductos();
@@ -34,68 +32,69 @@ app.controller('RegVentaCtrl', function($http){
 			vm.ventas = res.data;
 		});
 	};
-
-	vm.removeVenta = function(venta){
-		if(venta){
-			let findArray = function(array, a){
-					var f = "";
-					for (var i = array.length - 1; i >= 0; i--) {
-						if(array[i].num == a){
-							f = i;
-							break;
-						}
-					}
-					return f;
-				}
-			let f = findArray(venta.productos.num_serie, venta.num_serie)
-			let productoN = venta.productos;
-			productoN.num_serie[f].vendido = false;
-			$http.delete('/inv/reg_ventas/'+ venta._id).then(function(res){
-				vm.getVentas();
-				$http.put('/inv/productos/', productoN).then(function(res){
-					console.log('listo');
-				});
-			});		
-		}
-	}
 	vm.getVentas();
 
-	vm.addVenta = function(venta){
-		if(venta && venta.nombres && venta.dni && venta.empleado){
-			//vm.getNumSerie(venta.num_serie);
-			//console.log(vm.getNumSerie(venta.num_serie));
+	vm.removeVenta = function(venta){
+		let findArray = function(array, a){
+					var f = "";
+					for (var i = array.length - 1; i >= 0; i--) {
+						if(array[i].num == a){
+							f = i;
+							break;
+						}
+					}
+					return f;
+				}
+		if(venta.num_serie && venta.num_imei){
 			$http.get('/inv/stock/num_serie/'+ venta.num_serie).then(function(res){
-				console.log(res.data[0]._id);
-				venta.productos = res.data[0]._id;
-				console.log(venta.productos);
-				let findArray = function(array, a){
-					var f = "";
-					for (var i = array.length - 1; i >= 0; i--) {
-						if(array[i].num == a){
-							f = i;
-							break;
-						}
-					}
-					return f;
-				}
 				let f =findArray(res.data[0].num_serie, venta.num_serie);
-				let productoN = res.data[0];
-				productoN.num_serie[f].vendido = true;
-				console.log(productoN);
-				$http.post('/inv/reg_ventas', venta).then(function(res){
-					vm.getVentas();
-					$http.put('/inv/productos/', productoN).then(function(res){
-						console.log('listo');
-						vm.venta = "";
+				let productoN1 = res.data[0];
+				productoN1.num_serie[f].vendido = false;
+				$http.get('/inv/stock/num_serie/'+ venta.num_imei).then(function(res){
+					let f =findArray(res.data[0].num_serie, venta.num_imei);
+					let productoN2 = res.data[0];
+					productoN2.num_serie[f].vendido = false;
+					$http.put('/inv/productos/', productoN2).then(function(res){
+						console.log('imei cambiado a false');
+						$http.put('/inv/productos/', productoN1).then(function(res){
+							console.log('iccid cambiado a false');
+							$http.delete('/inv/reg_ventas/'+ venta._id).then(function(res){
+								vm.getVentas();
+							});
+						});
 					});
 				});
 			});
-
+		}else if(venta.num_serie && !venta.num_imei){
+			$http.get('/inv/stock/num_serie/'+ venta.num_serie).then(function(res){
+				let f =findArray(res.data[0].num_serie, venta.num_serie);
+				let productoN1 = res.data[0];
+				productoN1.num_serie[f].vendido = false;
+				$http.put('/inv/productos/', productoN1).then(function(res){
+					console.log('listo');
+					$http.delete('/inv/reg_ventas/'+ venta._id).then(function(res){
+						vm.getVentas();
+					});
+				});
+			});
+		}else if(!venta.num_serie && venta.num_imei){
 			$http.get('/inv/stock/num_serie/'+ venta.num_imei).then(function(res){
-				console.log(res.data[0]._id);
-				venta.productos = res.data[0]._id;
-				console.log(venta.productos);
-				let findArray = function(array, a){
+				let f =findArray(res.data[0].num_serie, venta.num_imei);
+				let productoN2 = res.data[0];
+				productoN2.num_serie[f].vendido = false;
+				$http.put('/inv/productos/', productoN2).then(function(res){
+					console.log('listo');
+					$http.delete('/inv/reg_ventas/'+ venta._id).then(function(res){
+						vm.getVentas();
+					});
+				});
+			});
+		}
+	}
+	
+
+	vm.addVenta = function(venta){
+		let findArray = function(array, a){
 					var f = "";
 					for (var i = array.length - 1; i >= 0; i--) {
 						if(array[i].num == a){
@@ -105,23 +104,60 @@ app.controller('RegVentaCtrl', function($http){
 					}
 					return f;
 				}
+		if(venta.num_serie && venta.num_imei){
+			$http.get('/inv/stock/num_serie/'+ venta.num_serie).then(function(res){
+				venta.producto1= res.data[0]._id;
 				let f =findArray(res.data[0].num_serie, venta.num_serie);
-				let productoN = res.data[0];
-				productoN.num_serie[f].vendido = true;
-				console.log(productoN);
-				$http.post('/inv/reg_ventas', venta).then(function(res){
-					vm.getVentas();
-					$http.put('/inv/productos/', productoN).then(function(res){
-						console.log('listo');
+				let productoN1 = res.data[0];
+				productoN1.num_serie[f].vendido = true;
+				$http.get('/inv/stock/num_serie/'+ venta.num_imei).then(function(res){
+					venta.producto2 = res.data[0]._id;
+					let f =findArray(res.data[0].num_serie, venta.num_imei);
+					let productoN2 = res.data[0];
+					productoN2.num_serie[f].vendido = true;
+					$http.post('/inv/reg_ventas', venta).then(function(res){
+						vm.getVentas();
 						vm.venta = "";
+						$http.put('/inv/productos/', productoN2).then(function(res){
+							console.log('listo imei');
+							$http.put('/inv/productos/', productoN1).then(function(res){
+								console.log('listo iccid');
+							});
+						});
 					});
 				});
 			});
 
-
-			}
-			else{
-				console.log("faltan datos");
-			}
+		}else if(venta.num_serie && !venta.num_imei){
+			$http.get('/inv/stock/num_serie/'+ venta.num_serie).then(function(res){
+				venta.producto1 = res.data[0]._id;
+				let f =findArray(res.data[0].num_serie, venta.num_serie);
+				let productoN1 = res.data[0];
+				productoN1.num_serie[f].vendido = true;
+				$http.put('/inv/productos/', productoN1).then(function(res){
+					console.log('listo num_serie');
+					$http.post('/inv/reg_ventas', venta).then(function(res){
+						vm.getVentas();
+						vm.venta = "";
+					});
+				});
+			});
+		}else if(!venta.num_serie && venta.num_imei){
+			$http.get('/inv/stock/num_serie/'+ venta.num_imei).then(function(res){
+				venta.producto2 = res.data[0]._id;
+				let f =findArray(res.data[0].num_serie, venta.num_imei);
+				let productoN2 = res.data[0];
+				productoN2.num_serie[f].vendido = true;
+				$http.put('/inv/productos/', productoN2).then(function(res){
+					console.log('listo imei');
+					$http.post('/inv/reg_ventas', venta).then(function(res){
+						vm.getVentas();
+						vm.venta = "";
+					});
+				});
+			});
+		}else{
+			console.log("faltan datos");
+		}
 	};
 });
