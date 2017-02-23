@@ -10,24 +10,30 @@
 <meta charset="UTF-8">
 <title>Global-Les Inventario</title>
 </head>
-<body>
+<body ng-app="app" ng-controller="mainCtrl as vm" ng-show="vm.loadme" ng-cloak>
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#">
+			<p class="navbar-brand">
 				Global Les
-			</a>
+			</p>
 		</div>
 		
 		<ul class="nav navbar-nav">
-			<li><a href="/#">Home</a></li>
-			<li><a href="/#/facturas">Facturas</a></li>
-			<li><a href="/#/productos">Productos</a></li>
 			<li><a href="/#/stock">Stock</a></li>
-			<li><a href="/#/reg_ventas">Registrar venta</a></li>
-			<li><a href="/#/personal">Personal</a></li>
-
+			<li><a href="/#/facturas" ng-show="vm.isLoggedIn">Facturas</a></li>
+			<li><a href="/#/productos" ng-show="vm.isLoggedIn">Productos</a></li>
+			<li><a href="/#/reg_ventas" ng-show="vm.isLoggedIn">Registrar venta</a></li>
+			<li><a href="/#/personal" ng-show="vm.isLoggedIn">Personal</a></li>
 		</ul>
+		
+		 <ul class="nav navbar-nav navbar-right">
+		 <a href="/#/login" ng-show="!vm.isLoggedIn" style="margin-right: 50px;"><button type="button" class="btn btn-primary navbar-btn">Login</button></a>
+		 <li><a href="/#/register" ng-show="vm.isLoggedIn">Registrar</a></li>
+		 <li><p class="navbar-text navbar-right"  style="margin-right: 25px;"> {{vm.username | uppercase}}</p></li>
+        <li><a href="/#/logout" ng-show="vm.isLoggedIn" ng-click="vm.logout();" style="margin-right: 50px;">Salir</a></li>
+		</ul>
+		
 		
 	</div>
 </nav>
@@ -44,6 +50,10 @@
 	<script src="./controllers/StockCtrl.js"></script>
 	<script src="./controllers/EmpleadoCtrl.js"></script>
 	<script src="./controllers/RegVentaCtrl.js"></script>
+	<script src="./controllers/UserCtrl.js"></script>
+	<script src="./controllers/mainCtrl.js"></script>
+	<script src="./services/userServices.js"></script>
+	<script src="./services/authServices.js"></script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 		crossorigin="anonymous"></script>
 	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
