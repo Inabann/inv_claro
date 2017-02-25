@@ -21,8 +21,8 @@ app.config(function ($routeProvider) {
 	$routeProvider.when('/stock',{
 		controller: 'StockCtrl',
 		controllerAs: 'vm',
-		templateUrl: 'stock.html',
-		authenticated: false
+		templateUrl: 'stock.html'
+		//authenticated: false
 	});
 	$routeProvider.when('/personal',{
 		controller: 'EmpleadoCtrl',
