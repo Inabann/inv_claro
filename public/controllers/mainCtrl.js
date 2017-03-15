@@ -41,7 +41,7 @@ angular.module('mainController', ['authServices'])
 		Auth.logout();
 		$location.path('/logout');
 		$timeout(function(){
-			$location.path('/stock')
+			$location.path('/')
 		},2000);
 	}
 });

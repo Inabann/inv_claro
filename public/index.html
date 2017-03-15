@@ -1,42 +1,92 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!--<link rel="stylesheet" type="text/css" href="css/estilos.css">-->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<script src="https://code.angularjs.org/1.5.8/angular-route.min.js"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Global-Les</title>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-<script src="https://code.angularjs.org/1.5.8/angular-route.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
 
-<meta charset="UTF-8">
-<title>Global-Les Inventario</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/home/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Material Design Bootstrap -->
+    <link href="/home/css/mdb.min.css" rel="stylesheet">
+ 
+    <!-- Template styles -->
+    <style rel="stylesheet">
+        /* TEMPLATE STYLES */
+        
+        main {
+            padding-top: 3rem;
+            padding-bottom: 2rem;
+        }
+        
+        .widget-wrapper {
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 2rem;
+        }
+        
+        .extra-margins {
+            margin-top: 1rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .divider-new {
+            margin-top: 0;
+        }
+    </style>
+
 </head>
 <body ng-app="app" ng-controller="mainCtrl as vm" ng-show="vm.loadme" ng-cloak>
-<nav class="navbar navbar-default" role="navigation">
-	<div class="container-fluid">
+<header>
+	<nav class="navbar navbar-toggleable-md navbar-dark bg-danger" role="navigation">
+	<div class="container">
+		<a class="navbar-brand"><img src="home/img/claro_logo.png" style="margin-top:-1px; width: 100px; height: 50px;"></a>
 		<div class="navbar-header">
-			<p class="navbar-brand">
-				Global Les
-			</p>
+			<a class="navbar-brand" href="/#/">
+                <strong>Global Les</strong>
+            </a>
 		</div>
-		
-		<ul class="nav navbar-nav">
-			<li><a href="/#/stock">Stock</a></li>
-			<li><a href="/#/facturas" ng-show="vm.isLoggedIn">Facturas</a></li>
-			<li><a href="/#/productos" ng-show="vm.isLoggedIn">Productos</a></li>
-			<li><a href="/#/reg_ventas" ng-show="vm.isLoggedIn">Registrar venta</a></li>
-			<li><a href="/#/personal" ng-show="vm.isLoggedIn">Personal</a></li>
-		</ul>
-		
-		 <ul class="nav navbar-nav navbar-right">
-		 <a href="/#/login" ng-show="!vm.isLoggedIn" style="margin-right: 50px;"><button type="button" class="btn btn-primary navbar-btn">Login</button></a>
-		 <li><a href="/#/register" ng-show="vm.isLoggedIn">Registrar</a></li>
-		 <li><p class="navbar-text navbar-right"  style="margin-right: 25px;"> {{vm.username | uppercase}}</p></li>
-        <li><a href="/#/logout" ng-show="vm.isLoggedIn" ng-click="vm.logout();" style="margin-right: 50px;">Salir</a></li>
-		</ul>
-		
-		
+		<div class="collapse navbar-collapse" id="navbarNav1">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+                    <a class="nav-link" ng-show="!vm.isLoggedIn">Telefonia Fija</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" ng-show="!vm.isLoggedIn">Internet</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" ng-show="!vm.isLoggedIn">Television</a>
+                </li>
+                <li class="nav-item">
+                	<a href="/#/stock" ng-show="vm.isLoggedIn" class="nav-link">Stock</a>
+                </li>
+				<li class="nav-item"><a href="/#/facturas" ng-show="vm.isLoggedIn" class="nav-link">Facturas</a></li>
+				<li class="nav-item"><a href="/#/productos" ng-show="vm.isLoggedIn" class="nav-link">Productos</a></li>
+				<li class="nav-item"><a href="/#/reg_ventas" ng-show="vm.isLoggedIn" class="nav-link">Registrar venta</a></li>
+				<li class="nav-item"><a href="/#/personal" ng-show="vm.isLoggedIn" class="nav-link">Personal</a></li>
+			</ul>
+			<ul class="navbar-nav ml-auto nav-flex-icons">
+				
+				<li class="nav-item">
+				<a class="nav-link waves-effect waves-light" href="#/login" ng-show="!vm.isLoggedIn"><i class="fa fa-user"></i></a>
+				</li>
+				<li class="nav-item dropdown btn-group" ng-show="vm.isLoggedIn">
+                    <a class="nav-link dropdown-toggle waves-effect waves-light"  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><i class="fa fa-user"></i> {{vm.username | uppercase}}</a>
+                    <div class="dropdown-menu dropdown-default dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item waves-effect waves-light" href="/#/register" ng-show="vm.isLoggedIn">Registrar</a>
+                        <a class="dropdown-item waves-effect waves-light" href="#/logout" ng-click="vm.logout();">Salir</a>
+                    </div>
+                </li>
+			</ul>
 	</div>
-</nav>
+	</nav>
+</header><!-- /header -->
+<main>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -44,6 +94,56 @@
 			</div>
 		</div>
 	</div>
+</main>
+
+<footer class="page-footer center-on-small-only danger-color-dark" ng-show="!vm.isLoggedIn">
+    <!--Footer Links-->
+    <div class="container-fluid">
+        <div class="row">
+            <!--First column-->
+            <div class="col-md-3 offset-lg-1 hidden-lg-down">
+                <a href="#" class="navbar-brand"><img src="home/img\claro_logo.png" style="margin-top:-1px; margin-left:10px;"></a>
+            </div>
+            <!--/.First column-->
+            <!--Second column-->
+            <div style="margin-top:50px; margin-left:-30px;" class="col-lg-3 col-md-1">
+                <u><font size="2"  class="title">AVISO LEGAL</font></u>
+            </div>
+            <!--/.Second column-->
+            <!--Second column-->
+            <div style="margin-top:50px; margin-left:-250px;" class="col-lg-3 col-md-1">
+                <u><font size="2"  class="title">POLITIAS DE PRIVACIDAD</font></u>
+            </div>
+            <!--/.Second column-->
+            <!--Third column-->
+            <div style="margin-top:50px; margin-left:-180px;" class="col-lg-5 col-md-1">
+                <u><font size="2" class="title">CONSIDERACIONES GENERALES DEL PRODUCTO</font></u>
+            </div>
+            <!--/.Third column-->
+            <!--Fourth column-->
+            <div style="margin-top:-70px; margin-left:1000px;" ALIGN=center class="col-lg-3 col-md-1">
+                <h5 class="title">INFORMATE LLAMANDO AL</h5>
+                <ul>
+                    <h2><a style="font-weight:900;" href="#!">952 943234</a></h2>
+                </ul>
+            </div>
+            <!--/.Fourth column-->
+        </div>
+    </div>
+    <!--/.Footer Links-->
+    <hr>
+    <!--Call to action-->
+    <!--/.Call to action-->
+    <!--Copyright-->
+    <div class="footer-copyright">
+        <div class="container-fluid">
+            © 2017 Copyright: <a href="http://www.LosProgramadoresDeLosAndes.com"> The4ofEsis.com </a>
+        </div>
+    </div>
+    <!--/.Copyright-->
+</footer>
+
+	
 	<script src="./app.js"></script>
 	<script src="./controllers/FacturaCtrl.js"></script>
 	<script src="./controllers/ProductoCtrl.js"></script>
@@ -56,6 +156,8 @@
 	<script src="./services/authServices.js"></script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 		crossorigin="anonymous"></script>
-	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="home/js/tether.min.js"></script>
+	<script type="text/javascript" src="home/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="home/js/mdb.min.js"></script>
 </body>
 </html>

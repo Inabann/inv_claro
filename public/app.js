@@ -21,8 +21,8 @@ app.config(function ($routeProvider) {
 	$routeProvider.when('/stock',{
 		controller: 'StockCtrl',
 		controllerAs: 'vm',
-		templateUrl: 'stock.html'
-		//authenticated: false
+		templateUrl: 'stock.html',
+		authenticated: true
 	});
 	$routeProvider.when('/personal',{
 		controller: 'EmpleadoCtrl',
@@ -54,10 +54,10 @@ app.config(function ($routeProvider) {
 		templateUrl: 'users/logout.html',
 		authenticated: true
 	});
-	$routeProvider.when('/', {
-		controller: 'StockCtrl',
-		controllerAs: 'vm',
-		templateUrl: 'stock.html',
+	$routeProvider.when('/',{
+		//controller: 'StockCtrl',
+		//controllerAs: 'vm',
+		templateUrl: 'home/home.html',
 		authenticated: false
 	});
 });
