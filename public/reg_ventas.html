@@ -3,40 +3,76 @@
 		<div class="container create-container" ng-hide="vm.mostrarVentas">
 		<h1 nh-hide="vm.mostrarVentas">Registrar Venta</h1>
 			<div class="form-group">
-			<div class="panel panel-primary">
-			  <div class="panel-heading">Datos del cliente</div>
-			  <div class="panel-body">
-			    <label>Nombres y Apellidos: <input type="text" class="form-control" ng-model="vm.venta.nombres" style="width:300px;"></label>
-				<label>DNI: <input type="text" class="form-control" ng-model="vm.venta.dni"></label><br>
-				<label>Dirección:<input class="form-control" type="text" ng-model="vm.venta.direccion" style="width:300px;"></label>
-				<label>Referencia de direccioón:<input type="text" class="form-control" ng-model="vm.venta.ref_dir" style="width:250px;"></label>
-				<label>Numero de referencia:<input type="text" class="form-control" ng-model="vm.venta.num_ref"></label>
-			  </div>
+
+			<div class="card">
+				<h3 class="card-header primary-color white-text">Datos del Cliente</h3>
+				    <div class="card-block">
+
+				    	<div class="md-form">
+				    		<input type="text" class="form-control" ng-model="vm.venta.nombres" style="width:300px;">
+				    		<label>Nombres y Apellidos</label>
+				    	</div>
+				    	<div class="md-form">
+				    		<input type="text" class="form-control" ng-model="vm.venta.dni" style="width:300px;">
+				    		<label>DNI</label>
+				    	</div>
+				    	<div class="md-form">
+				    		<input class="form-control" type="text" ng-model="vm.venta.direccion" style="width:300px;">
+				    		<label>Dirección</label>
+				    	</div>
+				    	<div class="md-form">
+				    		<input type="text" class="form-control" ng-model="vm.venta.ref_dir" style="width:250px;">
+				    		<label>Referencia de direccioón</label>
+				    	</div>
+				    	<div class="md-form">
+				    		<input type="text" class="form-control" ng-model="vm.venta.num_ref" style="width:250px;">
+				    		<label>Numero de referencia</label>
+				    	</div>
+				    </div>
 			</div>
+
+
+			<div class="card">
+				<h3 class="card-header primary-color white-text">Datos del Producto</h3>
+				    <div class="card-block">
+				    	<div class="form-group">
+			    		<label for="producto">Producto:<select class="form-control" ng-model="vm.venta.producto1" ng-options="producto._id as producto.nombre for producto in vm.productos" id="producto"></select></label><label for="num_serie">ICCID:<input id="num_serie" class="form-control" type="number" ng-model="vm.venta.num_serie"></label>
+						</div>
+						<div class="form-group">
+						<label for="producto2">Producto:<select class="form-control" ng-model="vm.venta.producto2" ng-options="producto._id as producto.nombre for producto in vm.productos" id="producto"></select></label>
+					    <label for="num_imei">IMEI:<input id="num_imei" type="number" ng-model="vm.venta.num_imei" class="form-control"></label>
+					    </div>
+						<div class="md-form">
+						<input class="form-control" type="text" ng-model="vm.venta.plan" style="width:250px;"><label>Plan</label>
+						</div>
+						<div class="md-form">
+						<input type="text" class="form-control" ng-model="vm.venta.num" style="width:250px;"><label>Numero vendido</label>
+						</div>
+				    </div>
+			</div>
+
+			<br>
+
 			<div class="panel panel-info">
-			  <div class="panel-heading">Datos del producto</div>
-			  <div class="panel-body">
-			  	<div class="form-group">
-			    	<label for="producto">Producto:<select class="form-control" ng-model="vm.venta.producto1" ng-options="producto._id as producto.nombre for producto in vm.productos" id="producto"></select></label><label for="num_serie">ICCID:<input id="num_serie" class="form-control" type="number" ng-model="vm.venta.num_serie"></label>
-				</div>
-				<div class="form-group">
-				<label for="producto2">Producto:<select class="form-control" ng-model="vm.venta.producto2" ng-options="producto._id as producto.nombre for producto in vm.productos" id="producto"></select></label>
-			    <label for="num_imei">IMEI:<input id="num_imei" type="number" ng-model="vm.venta.num_imei" class="form-control"></label>
-			    </div>
-				
-				<label>Plan:<input class="form-control" type="text" ng-model="vm.venta.plan"></label>
-				<label>Numero vendido:<input type="text" class="form-control" ng-model="vm.venta.num"></label>
-			  </div>
 			  <div class="panel-footer">
 			  <label for="empleado">Vendedor:</label>
 				<select class="form-group" ng-model="vm.venta.empleado" ng-options="empleado as empleado.nombre for empleado in vm.empleados"></select>
-			  	<label>Observaciones:<input type="text" ng-model="vm.venta.obs"></label>
+				<div class="md-form">
+				    <textarea type="text" id="observaciones" class="md-textarea" ng-model="vm.venta.obs" style="width:350px"></textarea>
+				    <label for="observaciones">Obeservaciones</label>
+				</div>
 			  </div>
 			</div>
+
+
+
+
+
+
 			<div>
-				<button class="btn btn-primary" ng-disabled="!vm.venta.dni||!vm.venta.nombres||!vm.venta.num_ref||!vm.venta.empleado" ng-click="vm.addVenta(vm.venta)">Listo</button>
-				<button class="btn btn-success" ng-click="vm.limpiar()">Limpiar</button>
-				<button class="btn btn-danger" ng-click="vm.MostrarVentas()">Ver Ventas</button>
+				<button class="btn btn-primary btn-md" ng-disabled="!vm.venta.dni||!vm.venta.nombres||!vm.venta.num_ref||!vm.venta.empleado" ng-click="vm.addVenta(vm.venta)">Listo</button>
+				<button class="btn btn-success btn-md" ng-click="vm.limpiar()">Limpiar</button>
+				<button class="btn btn-danger btn-md" ng-click="vm.MostrarVentas()">Ver Ventas</button>
 			</div>
 			</div>
 		</div>
@@ -57,7 +93,7 @@
                 	<td>{{venta.fecha_venta | date:"dd/MM/y"}}</td>
                 	<td>{{venta.dni}}</td>
                 	<td>
-                		<button class="btn btn-danger" ng-click="vm.removeVenta(venta)">eliminar</button>
+                		<button class="btn btn-danger btn-md" ng-click="vm.removeVenta(venta)">eliminar</button>
                 	</td>
 
                 </tr>

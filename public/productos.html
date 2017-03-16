@@ -11,7 +11,7 @@
             <tr ng-repeat="producto in vm.producto_precio">
                 <td ng-if="!editing">{{producto.codigo}}</td>
                 <td ng-if="!editing">{{producto.descripcion}}</td>
-                <td ng-if="!editing"><button class="btn btn-success" href="#ventana1" data-toggle="modal" ng-click="vm.showPrecios(producto)">Precio</button></td>
+                <td ng-if="!editing"><button class="btn btn-success btn-md" href="#ventana1" data-toggle="modal" ng-click="vm.showPrecios(producto)">Precio</button></td>
                            
             </tr>
         </table>
@@ -28,12 +28,13 @@
                             <div class="container show-precio_var">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <input type="number" ng-model="precio_var" class="form-control" style="width:150px;">
+                                    <input type="number" placeholder="Precio S/." ng-model="precio_var" class="form-control" style="width:150px;">
                                     <input type="date" ng-model="fecha_precio" class="form-control" style="width:150px;">
+                                    <button class="btn btn-success btn-md" ng-click="vm.addPrecioP(precio_var,fecha_precio) " title="Agregar">+</button>    
                                 </div>
                                 
                                 <div>
-                                <button class="btn btn-success" ng-click="vm.addPrecioP(precio_var,fecha_precio) " title="Agregar">+</button>    
+                                
                                 </div>
                             </div>
                             </div>
@@ -45,7 +46,7 @@
                                         <tr ng-repeat="precio_var in vm.preciosProducto.precio_var">
                                             <td>{{precio_var.precio_v}}</td>
                                             <td>{{precio_var.fecha | date:"dd/MM/y"}}</td>
-                                            <td><button class="btn btn-danger" ng-click="vm.removePrecioP(precio_var)" title="Eliminar"><span class="glyphicon glyphicon-trash"></span></button></td>    
+                                            <td><button class="btn btn-danger btn-md" ng-click="vm.removePrecioP(precio_var)" title="Eliminar">x</button></td>    
                                         </tr>
                             </table>
                                 

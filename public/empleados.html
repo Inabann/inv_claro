@@ -18,11 +18,11 @@
                 	<input type="text" ng-model="empleado.nombre" class="form-control" style="width:190px;">
                 </td>
                 <td>
-                    <button ng-hide="editing" class="btn btn-warning" ng-click="editing=!editing">Edit</button>
-                    <button ng-hide="!editing" class="btn btn-success" ng-click="vm.updateEmpleado(empleado);editing=false;">Save</button>
-                    <button class="btn btn-primary" ng-hide="!editing" ng-click="editing=!editing">Back</button>
-                    <button class="btn btn-danger" ng-click="vm.removeEmpleado(empleado);" ng-hide="editing">Delete</button>
-                    <button class="btn btn-success" ng-hide="editing" ng-click="vm.detalleVentas(empleado)" data-toggle="modal" data-target="#myModal">Ventas</button>
+                    <button ng-hide="editing" class="btn btn-warning btn-md " ng-click="editing=!editing">Edit</button>
+                    <button ng-hide="!editing" class="btn btn-success btn-md" ng-click="vm.updateEmpleado(empleado);editing=false;">Save</button>
+                    <button class="btn btn-primary btn-md" ng-hide="!editing" ng-click="editing=!editing">Back</button>
+                    <button class="btn btn-danger btn-md" ng-click="vm.removeEmpleado(empleado);" ng-hide="editing">Delete</button>
+                    <button class="btn btn-success btn-md" ng-hide="editing" ng-click="vm.detalleVentas(empleado)" data-toggle="modal" data-target="#myModal">Ventas</button>
                 </td>
             </tr>
         </table>
@@ -35,18 +35,18 @@
                     </div>
                     <div class="modal-body">
                         <div class="container create-empleado">
-                            <div class="form-group">
+                            <div class="md-form">
                                 <label for="dni">DNI</label>
-                                <input required type="text" id="dni" class="form-control" style="width:90px;" ng-model="vm.empleado.dni">
+                                <input required type="text" id="dni" class="form-control" style="width:150px;" ng-model="vm.empleado.dni">
                             </div>
-                            <div class="form-group">
+                            <div class="md-form">
                                 <label for="nombre">Nombres y apellidos</label>
-                                <input required type="text" id="nombre" class="form-control" style="width:90px;" ng-model="vm.empleado.nombre">
+                                <input required type="text" id="nombre" class="form-control" style="width:150px;" ng-model="vm.empleado.nombre">
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-success"  ng-disabled="!vm.empleado.dni || !vm.empleado.nombre" data-dismiss="modal" ng-click = "vm.addEmpleado(vm.empleado)" >Add</button>
-                            <button class="btn btn-primary" data-dismiss="modal" ng-click="vm.empleado = null">Back</button>                        
+                            <button class="btn btn-success btn-md"  ng-disabled="!vm.empleado.dni || !vm.empleado.nombre" data-dismiss="modal" ng-click = "vm.addEmpleado(vm.empleado)" >Add</button>
+                            <button class="btn btn-primary btn-md " data-dismiss="modal" ng-click="vm.empleado = null">Back</button>                        
                         </div>
                     </div>
                 </div>   
@@ -64,7 +64,7 @@
               <div class="modal-body">
                 <label>Mes:<input type="text" ng-model="f.mes" style="width: 60px;"></label>
                 <label>Año:<input type="text" ng-model="f.ano" style="width: 60px;"></label>
-                <button class="btn btn-success" ng-click="vm.mesVentas(f);">ok</button>
+                <button class="btn btn-success btn-md" ng-click="vm.mesVentas(f);">ok</button>
                 <table class="table table-bordered">
                     <th>Descripcion</th>
                     <th>ICCID</th>
@@ -87,7 +87,7 @@
                 </table>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
               </div>
             </div>
 

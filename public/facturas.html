@@ -16,36 +16,36 @@
                 <td ng-if="!editing" >{{factura.serie}}</td>
                 <td ng-if="!editing">{{factura.num_fact}}</td>
                 <td ng-if="!editing">{{factura.fecha | date:"dd/MM/y"}}</td>
-                <td ng-if="!editing"><button class="btn btn-link" ng-click="vm.showDetalles(factura)" >productos</button></td>
+                <td ng-if="!editing"><button class="btn btn-link " ng-click="vm.showDetalles(factura)" >productos</button></td>
                 <td ng-if="!editing">{{factura.sub_total}}</td>
                 <td ng-if="!editing">{{factura.igv}}</td>
                 <td ng-if="!editing">{{factura.total}}</td>
                 <td ng-if="editing">
-                	<input type="text" ng-model="factura.serie" class="form-control" style="width:60px;">
+                	<input type="text" ng-model="factura.serie" class="form-control" style="width:150px;">
                 </td>
                 <td ng-if="editing">
-                	<input type="text" ng-model="factura.num_fact" class="form-control" style="width:60px;">
+                	<input type="text" ng-model="factura.num_fact" class="form-control" style="width:150px;">
                 </td>
                 <td ng-if="editing">
-                	<input type="text" ng-model="factura.fecha" class="form-control" style="width:120px;">
+                	<input type="text" ng-model="factura.fecha" class="form-control" style="width:150px;">
                 </td>
                 <td ng-if="editing">
                     Productos
                 </td>
                 <td ng-if="editing">
-                	<input type="text" ng-model="factura.sub_total" class="form-control" style="width:60px;">
+                	<input type="text" ng-model="factura.sub_total" class="form-control" style="width:150px;">
                 </td>
                 <td ng-if="editing">
-                	<input type="text" ng-model="factura.igv" class="form-control" style="width:60px;">
+                	<input type="text" ng-model="factura.igv" class="form-control" style="width:150px;">
                 </td>
                 <td ng-if="editing">
-                	<input type="text" ng-model="factura.total" class="form-control" style="width:60px;">
+                	<input type="text" ng-model="factura.total" class="form-control" style="width:150px;">
                 </td>
                 <td>
-                    <button ng-hide="editing" class="btn btn-warning" ng-click="editing=!editing"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</button>
-                    <button ng-hide="!editing" class="btn btn-success" ng-click="vm.updateFactura(factura);editing=false;">Save</button>
-                    <button class="btn btn-primary" ng-hide="!editing" ng-click="editing=!editing">Back</button>
-                    <button class="btn btn-danger" ng-click="vm.removeFactura(factura);" ng-hide="editing">Delete</button>
+                    <button ng-hide="editing" class="btn btn-warning btn-md" ng-click="editing=!editing"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</button>
+                    <button ng-hide="!editing" class="btn btn-success btn-md" ng-click="vm.updateFactura(factura);editing=false;">Save</button>
+                    <button class="btn btn-primary btn-md"  ng-hide="!editing" ng-click="editing=!editing">Back</button>
+                    <button class="btn btn-danger btn-md" ng-click="vm.removeFactura(factura);" ng-hide="editing">Delete</button>
                 </td>
             </tr>
         </table>
@@ -59,34 +59,34 @@
                     </div>
                     <div class="modal-body">
                         <div class="container create-facturas">
-                            <div class="form-group">
+                            <div class="md-form">
                                 <label for="serie">Serie</label>
-                                <input required type="text" id="serie" class="form-control" style="width:90px;" ng-model="vm.factura.serie">
+                                <input required type="text" id="serie" class="form-control" style="width:150px;" ng-model="vm.factura.serie">
                             </div>
-                            <div class="form-group">
+                            <div class="md-form">
                                 <label for="num_fact">N° Factura</label>
-                                <input required type="text" id="num_fact" class="form-control" style="width:90px;" ng-model="vm.factura.num_fact">
+                                <input required type="text" id="num_fact" class="form-control" style="width:150px;" ng-model="vm.factura.num_fact">
                             </div>
-                            <div class="form-group">
-                                <label for="fecha">Fecha</label>
-                                <input type="datetime" id="fecha" class="form-control" style="width:100px;" ng-model="vm.factura.fecha">
+                            <div class="md-form">
+                                <label for="fecha"></label>
+                                <input type="date" id="fecha" class="form-control" style="width:150px;" ng-model="vm.factura.fecha">
                             </div>
-                            <div class="form-group">
+                            <div class="md-form">
                                 <label for="sub_total">Sub Total</label>
-                                <input type="text" id="sub_total" class="form-control" style="width:90px;" ng-model="vm.factura.sub_total">
+                                <input type="text" id="sub_total" class="form-control" style="width:150px;" ng-model="vm.factura.sub_total">
                             </div>
-                            <div class="form-group">
+                            <div class="md-form">
                                 <label for="igv">IGV</label>
-                                <input type="text" id="igv" class="form-control" style="width:90px;" ng-model="vm.factura.igv">
+                                <input type="text" id="igv" class="form-control" style="width:150px;" ng-model="vm.factura.igv">
                             </div>
-                            <div class="form-group">
+                            <div class="md-form">
                                 <label for="total">Total</label>
-                                <input type="text" id="total" class="form-control" style="width:90px;" ng-model="vm.factura.total">
+                                <input type="text" id="total" class="form-control" style="width:150px;" ng-model="vm.factura.total">
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-success"  ng-disabled="!vm.factura.serie || !vm.factura.num_fact || !vm.factura.sub_total || !vm.factura.igv || !vm.factura.total" ng-click = "vm.addFactura(vm.factura)" data-dismiss="modal">Add</button>
-                            <button class="btn btn-primary" data-dismiss="modal" ng-click="vm.limpiar()">Back</button>
+                            <button class="btn btn-success btn-md"  ng-disabled="!vm.factura.serie || !vm.factura.num_fact || !vm.factura.sub_total || !vm.factura.igv || !vm.factura.total" ng-click = "vm.addFactura(vm.factura)" data-dismiss="modal">Add</button>
+                            <button class="btn btn-primary btn-md" data-dismiss="modal" ng-click="vm.limpiar()">Back</button>
                         </div>                 
                     </div>  
                 </div>
@@ -134,10 +134,10 @@
                     </td>
                     <td>
                         <button class="btn btn-success btn-md" href="#ventana3" data-toggle="modal" ng-click="vm.showNum(producto)">N°serie</button>
-                        <button ng-hide="editing" class="btn btn-warning" ng-click="editing=!editing">Edit</button>
-                        <button ng-hide="!editing" class="btn btn-success" ng-click="vm.updateProducto(producto);editing=false;">Save</button>
-                        <button class="btn btn-primary" ng-hide="!editing" ng-click="editing=!editing">Back</button>
-                        <button class="btn btn-danger" ng-click="vm.removeProducto(producto);" ng-hide="editing">Delete</button>
+                        <button ng-hide="editing" class="btn btn-warning btn-md" ng-click="editing=!editing">Edit</button>
+                        <button ng-hide="!editing" class="btn btn-success btn-md" ng-click="vm.updateProducto(producto);editing=false;">Save</button>
+                        <button class="btn btn-primary btn-md" ng-hide="!editing" ng-click="editing=!editing">Back</button>
+                        <button class="btn btn-danger btn-md" ng-click="vm.removeProducto(producto);" ng-hide="editing">Delete</button>
                     </td>
                     
                 </tr>
@@ -145,7 +145,7 @@
 
             <div>
             <br>
-                <button class="btn btn-danger" ng-click="vm.detalle=false">Back</button>
+                <button class="btn btn-danger btn-md" ng-click="vm.detalle=false">Back</button>
             </div>
             <div class="modal fade" id="ventana2">
             <div class="modal-dialog">
@@ -156,34 +156,34 @@
                     </div>
                     <div class="modal-body">
                         <div class="container create-productos">
-                            <div class="form-group">
+                            <div class="md-form">
                                 <label for="codigo">Codigo</label>
-                                <input required type="text" id="codigo" class="form-control" style="width:90px;" ng-model="vm.detalleFactura.productos.codigo">
+                                <input required type="text" id="codigo" class="form-control" style="width:150px;" ng-model="vm.detalleFactura.productos.codigo">
                             </div>
-                            <div class="form-group">
+                            <div class="md-form">
                                 <label for="descripcion">Descripción</label>
-                                <input required type="text" id="descripcion" class="form-control" style="width:90px;" ng-model="vm.detalleFactura.productos.descripcion">
+                                <input required type="text" id="descripcion" class="form-control" style="width:150px;" ng-model="vm.detalleFactura.productos.descripcion">
                             </div>
-                            <div class="form-group">
+                            <div class="md-form">
                                 <label for="cantidad">Cantidad</label>
-                                <input type="text" id="fecha" class="form-control" style="width:90px;" ng-model="vm.detalleFactura.productos.cantidad">
+                                <input type="text" id="fecha" class="form-control" style="width:150px;" ng-model="vm.detalleFactura.productos.cantidad">
                             </div>
-                            <div class="form-group">
+                            <div class="md-form">
                                 <label for="precio_u">Precio Unitario</label>
-                                <input type="text" id="precio_u" class="form-control" style="width:90px;" ng-model="vm.detalleFactura.productos.precio_u">
+                                <input type="text" id="precio_u" class="form-control" style="width:150px;" ng-model="vm.detalleFactura.productos.precio_u">
                             </div>
-                            <div class="form-group">
+                            <div class="md-form">
                                 <label for="valor_u">Valor Unitario</label>
-                                <input type="text" id="valor_u" class="form-control" style="width:90px;" ng-model="vm.detalleFactura.productos.valor_u">
+                                <input type="text" id="valor_u" class="form-control" style="width:150px;" ng-model="vm.detalleFactura.productos.valor_u">
                             </div>
-                            <div class="form-group">
+                            <div class="md-form">
                                 <label for="total">Total</label>
-                                <input type="text" id="total" class="form-control" style="width:90px;" ng-model="vm.detalleFactura.productos.total">
+                                <input type="text" id="total" class="form-control" style="width:150px;" ng-model="vm.detalleFactura.productos.total">
                             </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-success"  ng-disabled="!vm.detalleFactura.productos.codigo || !vm.detalleFactura.productos.descripcion || !vm.detalleFactura.productos.cantidad || !vm.detalleFactura.productos.precio_u || !vm.detalleFactura.productos.valor_u" ng-click = "vm.addProducto(vm.detalleFactura.productos);vm.addProductoPrecio(vm.detalleFactura.producto_precios)" data-dismiss="modal">Add</button>
-                        <button class="btn btn-primary" data-dismiss="modal" >Back</button>
+                        <button class="btn btn-success btn-md"  ng-disabled="!vm.detalleFactura.productos.codigo || !vm.detalleFactura.productos.descripcion || !vm.detalleFactura.productos.cantidad || !vm.detalleFactura.productos.precio_u || !vm.detalleFactura.productos.valor_u" ng-click = "vm.addProducto(vm.detalleFactura.productos);vm.addProductoPrecio(vm.detalleFactura.producto_precios)" data-dismiss="modal">Add</button>
+                        <button class="btn btn-primary btn-md" data-dismiss="modal" >Back</button>
                     </div>                 
                 </div>  
             </div>
@@ -200,8 +200,8 @@
                         <div class="modal-body">
                             <div class="container show-num_serie">
                             <div>
-                                 <input type="number" ng-model="num_serie" class="form-control" style="width:150px;">
-                                 <button class="btn btn-success" ng-click="vm.addSerie(num_serie)">+</button>
+                                 <input type="number" ng-model="num_serie" class="form-control" style="width:90px;">
+                                 <button class="btn btn-success btn-md" ng-click="vm.addSerie(num_serie)">+</button>
                             </div>
                                
                                 <table class="table table-bordered table-hovered table-condensed">
@@ -209,7 +209,7 @@
                                     <th></th>
                                         <tr ng-repeat="num_serie in vm.detalleProducto.num_serie">
                                             <td>{{num_serie.num}}</td>
-                                            <td><button class="btn btn-danger" ng-click="vm.removeSerie(num_serie)">X</button></td>
+                                            <td><button class="btn btn-danger btn-md" ng-click="vm.removeSerie(num_serie)">X</button></td>
                                         </tr>
                                 </table>
                                 
