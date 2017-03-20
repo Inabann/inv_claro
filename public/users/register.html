@@ -1,20 +1,35 @@
-<div class="page-header">
-	<h2>Registrar Usuario</h2>
+<div class="container" style="width:450px">
+
+	<div class="card">
+	    <div class="card-block" >
+	      
+	      
+	        <div class="text-center">
+	            <h3><i class="fa fa-user"></i> Nuevo Usuario:</h3>
+	            <hr class="mt-2 mb-2">
+	        </div>
+
+	        <form ng-submit="vm.regUser();;">
+		        <div class="md-form">		        
+		            <i class="fa fa-user prefix"></i>
+		            <input type="text" class="form-control" ng-model="vm.userData.username">
+		            <label>User</label>
+		        </div>
+
+		        <div class="md-form">
+		            <i class="fa fa-lock prefix"></i>
+		            <input type="password" class="form-control" ng-model="vm.userData.password">
+		            <label >Password</label>
+		        </div>
+		        <div class="text-center">
+		            <button type="submit" class="btn btn-primary">Registrar</button>
+		        </div>
+	        </form>
+
+	    </div>
+	</div>
+
 </div>
-
-
-<div class="container">
-	<form ng-submit="vm.regUser();">
-		<label>Usuario:</label>
-		<input type="text" name="user" class="form-control" style="width: 200px;" placeholder="ingrese usuario" ng-model="vm.userData.username">
-		<br>
-		<label>Contraseña:</label>
-		<input type="password" name="password" class="form-control" style="width: 200px;" placeholder="ingrese contraseña" ng-model="vm.userData.password">
-		<br>
-		<button type="submit" class="btn btn-primary">Registrar</button>
-	</form>
-</div>
-
 <div class="jumbotron text-center" ng-show="vm.loading">
 	<span class="glyphicon glyphicon-repeat spinner"></span>
 	<p>Loading...</p>

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="container facturas-container">
     <h1 ng-hide="vm.detalle">Facturas</h1>
-    <button href="#ventana1" class="btn btn-primary btn-md" data-toggle="modal" ng-hide="vm.detalle">Agregar Factura</button>
+    <button href="#ventana1" class="btn info-color btn-primary btn-md" data-toggle="modal" ng-hide="vm.detalle">Agregar Factura</button>
     <br><br>
         <table class="table table-bordered table-striped table-hovered table-condensed" ng-hide="vm.detalle">
             <th>Serie</th>
@@ -42,10 +42,10 @@
                 	<input type="text" ng-model="factura.total" class="form-control" style="width:150px;">
                 </td>
                 <td>
-                    <button ng-hide="editing" class="btn btn-warning btn-md" ng-click="editing=!editing"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</button>
-                    <button ng-hide="!editing" class="btn btn-success btn-md" ng-click="vm.updateFactura(factura);editing=false;">Save</button>
-                    <button class="btn btn-primary btn-md"  ng-hide="!editing" ng-click="editing=!editing">Back</button>
-                    <button class="btn btn-danger btn-md" ng-click="vm.removeFactura(factura);" ng-hide="editing">Delete</button>
+                    <button ng-hide="editing" class="btn warning-color btn-warning btn-md" ng-click="editing=!editing"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</button>
+                    <button ng-hide="!editing" class="btn success-color btn-success btn-md" ng-click="vm.updateFactura(factura);editing=false;">Save</button>
+                    <button class="btn info-color btn-primary btn-md"  ng-hide="!editing" ng-click="editing=!editing">Back</button>
+                    <button class="btn danger-color btn-danger btn-md" ng-click="vm.removeFactura(factura);" ng-hide="editing">Delete</button>
                 </td>
             </tr>
         </table>
@@ -85,8 +85,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-success btn-md"  ng-disabled="!vm.factura.serie || !vm.factura.num_fact || !vm.factura.sub_total || !vm.factura.igv || !vm.factura.total" ng-click = "vm.addFactura(vm.factura)" data-dismiss="modal">Add</button>
-                            <button class="btn btn-primary btn-md" data-dismiss="modal" ng-click="vm.limpiar()">Back</button>
+                            <button class="btn success-color btn-success btn-md"  ng-disabled="!vm.factura.serie || !vm.factura.num_fact || !vm.factura.sub_total || !vm.factura.igv || !vm.factura.total" ng-click = "vm.addFactura(vm.factura)" data-dismiss="modal">Add</button>
+                            <button class="btn info-color btn-primary btn-md" data-dismiss="modal" ng-click="vm.limpiar()">Back</button>
                         </div>                 
                     </div>  
                 </div>
@@ -96,7 +96,7 @@
         <div class="jumbotron">
         <h2>Detalle Factura</h2>
         <h3>{{vm.detalleFactura.serie}} N°{{vm.detalleFactura.num_fact}}</h3><h5>Fecha: {{vm.detalleFactura.fecha | date:"dd/MM/y"}}</h5>
-        <button href="#ventana2" class="btn btn-primary btn-md" data-toggle="modal">agregar producto</button>
+        <button href="#ventana2" class="btn info-color btn-primary btn-md" data-toggle="modal">agregar producto</button>
             <br>
             <br>
             <table class="table table-bordered table-striped table-hovered table-condensed">
@@ -133,11 +133,11 @@
                         <input type="text" ng-model="producto.total" class="form-control" style="width:60px;">
                     </td>
                     <td>
-                        <button class="btn btn-success btn-md" href="#ventana3" data-toggle="modal" ng-click="vm.showNum(producto)">N°serie</button>
-                        <button ng-hide="editing" class="btn btn-warning btn-md" ng-click="editing=!editing">Edit</button>
-                        <button ng-hide="!editing" class="btn btn-success btn-md" ng-click="vm.updateProducto(producto);editing=false;">Save</button>
-                        <button class="btn btn-primary btn-md" ng-hide="!editing" ng-click="editing=!editing">Back</button>
-                        <button class="btn btn-danger btn-md" ng-click="vm.removeProducto(producto);" ng-hide="editing">Delete</button>
+                        <button class="btn success-color btn-success btn-md" href="#ventana3" data-toggle="modal" ng-click="vm.showNum(producto)">N°serie</button>
+                        <button ng-hide="editing" class="btn warning-color btn-warning btn-md" ng-click="editing=!editing">Edit</button>
+                        <button ng-hide="!editing" class="btn success-color btn-success btn-md" ng-click="vm.updateProducto(producto);editing=false;">Save</button>
+                        <button class="btn info-color btn-primary btn-md" ng-hide="!editing" ng-click="editing=!editing">Back</button>
+                        <button class="btn danger-color btn-danger btn-md" ng-click="vm.removeProducto(producto);" ng-hide="editing">Delete</button>
                     </td>
                     
                 </tr>
@@ -145,7 +145,7 @@
 
             <div>
             <br>
-                <button class="btn btn-danger btn-md" ng-click="vm.detalle=false">Back</button>
+                <button class="btn danger-color btn-danger btn-md" ng-click="vm.detalle=false">Back</button>
             </div>
             <div class="modal fade" id="ventana2">
             <div class="modal-dialog">
@@ -182,8 +182,8 @@
                             </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-success btn-md"  ng-disabled="!vm.detalleFactura.productos.codigo || !vm.detalleFactura.productos.descripcion || !vm.detalleFactura.productos.cantidad || !vm.detalleFactura.productos.precio_u || !vm.detalleFactura.productos.valor_u" ng-click = "vm.addProducto(vm.detalleFactura.productos);vm.addProductoPrecio(vm.detalleFactura.producto_precios)" data-dismiss="modal">Add</button>
-                        <button class="btn btn-primary btn-md" data-dismiss="modal" >Back</button>
+                        <button class="btn success-color btn-success btn-md"  ng-disabled="!vm.detalleFactura.productos.codigo || !vm.detalleFactura.productos.descripcion || !vm.detalleFactura.productos.cantidad || !vm.detalleFactura.productos.precio_u || !vm.detalleFactura.productos.valor_u" ng-click = "vm.addProducto(vm.detalleFactura.productos);vm.addProductoPrecio(vm.detalleFactura.producto_precios)" data-dismiss="modal">Add</button>
+                        <button class="btn info-color btn-primary btn-md" data-dismiss="modal" >Back</button>
                     </div>                 
                 </div>  
             </div>
@@ -201,7 +201,7 @@
                             <div class="container show-num_serie">
                             <div>
                                  <input type="number" ng-model="num_serie" class="form-control" style="width:90px;">
-                                 <button class="btn btn-success btn-md" ng-click="vm.addSerie(num_serie)">+</button>
+                                 <button class="btn success-color btn-success btn-md" ng-click="vm.addSerie(num_serie)">+</button>
                             </div>
                                
                                 <table class="table table-bordered table-hovered table-condensed">
@@ -209,7 +209,7 @@
                                     <th></th>
                                         <tr ng-repeat="num_serie in vm.detalleProducto.num_serie">
                                             <td>{{num_serie.num}}</td>
-                                            <td><button class="btn btn-danger btn-md" ng-click="vm.removeSerie(num_serie)">X</button></td>
+                                            <td><button class="btn danger-color btn-danger btn-md" ng-click="vm.removeSerie(num_serie)">X</button></td>
                                         </tr>
                                 </table>
                                 

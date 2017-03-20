@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute','userControllers','mainController','userServices','authServices']);
+var app = angular.module('app', ['ngRoute','userControllers','EvaluacionControllers','mainController','userServices','authServices']);
 
 app.config(function($httpProvider) {
 	$httpProvider.interceptors.push('AuthInter');
@@ -54,9 +54,15 @@ app.config(function ($routeProvider) {
 		templateUrl: 'users/logout.html',
 		authenticated: true
 	});
+	$routeProvider.when('/evaluacion', {
+		controller: 'EvaluacionCtrl',
+		controllerAs: 'vm',
+		templateUrl: 'evaluacion.html',
+		authenticated: true
+	});
 	$routeProvider.when('/',{
-		//controller: 'StockCtrl',
-		//controllerAs: 'vm',
+		controller: 'EvaluacionCtrl',
+		controllerAs: 'vm',
 		templateUrl: 'home/home.html',
 		authenticated: false
 	});

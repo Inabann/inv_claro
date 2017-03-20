@@ -1,14 +1,16 @@
 <div class="container">
     <div class="container empleados-container">
         <h1>Empleados</h1>
-        <button href="#ventana1" class="btn btn-primary btn-md" data-toggle="modal">Agregar Empleado</button>
+        <button href="#ventana1" class="btn info-color btn-primary btn-md" data-toggle="modal">Agregar Empleado</button>
         <br>
         <br>
         <table class="table table-bordered table-striped table-hovered table-condensed">
+            <th>#</th>
             <th>DNI</th>
             <th>Nombre</th>
             <th>Opciones</th>
             <tr ng-repeat="empleado in vm.empleados">
+                <td>{{$index+1}}</td>
                 <td ng-if="!editing">{{empleado.dni}}</td>
                 <td ng-if="!editing">{{empleado.nombre}}</td>
                 <td ng-if="editing">
@@ -18,11 +20,11 @@
                 	<input type="text" ng-model="empleado.nombre" class="form-control" style="width:190px;">
                 </td>
                 <td>
-                    <button ng-hide="editing" class="btn btn-warning btn-md " ng-click="editing=!editing">Edit</button>
-                    <button ng-hide="!editing" class="btn btn-success btn-md" ng-click="vm.updateEmpleado(empleado);editing=false;">Save</button>
-                    <button class="btn btn-primary btn-md" ng-hide="!editing" ng-click="editing=!editing">Back</button>
-                    <button class="btn btn-danger btn-md" ng-click="vm.removeEmpleado(empleado);" ng-hide="editing">Delete</button>
-                    <button class="btn btn-success btn-md" ng-hide="editing" ng-click="vm.detalleVentas(empleado)" data-toggle="modal" data-target="#myModal">Ventas</button>
+                    <button ng-hide="editing" class="btn warning-color btn-warning btn-md " ng-click="editing=!editing">Edit</button>
+                    <button ng-hide="!editing" class="btn success-color btn-success btn-md" ng-click="vm.updateEmpleado(empleado);editing=false;">Save</button>
+                    <button class="btn info-color btn-primary btn-md" ng-hide="!editing" ng-click="editing=!editing">Back</button>
+                    <button class="btn danger-color btn-danger btn-md" ng-click="vm.removeEmpleado(empleado);" ng-hide="editing">Delete</button>
+                    <button class="btn succes-color btn-success btn-md" ng-hide="editing" ng-click="vm.detalleVentas(empleado)" data-toggle="modal" data-target="#myModal">Ventas</button>
                 </td>
             </tr>
         </table>
@@ -45,8 +47,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-success btn-md"  ng-disabled="!vm.empleado.dni || !vm.empleado.nombre" data-dismiss="modal" ng-click = "vm.addEmpleado(vm.empleado)" >Add</button>
-                            <button class="btn btn-primary btn-md " data-dismiss="modal" ng-click="vm.empleado = null">Back</button>                        
+                            <button class="btn success-color btn-success btn-md"  ng-disabled="!vm.empleado.dni || !vm.empleado.nombre" data-dismiss="modal" ng-click = "vm.addEmpleado(vm.empleado)" >Add</button>
+                            <button class="btn info-color btn-primary btn-md " data-dismiss="modal" ng-click="vm.empleado = null">Back</button>                        
                         </div>
                     </div>
                 </div>   
@@ -64,7 +66,7 @@
               <div class="modal-body">
                 <label>Mes:<input type="text" ng-model="f.mes" style="width: 60px;"></label>
                 <label>Año:<input type="text" ng-model="f.ano" style="width: 60px;"></label>
-                <button class="btn btn-success btn-md" ng-click="vm.mesVentas(f);">ok</button>
+                <button class="btn success-color btn-success  btn-md" ng-click="vm.mesVentas(f);">ok</button>
                 <table class="table table-bordered">
                     <th>Descripcion</th>
                     <th>ICCID</th>
