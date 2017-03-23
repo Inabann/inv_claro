@@ -69,14 +69,15 @@
 				<li class="nav-item"><a href="/#/productos" ng-show="vm.isLoggedIn" class="nav-link">Productos</a></li>
 				<li class="nav-item"><a href="/#/reg_ventas" ng-show="vm.isLoggedIn" class="nav-link">Registrar venta</a></li>
 				<li class="nav-item"><a href="/#/personal" ng-show="vm.isLoggedIn" class="nav-link">Personal</a></li>
-			</ul>
-			<ul class="navbar-nav ml-auto nav-flex-icons">
-				
-				<li class="nav-item">
-				<a class="nav-link waves-effect waves-light" href="#/login" ng-show="!vm.isLoggedIn"><i class="fa fa-user"></i></a>
+                <li class="nav-item"><a href="/#/evaluacion" ng-show="vm.isLoggedIn" class="nav-link">Evaluacion</a></li>
+
+			<ul class="navbar-nav ml-auto nav-flex-icons ">
+				<li class="nav-item ">
+
+				<a class="nav-link waves-effect waves-light " href="#/login" ng-show="!vm.isLoggedIn"><i class="fa fa-user"></i></a>
 				</li>
-				<li class="nav-item dropdown btn-group" ng-show="vm.isLoggedIn">
-                    <a class="nav-link dropdown-toggle waves-effect waves-light"  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><i class="fa fa-user"></i> {{vm.username | uppercase}}</a>
+				<li class="nav-item dropdown btn-group " ng-show="vm.isLoggedIn">
+                    <a class="nav-link dropdown-toggle waves-effect waves-light "  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><i class="fa fa-user"></i> {{vm.username | uppercase}}</a>
                     <div class="dropdown-menu dropdown-default dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item waves-effect waves-light" href="/#/register" ng-show="vm.isLoggedIn">Registrar</a>
                         <a class="dropdown-item waves-effect waves-light" href="#/logout" ng-click="vm.logout();">Salir</a>
@@ -151,13 +152,16 @@
 	<script src="./controllers/EmpleadoCtrl.js"></script>
 	<script src="./controllers/RegVentaCtrl.js"></script>
 	<script src="./controllers/UserCtrl.js"></script>
+    <script src="./controllers/evaluacion.js"></script>
 	<script src="./controllers/mainCtrl.js"></script>
 	<script src="./services/userServices.js"></script>
 	<script src="./services/authServices.js"></script>
+
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 		crossorigin="anonymous"></script>
 	<script type="text/javascript" src="home/js/tether.min.js"></script>
 	<script type="text/javascript" src="home/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="home/js/mdb.min.js"></script>
+
 </body>
 </html>

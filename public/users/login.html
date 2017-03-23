@@ -1,18 +1,35 @@
-<div class="page-header">
-	<h2>Login</h2>
-</div>
+<div class="container" style="width:450px">
+	
+	<!--Form without header-->
+	<div class="card">
+	    <div class="card-block" >
+	      
+	        <!--Header-->
+	        <div class="text-center">
+	            <h3><i class="fa fa-lock"></i> Login:</h3>
+	            <hr class="mt-2 mb-2">
+	        </div>
 
+	        <form ng-submit="vm.doLogin(loginData);">
+		        <div class="md-form">
+		        
+		            <i class="fa fa-user prefix"></i>
+		            <input type="text" id="usuario" class="form-control" ng-model="vm.loginData.username">
+		            <label for="usuario">User</label>
+		        </div>
 
-<div class="container">
-	<form ng-submit="vm.doLogin(loginData);">
-		<label>Usuario:</label>
-		<input type="text" name="user" class="form-control" style="width: 200px;" placeholder="ingrese usuario" ng-model="vm.loginData.username">
-		<br>
-		<label>Contraseña:</label>
-		<input type="password" name="password" class="form-control" style="width: 200px;" placeholder="ingrese contraseña" ng-model="vm.loginData.password">
-		<br>
-		<button type="submit" class="btn btn-primary">Login</button>
-	</form>
+		        <div class="md-form">
+		            <i class="fa fa-lock prefix"></i>
+		            <input type="password" id="form4" class="form-control" ng-model="vm.loginData.password">
+		            <label for="">Password</label>
+		        </div>
+		        <div class="text-center">
+		            <button type="submit" class="btn btn-primary">Login</button>
+		        </div>
+	        </form>
+
+	    </div>
+	</div>
 </div>
 
 <div class="jumbotron text-center" ng-show="vm.loading">

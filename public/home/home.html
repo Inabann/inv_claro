@@ -1,4 +1,5 @@
-<!--Main layout-->
+<!--<script src="./controllers/EvaluacionCtrl.js"></script>-->
+
 <div class="container">
     <div class="row">
         <!--Sidebar-->
@@ -21,35 +22,40 @@
                         <p>Arma el plan que mas se acomode a tus necesidades</p>
                         <div class="md-form">
                             <i class="fa fa-user prefix"></i>
-                            <input type="text" id="form1" class="form-control">
-                            <label for="form1">Nombres y Apellidos</label>
+                            <input type="text" id="nombre" class="form-control" ng-model="vm.evaluacion.nombre">
+                            <label for="nombre">Nombres y Apellidos</label>
                         </div>
                         <div class="md-form">
                             <i class="fa fa-credit-card prefix"></i>
-                            <input type="text" id="form2" class="form-control">
-                            <label for="form2">DNI</label>
+                            <input type="text" id="dni" class="form-control" ng-model="vm.evaluacion.dni">
+                            <label for="dni">DNI</label>
                         </div>
                         <div class="md-form">
                             <i class="fa fa-at prefix"></i>
-                            <input type="text" id="form3" class="form-control">
-                            <label for="form3">Correo Electronico</label>
+                            <input type="text" id="correo" class="form-control" ng-model="vm.evaluacion.correo">
+                            <label for="correo">Correo Electronico</label>
                         </div>
                         <div class="md-form">
                             <i class="fa fa-phone prefix"></i>
-                            <input type="text" id="form4" class="form-control">
-                            <label for="form4">Numero de Celular</label>
+                            <input type="text" id="num_celular" class="form-control" ng-model="vm.evaluacion.celular">
+                            <label for="num_celular">Numero de Celular</label>
                         </div>
                         <div class="md-form">
                             <i class="fa fa-list prefix"></i>
-                            <input type="text" id="form5" class="form-control">
-                            <label for="form5">Plan</label>
+                            <input type="text" id="plan" class="form-control" ng-model="vm.evaluacion.plan">
+                            <label for="plan">Plan</label>
                         </div>
                         <div class="md-form">
                             <i class="fa fa-mobile prefix"></i>
-                            <input type="text" id="form6" class="form-control">
-                            <label for="form6">Equipo</label>
+                            <input type="text" id="equipo" class="form-control" ng-model="vm.evaluacion.equipo">
+                            <label for="equipo">Equipo</label>
                         </div>
-                        <button class="btn btn-danger">Submit</button>
+                       
+                        <div class="text-center">
+                        <button class="btn danger-color btn-danger" ng-click = "vm.addEvaluacion(vm.evaluacion)">Enviar</button>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
