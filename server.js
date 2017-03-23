@@ -46,7 +46,7 @@ var producto_precio = require('./routes/producto_precio');
 app.use('/inv/producto_precio', producto_precio);
 
 var evaluacion = require('./routes/evaluacion');
-app.use('/inv/evaluaciones', evaluacion);
+app.use('/inv/evaluacion', evaluacion);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function(){

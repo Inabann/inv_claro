@@ -8,7 +8,7 @@ var EvaluacionSchema = new Schema ({
 	celular: Number,
 	plan: String,
 	equipo: String,
-	revisado:  {type: Boolean, default: false}
+	revisado: {type: Boolean, default: false}
 	
 });
 

@@ -9,6 +9,19 @@ router.get('/',function(req,res){
 		res.status(200).send(evaluacion);
 	})
 });
+//actualizar estado de revision
+
+router.put('/',function(req,res){
+	console.log('estado');
+	evaluacionModel.findByIdAndUpdate(req.body._id,{$set:req.body},{new:true},function(err, revisado){
+		if(err){
+			res.status(404).send(err);
+		}
+		else {
+			res.status(200).send(revisado);
+		}
+	})
+});
 
 //agregar
 router.post('/', function(req,res){

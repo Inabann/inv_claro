@@ -7,11 +7,20 @@ angular.module('EvaluacionControllers',[])
 
 
 	vm.getEvaluaciones = function(){
-		$http.get('/inv/evaluaciones').then(function(res){
+		$http.get('/inv/evaluacion').then(function(res){
 			vm.evaluaciones = res.data;
 		});
 	};
 	vm.getEvaluaciones();
+
+	vm.updateEvaluacion = function(evaluacion){
+		if(evaluacion){
+			$http.put('/inv/evaluacion', evaluacion).then(function(res){
+				console.log('update evaluacion');
+				vm.getEvaluaciones();
+			})
+		}
+	}
 
 	
 	
@@ -19,7 +28,7 @@ angular.module('EvaluacionControllers',[])
 		if(evaluacion && evaluacion.dni){
 			console.log("evaluacion agregado");
 			
-			$http.post('/inv/evaluaciones', evaluacion).then(function(res){
+			$http.post('/inv/evaluacion', evaluacion).then(function(res){
 				vm.getEvaluaciones();
 				vm.evaluacion="";
 				vm.evaluaciones = "";
