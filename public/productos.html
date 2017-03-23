@@ -32,7 +32,11 @@
                                 <div class="col-md-4">
                                     <input type="number" placeholder="Precio S/." ng-model="precio_var" class="form-control" style="width:150px;">
                                     <input type="date" ng-model="fecha_precio" class="form-control" style="width:150px;">
+<<<<<<< HEAD
                                     <a class="btn success-color btn-success btn-md" ng-click="vm.addPrecioP(precio_var,fecha_precio) " title="Agregar">+</a>    
+=======
+                                    <button class="btn success-color btn-success btn-md" ng-click="vm.addPrecioP(precio_var,fecha_precio) " title="Agregar">+</button>    
+>>>>>>> dd00d32469f5cbbbd0907ef60c3b0dcb8adfa330
                                 </div>
                                 
                                 <div>
@@ -48,7 +52,11 @@
                                         <tr ng-repeat="precio_var in vm.preciosProducto.precio_var">
                                             <td>{{precio_var.precio_v}}</td>
                                             <td>{{precio_var.fecha | date:"dd/MM/y"}}</td>
+<<<<<<< HEAD
                                             <td><a class="btn danger-color btn-danger btn-md" ng-click="vm.removePrecioP(precio_var)" title="Eliminar">x</a></td>    
+=======
+                                            <td><button class="btn danger-color btn-danger btn-md" ng-click="vm.removePrecioP(precio_var)" title="Eliminar">x</button></td>    
+>>>>>>> dd00d32469f5cbbbd0907ef60c3b0dcb8adfa330
                                         </tr>
                             </table>
                                 

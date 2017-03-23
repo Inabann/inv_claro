@@ -22,6 +22,11 @@ angular.module('EvaluacionControllers',[])
 		}
 	}
 
+<<<<<<< HEAD
+=======
+	
+	
+>>>>>>> dd00d32469f5cbbbd0907ef60c3b0dcb8adfa330
 	vm.addEvaluacion = function(evaluacion){
 		if(evaluacion && evaluacion.dni){
 			console.log("evaluacion agregado");
@@ -36,6 +41,7 @@ angular.module('EvaluacionControllers',[])
 			console.log("faltan datos");
 		}
 	};
+<<<<<<< HEAD
 
 	vm.removeEvaluacion = function(evaluacion){
 		if(evaluacion){
@@ -45,4 +51,6 @@ angular.module('EvaluacionControllers',[])
 			});
 		}
 	}
+=======
+>>>>>>> dd00d32469f5cbbbd0907ef60c3b0dcb8adfa330
 });

@@ -42,6 +42,7 @@ router.post('/', function(req,res){
 		}
 	});
 });
+<<<<<<< HEAD
 //eliminar
 router.delete('/:id',function(req,res){
 	var id = req.params.id;
@@ -54,5 +55,7 @@ router.delete('/:id',function(req,res){
 		}
 	})
 });
+=======
+>>>>>>> dd00d32469f5cbbbd0907ef60c3b0dcb8adfa330
 
 module.exports = router;
