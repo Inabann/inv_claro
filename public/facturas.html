@@ -1,10 +1,6 @@
 <div class="container">
     <div class="container facturas-container">
-<<<<<<< HEAD
     <h1 ng-hide="vm.detalle" >Facturas</h1>
-=======
-    <h1 ng-hide="vm.detalle">Facturas</h1>
->>>>>>> dd00d32469f5cbbbd0907ef60c3b0dcb8adfa330
     <button href="#ventana1" class="btn info-color btn-primary btn-md" data-toggle="modal" ng-hide="vm.detalle">Agregar Factura</button>
     <br><br>
         <table class="table table-bordered table-striped table-hovered table-condensed" ng-hide="vm.detalle">
@@ -48,17 +44,10 @@
                 	<input type="text" ng-model="factura.total" class="form-control" style="width:150px;">
                 </td>
                 <td>
-<<<<<<< HEAD
                     <a ng-hide="editing" class="btn warning-color btn-warning btn-md" ng-click="editing=!editing" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     <a ng-hide="!editing" class="btn success-color btn-success btn-md" ng-click="vm.updateFactura(factura);editing=false;" title="Guardar"><i class="fa fa-save" aria-hidden="true"></i></a>
                     <a class="btn info-color btn-primary btn-md"  ng-hide="!editing" ng-click="editing=!editing" title="Regresar"><i class="fa fa-reply" aria-hidden="true"></i></a>
                     <a class="btn danger-color btn-danger btn-md" ng-click="vm.removeFactura(factura);" ng-hide="editing" title="Eliminar"><i class="fa fa-trash-o"></i></a>
-=======
-                    <button ng-hide="editing" class="btn warning-color btn-warning btn-md" ng-click="editing=!editing"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</button>
-                    <button ng-hide="!editing" class="btn success-color btn-success btn-md" ng-click="vm.updateFactura(factura);editing=false;">Save</button>
-                    <button class="btn info-color btn-primary btn-md"  ng-hide="!editing" ng-click="editing=!editing">Back</button>
-                    <button class="btn danger-color btn-danger btn-md" ng-click="vm.removeFactura(factura);" ng-hide="editing">Delete</button>
->>>>>>> dd00d32469f5cbbbd0907ef60c3b0dcb8adfa330
                 </td>
             </tr>
         </table>
@@ -98,13 +87,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-<<<<<<< HEAD
                             <a class="btn success-color btn-success btn-md"  ng-disabled="!vm.factura.serie || !vm.factura.num_fact || !vm.factura.sub_total || !vm.factura.igv || !vm.factura.total" ng-click = "vm.addFactura(vm.factura)" data-dismiss="modal" title="Agregar"><i class="fa fa-plus-circle"></i></a>
                             <a class="btn info-color btn-primary btn-md" data-dismiss="modal" ng-click="vm.limpiar()" title="Regresar"><i class="fa fa-reply" aria-hidden="true"></i></a>
-=======
-                            <button class="btn success-color btn-success btn-md"  ng-disabled="!vm.factura.serie || !vm.factura.num_fact || !vm.factura.sub_total || !vm.factura.igv || !vm.factura.total" ng-click = "vm.addFactura(vm.factura)" data-dismiss="modal">Add</button>
-                            <button class="btn info-color btn-primary btn-md" data-dismiss="modal" ng-click="vm.limpiar()">Back</button>
->>>>>>> dd00d32469f5cbbbd0907ef60c3b0dcb8adfa330
                         </div>                 
                     </div>  
                 </div>
@@ -154,17 +138,10 @@
                     </td>
                     <td>
                         <button class="btn success-color btn-success btn-md" href="#ventana3" data-toggle="modal" ng-click="vm.showNum(producto)">N°serie</button>
-<<<<<<< HEAD
                         <a ng-hide="editing" class="btn warning-color btn-warning btn-md" ng-click="editing=!editing" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                         <a ng-hide="!editing" class="btn success-color btn-success btn-md" ng-click="vm.updateProducto(producto);editing=false;" title="Guardar"><i class="fa fa-save" aria-hidden="true"></i></a>
                         <a class="btn info-color btn-primary btn-md" ng-hide="!editing" ng-click="editing=!editing" title="Regresar"><i class="fa fa-reply" aria-hidden="true"></i></a>
                         <a class="btn danger-color btn-danger btn-md" ng-click="vm.removeProducto(producto);" ng-hide="editing" title="Eliminar"><i class="fa fa-trash-o"></i></a>
-=======
-                        <button ng-hide="editing" class="btn warning-color btn-warning btn-md" ng-click="editing=!editing">Edit</button>
-                        <button ng-hide="!editing" class="btn success-color btn-success btn-md" ng-click="vm.updateProducto(producto);editing=false;">Save</button>
-                        <button class="btn info-color btn-primary btn-md" ng-hide="!editing" ng-click="editing=!editing">Back</button>
-                        <button class="btn danger-color btn-danger btn-md" ng-click="vm.removeProducto(producto);" ng-hide="editing">Delete</button>
->>>>>>> dd00d32469f5cbbbd0907ef60c3b0dcb8adfa330
                     </td>
                     
                 </tr>

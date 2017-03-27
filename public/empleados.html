@@ -20,19 +20,11 @@
                 	<input type="text" ng-model="empleado.nombre" class="form-control" style="width:190px;">
                 </td>
                 <td>
-<<<<<<< HEAD
                     <a ng-hide="editing" class="btn warning-color btn-warning btn-md " ng-click="editing=!editing" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     <a ng-hide="!editing" class="btn success-color btn-success btn-md" ng-click="vm.updateEmpleado(empleado);editing=false;" title="Guardar"><i class="fa fa-save" aria-hidden="true"></i></a>
                     <a class="btn info-color btn-primary btn-md" ng-hide="!editing" ng-click="editing=!editing" title="Regresar"><i class="fa fa-reply" aria-hidden="true"></i></a>
                     <a class="btn danger-color btn-danger btn-md" ng-click="vm.removeEmpleado(empleado);" ng-hide="editing" title="Eliminar"><i class="fa fa-trash-o"></i></button>
                     <a class="btn succes-color btn-success btn-md" ng-hide="editing" ng-click="vm.detalleVentas(empleado)" data-toggle="modal" data-target="#myModal" title="Ventas"><i class="fa fa-list"></i></a>
-=======
-                    <button ng-hide="editing" class="btn warning-color btn-warning btn-md " ng-click="editing=!editing">Edit</button>
-                    <button ng-hide="!editing" class="btn success-color btn-success btn-md" ng-click="vm.updateEmpleado(empleado);editing=false;">Save</button>
-                    <button class="btn info-color btn-primary btn-md" ng-hide="!editing" ng-click="editing=!editing">Back</button>
-                    <button class="btn danger-color btn-danger btn-md" ng-click="vm.removeEmpleado(empleado);" ng-hide="editing">Delete</button>
-                    <button class="btn succes-color btn-success btn-md" ng-hide="editing" ng-click="vm.detalleVentas(empleado)" data-toggle="modal" data-target="#myModal">Ventas</button>
->>>>>>> dd00d32469f5cbbbd0907ef60c3b0dcb8adfa330
                 </td>
             </tr>
         </table>
@@ -74,11 +66,7 @@
               <div class="modal-body">
                 <label>Mes:<input type="text" ng-model="f.mes" style="width: 60px;"></label>
                 <label>Año:<input type="text" ng-model="f.ano" style="width: 60px;"></label>
-<<<<<<< HEAD
                 <a class="btn success-color btn-success  btn-md" ng-click="vm.mesVentas(f);" title="Buscar"><i class="fa fa-search" aria-hidden="true"></i></a>
-=======
-                <button class="btn success-color btn-success  btn-md" ng-click="vm.mesVentas(f);">ok</button>
->>>>>>> dd00d32469f5cbbbd0907ef60c3b0dcb8adfa330
                 <table class="table table-bordered">
                     <th>Descripcion</th>
                     <th>ICCID</th>
