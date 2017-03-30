@@ -1,10 +1,8 @@
 angular.module('EvaluacionControllers',[])
 
 .controller('EvaluacionCtrl', function ($http) {
-
 	var vm = this;
 	vm.evaluaciones = [];
-
 
 	vm.getEvaluaciones = function(){
 		$http.get('/inv/evaluacion').then(function(res){
@@ -20,13 +18,8 @@ angular.module('EvaluacionControllers',[])
 				vm.getEvaluaciones();
 			})
 		}
-	}
+	};
 
-<<<<<<< HEAD
-=======
-	
-	
->>>>>>> dd00d32469f5cbbbd0907ef60c3b0dcb8adfa330
 	vm.addEvaluacion = function(evaluacion){
 		if(evaluacion && evaluacion.dni){
 			console.log("evaluacion agregado");
@@ -41,7 +34,6 @@ angular.module('EvaluacionControllers',[])
 			console.log("faltan datos");
 		}
 	};
-<<<<<<< HEAD
 
 	vm.removeEvaluacion = function(evaluacion){
 		if(evaluacion){
@@ -50,7 +42,5 @@ angular.module('EvaluacionControllers',[])
 				vm.getEvaluaciones();
 			});
 		}
-	}
-=======
->>>>>>> dd00d32469f5cbbbd0907ef60c3b0dcb8adfa330
+	};
 });

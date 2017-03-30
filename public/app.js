@@ -61,7 +61,7 @@ app.config(function ($routeProvider) {
 		authenticated: true
 	});
 	$routeProvider.when('/',{
-		controller: 'EvaluacionCtrl',
+		controller: 'mainCtrl',
 		controllerAs: 'vm',
 		templateUrl: 'home/home.html',
 		authenticated: false
