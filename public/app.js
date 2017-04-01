@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute','userControllers','EvaluacionControllers','mainController','userServices','authServices']);
+var app = angular.module('app', ['ngRoute','ngFileUpload','userControllers','EvaluacionControllers','mainController','userServices','authServices']);
 
 app.config(function($httpProvider) {
 	$httpProvider.interceptors.push('AuthInter');
@@ -65,6 +65,12 @@ app.config(function ($routeProvider) {
 		controllerAs: 'vm',
 		templateUrl: 'home/home.html',
 		authenticated: false
+	});
+	$routeProvider.when('/tarjetas', {
+		controller: 'TarjetaCtrl',
+		controllerAs: 'vm',
+		templateUrl: 'tarjetas.html',
+		authenticated: true
 	});
 });
 

@@ -1,0 +1,79 @@
+<div class="container">
+	<!-- Button trigger modal -->
+	<button type="button" class="btn btn-outline-success waves-effect" data-toggle="modal" data-target="#myModal">nueva tarjeta</button>
+
+	<hr class="extra-margins">
+	<div class="row" >
+		<div ng-repeat="tarjeta in vm.tarjetas">
+                <!--First columnn-->
+                <div class="col-lg-7">
+                    <!--Card-->
+                    <div class="card">
+                        <!--Card image-->
+                        <img ng-src="{{tarjeta.url}}" class="img-fluid" >
+                       
+                        <!--/.Card image-->
+                        <!--Card content-->
+                        <div class="card-block">
+                            <!--Title-->
+                            <h4 class="card-title">{{tarjeta.titulo}}</h4>
+                            <!--Text-->
+                            <p class="card-text">{{tarjeta.descripcion}}</p>
+                            <p class="card-text">{{tarjeta.categoria}}</p>
+                            <a class="btn btn-danger" ng-click="vm.remove(tarjeta);">eliminar</a>
+                        </div>
+                        <!--/.Card content-->
+                    </div>
+                    <!--/.Card-->
+                </div>
+        </div>
+                <!--First columnn-->
+    </div>
+
+
+
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+	        <!--Content-->
+	        <div class="modal-content">
+	            <!--Header-->
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                    <span aria-hidden="true">&times;</span>
+	                </button>
+	                <h4 class="modal-title w-100" id="myModalLabel">Nueva Tarjeta</h4>
+	            </div>
+	            <!--Body-->
+	            <div class="modal-body">
+	            	<form class="form-inline">
+	            		<div class="md-form form-group">
+	            		<button class="btn btn-elegant btn-sm" 
+						ngf-select ng-model="vm.file" 
+						name="file" ngf-pattern="'image/*'"
+				    	ngf-accept="'image/*'" 
+				    	ngf-max-size="20MB" 
+				    	ngf-min-height="100"
+				    	ng-change="vm.preview();">Seleccionar imagen</button>
+	            		</div>
+				    	<div class="md-form form-group">
+	            		<h4>{{vm.previewName}}</h4>
+	            		</div>
+	            	</form>
+					<input type="text" ng-model="vm.tarjeta.titulo" placeholder="titulo de la tarjeta" class="form-control">
+					<textarea type="text" ng-model="vm.tarjeta.descripcion" id="form76" class="md-textarea" placeholder="descripcion"></textarea>
+					<input type="text" ng-model="vm.tarjeta.categoria" placeholder="categoria" class="form-control">
+	            </div>
+	            <!--Footer-->
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="">Close</button>
+	                <button type="button" class="btn btn-primary" ng-click="vm.upload();" data-dismiss="modal">Guardar</button>
+	            </div>
+	        </div>
+	        <!--/.Content-->
+	    </div>
+	</div>
+
+</div>

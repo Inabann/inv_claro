@@ -3,6 +3,7 @@
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 	<script src="https://code.angularjs.org/1.5.8/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.2.13/ng-file-upload.js"></script>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Global-Les</title>
@@ -70,6 +71,9 @@
 				<li class="nav-item"><a href="/#/reg_ventas" ng-show="vm.isLoggedIn" class="nav-link">Registrar venta</a></li>
 				<li class="nav-item"><a href="/#/personal" ng-show="vm.isLoggedIn" class="nav-link">Personal</a></li>
                 <li class="nav-item"><a href="/#/evaluacion" ng-show="vm.isLoggedIn" class="nav-link">Evaluacion</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" ng-show="vm.isLoggedIn" href="/#/tarjetas">Tarjetas</a>
+                </li>
             </ul>
 			<ul class="navbar-nav ml-auto nav-flex-icons ">
 				<li class="nav-item ">
@@ -154,6 +158,7 @@
 	<script src="./controllers/UserCtrl.js"></script>
     <script src="./controllers/EvaluacionCtrl.js"></script>
 	<script src="./controllers/mainCtrl.js"></script>
+    <script src="./controllers/TarjetaCtrl.js"></script>
 	<script src="./services/userServices.js"></script>
 	<script src="./services/authServices.js"></script>
 

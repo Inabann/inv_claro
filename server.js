@@ -3,12 +3,16 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var path = require('path');
+var cloudinary = require('cloudinary');
+var multiPart = require('connect-multiparty');
+var multiPartyMiddleware = multiPart();
 
 var app = express();
 
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(multiPartyMiddleware);
 //mongodb://32-3a.mongo.evennode.com:27017,32-3b.mongo.evennode.com:27017/9c054367fba80df1044f23efc1c99cfe?replicaSet=us32-1
 //mongodb://io:123456@ds053216.mlab.com:53216/global-les
 var db = "mongodb://io:123456@ds053216.mlab.com:53216/global-les";
@@ -21,6 +25,11 @@ mongoose.connect(db, function(err, res){
 	}
 })
 
+cloudinary.config({
+	cloud_name: 'api-images',
+	api_key: '869832633943739',
+	api_secret: 'M-Mlnrr2f4mpuvTi77JvG--LRPc'
+});
 
 app.use(express.static(__dirname+'/public'));
 
@@ -47,6 +56,9 @@ app.use('/inv/producto_precio', producto_precio);
 
 var evaluacion = require('./routes/evaluacion');
 app.use('/inv/evaluacion', evaluacion);
+
+var tarjetas = require('./routes/tarjetas');
+app.use('/inv/tarjetas', tarjetas);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function(){
