@@ -4,6 +4,25 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 	<script src="https://code.angularjs.org/1.5.8/angular-route.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.2.13/ng-file-upload.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angucomplete-alt/3.0.0/angucomplete-alt.min.js"></script>
+
+<!-- controlleres-->
+    <script src="./app.js"></script>
+    <script src="./controllers/FacturaCtrl.js"></script>
+    <script src="./controllers/ProductoCtrl.js"></script>
+    <script src="./controllers/StockCtrl.js"></script>
+    <script src="./controllers/EmpleadoCtrl.js"></script>
+    <script src="./controllers/RegVentaCtrl.js"></script>
+    <script src="./controllers/UserCtrl.js"></script>
+    <script src="./controllers/EvaluacionCtrl.js"></script>
+    <script src="./controllers/mainCtrl.js"></script>
+    <script src="./controllers/EquipoCtrl.js"></script>
+    <script src="./controllers/TarjetaCtrl.js"></script>
+    <script src="./controllers/AdminCtrl.js"></script>
+    <script src="./services/userServices.js"></script>
+    <script src="./services/authServices.js"></script>
+
+
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Global-Les</title>
@@ -14,7 +33,7 @@
     <link href="/home/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Material Design Bootstrap -->
-    <link href="/home/css/mdb.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.1/css/mdb.min.css" rel="stylesheet">
  
     <!-- Template styles -->
     <style rel="stylesheet">
@@ -54,26 +73,16 @@
 		</div>
 		<div class="collapse navbar-collapse" id="navbarNav1">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-                    <a class="nav-link" ng-show="!vm.isLoggedIn">Telefonia Fija</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" ng-show="!vm.isLoggedIn">Internet</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" ng-show="!vm.isLoggedIn">Television</a>
-                </li>
                 <li class="nav-item">
                 	<a href="/#/stock" ng-show="vm.isLoggedIn" class="nav-link">Stock</a>
                 </li>
-				<li class="nav-item"><a href="/#/facturas" ng-show="vm.isLoggedIn" class="nav-link">Facturas</a></li>
-				<li class="nav-item"><a href="/#/productos" ng-show="vm.isLoggedIn" class="nav-link">Productos</a></li>
-				<li class="nav-item"><a href="/#/reg_ventas" ng-show="vm.isLoggedIn" class="nav-link">Registrar venta</a></li>
-				<li class="nav-item"><a href="/#/personal" ng-show="vm.isLoggedIn" class="nav-link">Personal</a></li>
-                <li class="nav-item"><a href="/#/evaluacion" ng-show="vm.isLoggedIn" class="nav-link">Evaluacion</a></li>
-                <li class="nav-item">
-                    <a class="nav-link" ng-show="vm.isLoggedIn" href="/#/tarjetas">Tarjetas</a>
-                </li>
+				<li class="nav-item"><a href="/#/facturas" ng-show="vm.authorized && vm.isLoggedIn" class="nav-link">Facturas</a></li>
+				<li class="nav-item"><a href="/#/productos" ng-show="vm.authorized && vm.isLoggedIn" class="nav-link">Productos</a></li>
+				<li class="nav-item"><a href="/#/reg_ventas" ng-show="vm.authorized && vm.isLoggedIn" class="nav-link">Registrar venta</a></li>
+                <li class="nav-item"><a href="/#/evaluacion" ng-show="vm.authorized && vm.isLoggedIn" class="nav-link">Evaluacion</a></li>
+                <li class="nav-item"><a class="nav-link" ng-show="vm.authorized && vm.isLoggedIn" href="/#/tarjetas">Tarjetas</a></li>
+                <li class="nav-item"><a href="/#/equipos" ng-show="vm.isLoggedIn" class="nav-link">Equipos</a></li>
+                
             </ul>
 			<ul class="navbar-nav ml-auto nav-flex-icons ">
 				<li class="nav-item ">
@@ -83,7 +92,9 @@
 				<li class="nav-item dropdown btn-group " ng-show="vm.isLoggedIn">
                     <a class="nav-link dropdown-toggle waves-effect waves-light "  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><i class="fa fa-user"></i> {{vm.username | uppercase}}</a>
                     <div class="dropdown-menu dropdown-default dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item waves-effect waves-light" href="/#/register" ng-show="vm.isLoggedIn">Registrar</a>
+                        <a class="nav-link" ng-show="vm.authorized && vm.isLoggedIn" href="/#/admin">Admin</a>
+                        <a href="/#/personal" ng-show="vm.authorized && vm.isLoggedIn" class="nav-link">Personal</a>
+                        
                         <a class="dropdown-item waves-effect waves-light" href="#/logout" ng-click="vm.logout();">Salir</a>
                     </div>
                 </li>
@@ -149,24 +160,13 @@
 </footer>
 
 	
-	<script src="./app.js"></script>
-	<script src="./controllers/FacturaCtrl.js"></script>
-	<script src="./controllers/ProductoCtrl.js"></script>
-	<script src="./controllers/StockCtrl.js"></script>
-	<script src="./controllers/EmpleadoCtrl.js"></script>
-	<script src="./controllers/RegVentaCtrl.js"></script>
-	<script src="./controllers/UserCtrl.js"></script>
-    <script src="./controllers/EvaluacionCtrl.js"></script>
-	<script src="./controllers/mainCtrl.js"></script>
-    <script src="./controllers/TarjetaCtrl.js"></script>
-	<script src="./services/userServices.js"></script>
-	<script src="./services/authServices.js"></script>
+
 
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 		crossorigin="anonymous"></script>
 	<script type="text/javascript" src="home/js/tether.min.js"></script>
 	<script type="text/javascript" src="home/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="home/js/mdb.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.1/js/mdb.min.js"></script>
 
 </body>
 </html>

@@ -3,32 +3,28 @@
 	<button type="button" class="btn btn-outline-success waves-effect" data-toggle="modal" data-target="#myModal">nueva tarjeta</button>
 
 	<hr class="extra-margins">
-	<div class="row" >
-		<div ng-repeat="tarjeta in vm.tarjetas">
-                <!--First columnn-->
-                <div class="col-lg-7">
-                    <!--Card-->
-                    <div class="card">
-                        <!--Card image-->
-                        <img ng-src="{{tarjeta.url}}" class="img-fluid" >
-                       
-                        <!--/.Card image-->
-                        <!--Card content-->
-                        <div class="card-block">
-                            <!--Title-->
-                            <h4 class="card-title">{{tarjeta.titulo}}</h4>
-                            <!--Text-->
-                            <p class="card-text">{{tarjeta.descripcion}}</p>
-                            <p class="card-text">{{tarjeta.categoria}}</p>
-                            <a class="btn btn-danger" ng-click="vm.remove(tarjeta);">eliminar</a>
-                        </div>
-                        <!--/.Card content-->
-                    </div>
-                    <!--/.Card-->
-                </div>
-        </div>
-                <!--First columnn-->
-    </div>
+	<div class="row">
+	    <div class="col-lg-3" ng-repeat="tarjeta in vm.tarjetas">
+	        <!--Card-->
+	        <div class="card">
+	            <!--Card image-->
+	            <img ng-src="{{tarjeta.url}}" class="img-fluid">
+	            <!--/.Card image-->
+	            <!--Card content-->
+	            <div class="card-block">
+	                <!--Title-->
+	                <h4 class="card-title">{{tarjeta.titulo}}</h4>
+	                <!--Text-->
+	                <p class="card-text">{{tarjeta.descripcion}}</p>
+	                <p class="card-text">{{tarjeta.categoria}}</p>
+	                <a class="btn btn-danger" ng-click="vm.remove(tarjeta);">eliminar</a>
+	            </div>
+	            <!--/.Card content-->
+	        </div>
+	        <!--/.Card-->
+	    </div>
+	</div>
+
 
 
 
@@ -64,11 +60,21 @@
 	            	</form>
 					<input type="text" ng-model="vm.tarjeta.titulo" placeholder="titulo de la tarjeta" class="form-control">
 					<textarea type="text" ng-model="vm.tarjeta.descripcion" id="form76" class="md-textarea" placeholder="descripcion"></textarea>
-					<input type="text" ng-model="vm.tarjeta.categoria" placeholder="categoria" class="form-control">
+					<h5>Categoría</h5>
+					<select name="categoria" ng-model="vm.tarjeta.categoria">
+						<option value="plan">Plan</option>
+						<option value="smarthphone">Smarthphone</option>
+						<option value="accesorio">Accesorio</option>
+						<option value="telefonia fija">Telefonia Fija</option>
+						<option value="internet">Internet</option>
+						<option value="television">Televisión</option>
+						<option value="oferta">Oferta</option>
+						
+					</select>
 	            </div>
 	            <!--Footer-->
 	            <div class="modal-footer">
-	                <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="">Close</button>
+	                <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="">Cerrar</button>
 	                <button type="button" class="btn btn-primary" ng-click="vm.upload();" data-dismiss="modal">Guardar</button>
 	            </div>
 	        </div>

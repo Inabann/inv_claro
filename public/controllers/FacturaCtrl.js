@@ -1,8 +1,31 @@
-app.controller('FacturaCtrl', function ($http) {
+app.controller('FacturaCtrl', function ($http, User) {
 	var vm = this;
 	vm.facturas = [];
-	
+	vm.accessDenied = true;
+	vm.editAccess = false;
+	vm.deleteAccess = false;
+	vm.errorMsg = false;
 	vm.detalleFactura;
+
+	User.getUsers().then(function(data) {
+	    if (data.data.success) {
+	        if (data.data.permission === 'admin' || data.data.permission === 'moderador') {
+	            vm.loading = false;
+	            vm.accessDenied = false;
+	            if (data.data.permission === 'admin') {
+	                vm.editAccess = true;
+	                vm.deleteAccess = true;
+	            } else if (data.data.permission === 'moderador') {
+	                vm.editAccess = true;
+	            }
+	        } else {
+	            vm.errorMsg = 'Permiso Insuficiente';
+	        }
+	    } else {
+	        vm.errorMsg = data.data.message;
+	    }
+	});
+
 
 	vm.limpiar = function(factura){
 		vm.factura = "";

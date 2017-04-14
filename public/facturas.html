@@ -47,7 +47,7 @@
                     <a ng-hide="editing" class="btn warning-color btn-warning btn-md" ng-click="editing=!editing" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     <a ng-hide="!editing" class="btn success-color btn-success btn-md" ng-click="vm.updateFactura(factura);editing=false;" title="Guardar"><i class="fa fa-save" aria-hidden="true"></i></a>
                     <a class="btn info-color btn-primary btn-md"  ng-hide="!editing" ng-click="editing=!editing" title="Regresar"><i class="fa fa-reply" aria-hidden="true"></i></a>
-                    <a class="btn danger-color btn-danger btn-md" ng-click="vm.removeFactura(factura);" ng-hide="editing" title="Eliminar"><i class="fa fa-trash-o"></i></a>
+                    <a class="btn danger-color btn-danger btn-md" ng-click="vm.removeFactura(factura);"  title="Eliminar" ng-show="vm.deleteAccess"><i class="fa fa-trash-o"></i></a>
                 </td>
             </tr>
         </table>
@@ -141,7 +141,7 @@
                         <a ng-hide="editing" class="btn warning-color btn-warning btn-md" ng-click="editing=!editing" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                         <a ng-hide="!editing" class="btn success-color btn-success btn-md" ng-click="vm.updateProducto(producto);editing=false;" title="Guardar"><i class="fa fa-save" aria-hidden="true"></i></a>
                         <a class="btn info-color btn-primary btn-md" ng-hide="!editing" ng-click="editing=!editing" title="Regresar"><i class="fa fa-reply" aria-hidden="true"></i></a>
-                        <a class="btn danger-color btn-danger btn-md" ng-click="vm.removeProducto(producto);" ng-hide="editing" title="Eliminar"><i class="fa fa-trash-o"></i></a>
+                        <a class="btn danger-color btn-danger btn-md" ng-click="vm.removeProducto(producto);" ng-show="vm.deleteAccess" title="Eliminar"><i class="fa fa-trash-o"></i></a>
                     </td>
                     
                 </tr>

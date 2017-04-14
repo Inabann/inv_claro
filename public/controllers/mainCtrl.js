@@ -1,6 +1,6 @@
-angular.module('mainController', ['authServices'])
+angular.module('mainController', ['authServices', 'userServices'])
 
-.controller('mainCtrl', function(Auth, $timeout, $location, $rootScope){
+.controller('mainCtrl', function(Auth, User, $timeout, $location, $rootScope){
 	var vm = this;
 	vm.loadme = false;
 	$rootScope.$on('$routeChangeStart', function(){
@@ -8,7 +8,15 @@ angular.module('mainController', ['authServices'])
 			vm.isLoggedIn = true;
 			Auth.getUser().then(function(data){
 				vm.username = data.data.username;
-				vm.loadme = true;
+				User.getPermission().then(function(data){
+					if (data.data.permission == 'admin' || data.data.permission == 'moderador') {
+						vm.authorized = true;
+						vm.loadme = true;
+					} else {
+						vm.loadme = true;
+						vm.authorized = false;
+					}
+				});
 			});
 		} else {
 			vm.isLoggedIn = false;
@@ -43,5 +51,6 @@ angular.module('mainController', ['authServices'])
 		$timeout(function(){
 			$location.path('/')
 		},2000);
-	}
+	};
+
 });

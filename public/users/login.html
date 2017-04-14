@@ -27,24 +27,24 @@
 		            <button type="submit" class="btn btn-primary">Login</button>
 		        </div>
 	        </form>
+			<div class="jumbotron text-center" ng-show="vm.loading">
+				<span class="glyphicon glyphicon-repeat spinner"></span>
+				<p>Loading...</p>
+			</div>
 
+			<div class="row show-hide-message" ng-show="vm.successMsg">
+				<div class="alert alert-success">
+					{{vm.successMsg}}
+				</div>
+			</div>
+
+			<div class="row show-hide-message" ng-show="vm.errorMsg">
+				<div class="alert alert-danger">
+					{{vm.errorMsg}}
+				</div>
+			</div>
 	    </div>
 	</div>
 </div>
 
-<div class="jumbotron text-center" ng-show="vm.loading">
-	<span class="glyphicon glyphicon-repeat spinner"></span>
-	<p>Loading...</p>
-</div>
 
-<div class="row show-hide-message" ng-show="vm.successMsg">
-	<div class="alert alert-success">
-		{{vm.successMsg}}
-	</div>
-</div>
-
-<div class="row show-hide-message" ng-show="vm.errorMsg">
-	<div class="alert alert-danger">
-		{{vm.errorMsg}}
-	</div>
-</div>

@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="container evaluacion-container">
+    <div class="container">
        <table class="table">
             <h2>Evaluaciones</h2>
             <thead>
@@ -15,16 +15,16 @@
                 <th>Opciones</th>
 
             </tr>
-            <tr ng-repeat="evaluacion in vm.evaluaciones">
+            <tr ng-repeat="evaluacion in vm.evaluaciones ">
                     <td>{{$index+1}}</td>
                     <td>{{evaluacion.nombre}}</td>
                     <td>{{evaluacion.dni}}</td>
                     <td>{{evaluacion.correo}}</td>
                     <td>{{evaluacion.celular}}</td>
                     <td>{{evaluacion.plan}}</td>
-                    <td>{{evaluacion.equipo}}</td>                           
+                    <td>{{evaluacion.equipo.descripcion}}</td>                          
                     <td>
-                        <fieldset class="form-group" align="center">
+                        <fieldset class="form-group" accesskey="" lign="center">
                             <input type="checkbox" id="checkbox1" ng-model="evaluacion.revisado" ng-change="vm.updateEvaluacion(evaluacion)">
                             <label for="checkbox1"></label>
                         </fieldset>
@@ -36,7 +36,6 @@
 
         </table>
         
-
     </div>
 
 </div>

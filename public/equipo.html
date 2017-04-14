@@ -1,0 +1,145 @@
+<div class="container">
+    <div class="container facturas-container">
+    <h1 ng-hide="vm.detalle" >Equipos</h1>
+    <button href="#ventana1" class="btn info-color btn-primary btn-md" data-toggle="modal" ng-hide="vm.detalle">Agregar Equipos</button>
+    <br><br>
+        <table class="table table-bordered table-striped table-hovered table-condensed" ng-hide="vm.detalle">
+            <td>#</td>
+            <th>Nombre Comercial</th>
+            <th>Precios</th>
+            <th>Opciones</th>
+            <tr ng-repeat="equipo in vm.equipos">
+                <td>{{$index+1}}</td>
+                <td ng-if="!editing">{{equipo.nombre}}</td>
+                <td ng-if="!editing"><button class="btn btn-link " ng-click="vm.showDetalles(equipo)" >Precios</button></td>
+                <td ng-if="editing">
+                	<input type="text" ng-model="equipo.nombre" class="form-control" style="width:150px;">
+                </td>
+                <td ng-if="editing">
+                    Precios
+                </td>
+                <td>
+                    <a ng-hide="editing" class="btn warning-color btn-warning btn-md" ng-click="editing=!editing" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a ng-hide="!editing" class="btn success-color btn-success btn-md" ng-click="vm.updateEquipo(equipo);editing=false;" title="Guardar"><i class="fa fa-save" aria-hidden="true"></i></a>
+                    <a class="btn info-color btn-primary btn-md"  ng-hide="!editing" ng-click="editing=!editing" title="Regresar"><i class="fa fa-reply" aria-hidden="true"></i></a>
+                    <a class="btn danger-color btn-danger btn-md" ng-click="vm.removeEquipo(equipo);" ng-hide="editing" title="Eliminar"><i class="fa fa-trash-o"></i></a>
+                </td>
+            </tr>
+        </table>
+        
+        <div class="modal fade" id="ventana1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h2 class="modal-tittle" style="width:320px">Agregar Equipo</h2>  
+                    </div>
+                    <div class="modal-body">
+                        <div class="container create-facturas">
+                            <div class="md-form">
+                                <label for="nombre">Nombre</label>
+                                <input required type="text" class="form-control" style="width:150px;" ng-model="vm.equipo.nombre">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn success-color btn-success btn-md" ng-click = "vm.addEquipo(vm.equipo)" data-dismiss="modal" title="Agregar"><i class="fa fa-plus-circle"></i></a>
+                            <a class="btn info-color btn-primary btn-md" data-dismiss="modal" ng-click="vm.limpiar()" title="Regresar"><i class="fa fa-reply" aria-hidden="true"></i></a>
+                        </div>                 
+                    </div>  
+                </div>
+            </div>
+        </div>
+
+<div class="container detalles-container" ng-if="vm.detalle === true">
+        <div class="jumbotron">
+        <h2>Detalle Equipo: </h2> 
+        <h3><strong>{{vm.detalleEquipo.nombre}} </strong></h3>
+        <button href="#ventana2" class="btn info-color btn-primary btn-md" data-toggle="modal">Agregar Precio</button>
+            <br>
+            <br>
+            <table class="table table-bordered table-striped table-hovered table-condensed">
+                <th>#</th>
+                <th>Modalidad</th>
+                <th>Plan</th>
+                <th>Precio</th>
+                <th>Fecha</th>
+                <th>Opciones</th>
+                <tr ng-repeat = "producto in vm.detalleEquipo.precio">
+                    <td>{{$index+1}}</td>
+                    <td ng-if="!editing">{{producto.modalidad}}</td>
+                    <td ng-if="!editing">{{producto.plan}}</td>
+                    <td ng-if="!editing">{{producto.precio}}</td>
+                    <td ng-if="!editing">{{producto.fecha | date:"dd/MM/y"}}</td>
+                    <td ng-if="editing">
+                        <input type="text" ng-model="producto.modalidad" class="form-control" style="width:80px;">
+                    </td>
+                    <td ng-if="editing">
+                        <input type="text" ng-model="producto.plan" class="form-control" style="width:100px;">
+                    </td>
+                    <td ng-if="editing">
+                        <input type="text" ng-model="producto.precio" class="form-control" style="width:60px;">
+                    </td>
+                    <td ng-if="editing">
+                        <input type="text" ng-model="producto.fecha" class="form-control" style="width:60px;">
+                    </td>
+                    <td>
+                        <a class="btn danger-color btn-danger btn-md" ng-click="vm.removePrecio_Equipo(producto);" ng-hide="editing" title="Eliminar"><i class="fa fa-trash-o"></i></a>
+                    </td>
+                    
+                </tr>
+            </table>
+
+            <div>
+            <br>
+                <button class="btn danger-color btn-danger btn-md" ng-click="vm.detalle=false">Back</button>
+            </div>
+            <div class="modal fade" id="ventana2">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h2 class="modal-tittle"style="width:320px">Agregar Precio</h2>  
+                    </div>
+                    <div class="modal-body">
+                        <div class="container create-productos">
+                            <label for="serie">Modalidad</label>
+                            <select required type="text" id="modalidad" ng-model="data.modalidad" class="form-control" style="width:200px;border-radius: 10px;">
+                                <option>Linea Nueva</option>
+                                <option>Portabilidad</option>
+                                <option>Renovación</option>
+                            </select>
+                            <label for="serie">Plan</label>
+                            <select required type="text"  ng-model="data.plan" id="plan" class="form-control" style="width:200px; border-radius: 10px;"> 
+                                <option>Claro Max 29</option>
+                                <option>Claro Max 39</option>
+                                <option>Claro Max 49</option>
+                                <option>Claro Max 59</option>
+                                <option>Claro Max 69</option>
+                                <option>Claro Max 79</option>
+                                <option>Claro Max 89</option>
+                                <option>Claro Max 99</option>
+                                <option>Claro Max 119</option>
+                                <option>Claro Max 149</option>
+                                <option>Claro Max 189</option>
+                                <option>Claro Max 289</option>
+                            </select>
+                            <input required type="number" ng-model="data.precio" placeholder="Precio s/." id="serie" class="form-control" style="width:150px;" >
+                            <label for="date">Fecha: </label>
+                            <input type="date" id="date" ng-model="data.fecha" class="form-control" style="width:150px;" >
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn success-color btn-success btn-md"  ng-click = "vm.addPrecio_Equipo(data);data = null" data-dismiss="modal">Agregar</button>
+                        <button class="btn info-color btn-primary btn-md" data-dismiss="modal" ng-click="data = null" >Back</button>
+                    </div>                 
+                </div>  
+            </div>
+            </div>
+                
+            </div>
+         
+        </div>
+</div>
+
+</div>

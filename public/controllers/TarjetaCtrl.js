@@ -10,7 +10,6 @@ app.controller('TarjetaCtrl', function ($http, $scope, Upload) {
 	vm.getTarjetas = function(){
 		$http.get('/inv/tarjetas').then(function(res){
 			vm.tarjetas = res.data;
-			console.log(res.data);
 		});
 	};
 	vm.getTarjetas();
@@ -20,7 +19,8 @@ app.controller('TarjetaCtrl', function ($http, $scope, Upload) {
 			url: '/inv/tarjetas',
 			data: {file: vm.file, datos: vm.tarjeta}
 		}).then(function(res){
-			console.log('Success ' + res.config.data.file.name + 'uploaded. Response: ' + res.data);
+			vm.tarjeta = null;
+			vm.file = undefined;
 			vm.getTarjetas();
 		},function(res){
 			console.log('Error status: ' + res.status);

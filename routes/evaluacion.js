@@ -1,4 +1,5 @@
 var evaluacionModel = require('../models/evaluacion.js');
+var productoModel = require('../models/producto.js');
 var mogoose = require('mongoose');	
 var express = require('express');
 var router = express.Router();
@@ -6,7 +7,19 @@ var router = express.Router();
 //mostar todas los empleados
 router.get('/',function(req,res){
 	evaluacionModel.find({},function(err, evaluacion){
-		res.status(200).send(evaluacion);
+	if (err){
+		res.status(404).send(err);
+	}
+	else{
+		productoModel.populate(evaluacion, {path: "equipo"}, function(err, evaluacion){
+			if(err){
+				res.status(404).send(err);
+			}
+			else{
+				res.status(200).send(evaluacion);
+			}
+		});
+	}
 	})
 });
 //actualizar estado de revision
@@ -22,6 +35,7 @@ router.put('/',function(req,res){
 		}
 	})
 });
+
 
 //agregar
 router.post('/', function(req,res){

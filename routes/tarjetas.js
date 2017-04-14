@@ -12,6 +12,12 @@ router.get('/',function(req,res){
 	})
 });
 
+router.get('/ofertas',function(req,res){
+	tarjetaModel.find({categoria: 'oferta'},function(err, tarjetas){
+		res.status(200).send(tarjetas);
+	})
+});
+
 router.post('/', multiPartyMiddleware, function(req, res){
 	cloudinary.uploader.upload(req.files.file.path, function(result){
 		console.log(result);

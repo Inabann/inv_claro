@@ -1,0 +1,186 @@
+<div class="page-header">
+	<h1>Administrar Usuarios</h1>
+</div>
+
+<br>
+
+<button href="#modalNew" class="btn info-color btn-primary btn-md" data-toggle="modal">Registrar nuevo usuario</button>
+
+<div class="jumbotron text-center" ng-show="vm.loading">
+	<span class="glyphicon glyphicon-repeat spinner"></span>
+	<p>Loading...</p>
+</div>
+
+
+	<table class="table">
+	  <thead class="thead-inverse">
+	    <tr>
+	      <th>Nombre</th>
+	      <th>Username</th>
+	      <th>Nivel</th>
+	      <th>Opciones</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr ng-repeat="user in vm.users"  ng-show="!$first">
+	      <td>{{user.nombre}}</td>
+	      <td>{{user.username}}</td>
+	      <td>{{user.permission}}</td>
+	      <td>
+	      	<a data-target="#modalPass" class="teal-text btn-md" ng-show="vm.editAccess"  data-toggle="modal" ng-click="vm.newData = user"><i class="fa fa-exchange" aria-hidden="true"></i></a>
+			<a data-target="#modalEdit" class="teal-text btn-md" ng-show="vm.editAccess"  data-toggle="modal" ng-click="vm.newData = user"><i class="fa fa-pencil"></i></a>
+			<a class="red-text" ng-show="vm.deleteAccess" ng-click="vm.deleteUser(user.username)"><i class="fa fa-times"></i></a>
+	      </td>
+	    </tr>
+	  </tbody>
+	</table>
+
+
+<div class="row show-hide-message" ng-show="vm.successMsg">
+	<div class="alert alert-success">
+		{{vm.successMsg}}
+	</div>
+</div>
+
+<div class="row show-hide-message" ng-show="vm.errorMsg">
+	<div class="alert alert-danger">
+		{{vm.errorMsg}}
+	</div>
+</div>
+
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modalPass">
+    <div class="modal-dialog modal-sm">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Cambiar contraseña</h4>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                <div class="md-form">
+                    <i class="fa fa-lock prefix"></i>
+                    <input type="password" class="form-control" ng-model="vm.newPass">
+                    <label>Contraseña</label>
+                </div>
+            </div>
+            <!--Footer-->
+            <div class="modal-footer flex-column">
+                <button class="btn success-color btn-success btn-md" ng-disabled="!vm.newPass" data-dismiss="modal" ng-click="vm.changePass(vm.newData)">Cambiar</button>
+                <button class="btn info-color btn-primary btn-md " data-dismiss="modal" ng-click="vm.newPass = null">Atras</button>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="modalEdit" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="vm.newData = null">&times;</button>
+                <h3>Editar Usuario</h3>
+                <hr class="mt-2 mb-2">
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <form>
+                        <div class="md-form">
+                            
+                            <h5>Nombre</h5>
+                            <input type="text" class="form-control" ng-model="vm.newData.nombre">
+                            
+                        </div>
+                        <div class="md-form">
+                           
+                           	<h5>Username</h5>
+                            <input type="text" class="form-control" ng-model="vm.newData.username">
+                            
+                        </div>
+                        <div class="md-form">                     
+                        <i class="fa fa-lock prefix"></i>
+                        <label>Nivel</label><br><br>
+                        <select ng-model="vm.newData.permission">
+                            <option value="user">
+                                Usuario simple
+                            </option>
+                            <option value="moderador" ng-show="vm.deleteAccess">
+                                Moderador
+                            </option>
+                        </select>
+                        </div>
+                    </form>
+                </div>
+             </div>
+            <div class="modal-footer">
+                <button class="btn success-color btn-success btn-md" ng-disabled="!vm.newData.nombre|| !vm.newData.username" data-dismiss="modal" ng-click="vm.updateUser(vm.newData)">Editar</button>
+                <button class="btn info-color btn-primary btn-md " data-dismiss="modal" ng-click="vm.newData = null">Atras</button>
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalNew">
+    <div class="modal-dialog">
+        <div class="modal-content">
+           <div class="modal-header">
+			    <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="vm.userData = null">&times;</button>
+			    <h3>Nuevo Usuario</h3>
+			    <hr class="mt-2 mb-2">
+			</div>
+
+            <div class="modal-body">
+                <div class="container">
+                    <form >
+                        <div class="md-form">
+                            <i class="fa fa-user prefix"></i>
+                            <input type="text" class="form-control" ng-model="vm.userData.nombre">
+                            <label>Nombre</label>
+                        </div>
+                        <div class="md-form">
+                            <i class="fa fa-user prefix"></i>
+                            <input type="text" class="form-control" ng-model="vm.userData.username">
+                            <label>ID</label>
+                        </div>
+                        <div class="md-form">
+                            <i class="fa fa-lock prefix"></i>
+                            <input type="password" class="form-control" ng-model="vm.userData.password">
+                            <label>Contraseña</label>
+                        </div>
+
+                        <div class="md-form">
+                       		<i class="fa fa-lock prefix"></i>
+                            <label>Nivel</label>
+                            <br><br>
+
+						<select  ng-model="vm.userData.permission">
+						    <option value="user">
+						        Usuario simple
+						    </option>
+						    <option value="moderador" ng-show="vm.deleteAccess" >
+						        Moderador
+						    </option>
+						</select>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn success-color btn-success btn-md" ng-disabled="!vm.userData.nombre|| !vm.userData.username || !vm.userData.password" data-dismiss="modal" ng-click="vm.regUser(vm.userData)">Registrar</button>
+                    <button class="btn info-color btn-primary btn-md " data-dismiss="modal" ng-click="vm.userData = null">Atras</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

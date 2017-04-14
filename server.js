@@ -60,6 +60,9 @@ app.use('/inv/evaluacion', evaluacion);
 var tarjetas = require('./routes/tarjetas');
 app.use('/inv/tarjetas', tarjetas);
 
+var equipos = require('./routes/equipos');
+app.use('/inv/equipos', equipos);
+
 var port = process.env.PORT || 3000;
 app.listen(port, function(){
 	console.log('server en el puerto '+ port);

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var Productos = require('./producto').model;
 
 var EvaluacionSchema = new Schema ({
 	nombre: String,
@@ -7,7 +8,7 @@ var EvaluacionSchema = new Schema ({
 	correo: String,
 	celular: Number,
 	plan: String,
-	equipo: String,
+	equipo: {type: Schema.ObjectId, ref: "Productos"},
 	revisado: {type: Boolean, default: false}
 	
 });
