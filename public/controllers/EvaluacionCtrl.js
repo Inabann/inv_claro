@@ -69,7 +69,6 @@ angular.module('EvaluacionControllers',[])
 
 	vm.addEvaluacion = function(evaluacion){
 		
-		evaluacion.plan = evaluacion.plan.title;
 		evaluacion.equipo = evaluacion.equipo.title;
 
 		if(evaluacion && evaluacion.dni){

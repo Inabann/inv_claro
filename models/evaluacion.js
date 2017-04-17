@@ -9,7 +9,7 @@ var EvaluacionSchema = new Schema ({
 	celular: Number,
 	plan: String,
 	modalidad: String,
-	equipo: {type: Schema.ObjectId, ref: "Productos"},
+	equipo: String,
 	revisado: {type: Boolean, default: false}
 	
 });

@@ -6,22 +6,16 @@ var router = express.Router();
 
 //mostar todas los empleados
 router.get('/',function(req,res){
-	evaluacionModel.find({},function(err, evaluacion){
+	evaluacionModel.find({},function(err, evaluaciones){
 	if (err){
 		res.status(404).send(err);
 	}
 	else{
-		productoModel.populate(evaluacion, {path: "equipo"}, function(err, evaluacion){
-			if(err){
-				res.status(404).send(err);
-			}
-			else{
-				res.status(200).send(evaluacion);
-			}
-		});
+		res.status(200).send(evaluaciones);
 	}
-	})
 });
+});
+
 //actualizar estado de revision
 
 router.put('/',function(req,res){

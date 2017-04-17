@@ -25,11 +25,11 @@
                     <div class="card-block">
                         <p><strong>Tus datos</strong></p>
                         <p>Arma el plan que mas se acomode a tus necesidades</p>
-                        autocompletar
                         <div class="md-form">
                             <i class="fa fa-mobile prefix"></i>
+                            <div style="padding-left: 50px;">
                             <angucomplete-alt id="ex1"
-                              placeholder="buscar equipo"
+                              placeholder="Buscar equipo"
                               pause="100"
                               selected-object="vm.evaluacion.equipo"
                               local-data="vm.equipos"
@@ -37,11 +37,14 @@
                               title-field="nombre"
                               minlength="1"
                               input-class="form-control"/>
-                            <label for="equipo">Equipo</label>
+                              </div>
+                        
                         </div>
                         <div class="md-form" >
                             <i class="fa fa-list prefix"></i>
-                            <select required type="text"  ng-model="vm.evaluacion.plan" id="plan" class="form-control" style="width:200px; border-radius: 10px;"> 
+                            <div style="padding-left: 50px;">
+                            <select required type="text"  ng-model="vm.evaluacion.plan" id="plan" class="form-control" style="width:200px; border-radius: 10px;">
+                            <option value="" disabled selected>Seleccione un plan</option> 
                                 <option>Claro Max 29</option>
                                 <option>Claro Max 39</option>
                                 <option>Claro Max 49</option>
@@ -55,19 +58,21 @@
                                 <option>Claro Max 189</option>
                                 <option>Claro Max 289</option>
                             </select>
+                             </div>
                             
-                            <label for="plan">Plan</label>
                             
                         </div>
                        
                         <div class="md-form">
-                            
-                            <h5>Modalidad</h5>
+                            <i class="fa fa-list prefix"></i>
+                            <div style="padding-left: 50px;">
                             <select type="text" id="modalidad" ng-model="vm.evaluacion.modalidad" class="form-control" style="width:200px;border-radius: 10px;">
+                                 <option value="" disabled selected>Modalidad</option> 
                                 <option value="Linea Nueva">Linea Nueva</option>
                                 <option value="Portabilidad">Portabilidad</option>
                                 <option value="Renovación">Renovación</option>
                             </select>
+                            </div>
                         </div> 
                         <div class="text-left">
                             <button class="btn btn-primary" ng-click = "vm.prueba()">Calcular</button>
