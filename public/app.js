@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute','ngFileUpload','userControllers','EvaluacionControllers','mainController','userServices','authServices', 'angucomplete-alt']);
+var app = angular.module('app', ['ngRoute','ngFileUpload','userControllers','EvaluacionControllers','mainController','userServices','authServices', 'angucomplete-alt','angularUtils.directives.dirPagination']);
 
 app.config(function($httpProvider) {
 	$httpProvider.interceptors.push('AuthInter');

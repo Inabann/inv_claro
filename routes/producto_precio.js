@@ -4,7 +4,6 @@ var express = require('express');
 var router = express.Router();
 
 router.put('/precio_var',function(req,res){
-	console.log('lalalala');
 	productoModel.findByIdAndUpdate(req.body._id,{$set:req.body},{new:true},function(err, precio_var){
 		if(err){
 			res.status(404).send(err);

@@ -11,7 +11,6 @@ router.get('/',function(req, res){
 		}
 		else {
 			res.status(200).send(equipo);
-			console.log(equipo[0].precio);
 		}
 	});
 });
@@ -42,12 +41,12 @@ router.put('/',function(req,res){
 });
 
 router.put('/precio',function(req,res){
-	equipoModel.findByIdAndUpdate(req.body._id,{$set:req.body},{new:true},function(err, precio){
+	equipoModel.findByIdAndUpdate(req.body._id,{$set:req.body},{new:true},function(err, equipo){
 		if(err){
 			res.status(404).send(err);
 		}
 		else {
-			res.status(200).send(precio);
+			res.status(200).send(equipo);
 		}
 	})
 });

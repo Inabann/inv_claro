@@ -5,6 +5,7 @@ angular.module('EvaluacionControllers',[])
 //tarjetas de productos
 	vm.tarjetas = [];
 	vm.ofertas = [];
+	vm.cantidad = 6;
 	vm.getTarjetas = function(){
 		$http.get('/inv/tarjetas').then(function(res){
 			vm.tarjetas = res.data;
@@ -19,15 +20,21 @@ angular.module('EvaluacionControllers',[])
 	vm.getOfertas();
 
 	vm.cambiar = function(filtro){
-		vm.cat = filtro;
+		if (filtro == 'todos'){
+			vm.cantidad = 6;
+			vm.cat = '';
+		} else {
+			vm.cat = filtro;
+			vm.cantidad = 12;
+		}
+		
 	};
 
 
 //Evaluacion
+	vm.errorMsg = '';
+	vm.successMsg= '';
 
-
-    vm.planes = [{plan: 'claro max 39'},{plan: 'claro max 49'},{plan: 'claro max 59'},{plan: 'claro max 69'},{plan: 'claro max 79'},{plan: 'claro max 89'},{plan: 'claro max 99'},{plan: 'claro max 119'}
-    			,{plan: 'claro max 149'},{plan: 'claro max 189'},{plan: 'claro max 289'}]
 	vm.equipos = [];
 	vm.getEquipos = function(){
 		$http.get('/inv/equipos').then(function(res){
@@ -36,11 +43,10 @@ angular.module('EvaluacionControllers',[])
 	}
 	vm.getEquipos();
 	vm.prueba = function(){
-		console.log(vm.equipo.originalObject.precio);
-	}
-	vm.mostrarPrecio = function(equipo, plan){
-		console.log(equipo);
-		console.log(plan);
+		//console.log(vm.evaluacion.equipo.originalObject, vm.evaluacion.plan, vm.modalidad);
+		let epre = vm.evaluacion.equipo.originalObject.precio;
+		vm.precioCalc = epre.find(x => x.plan === vm.evaluacion.plan && x.modalidad === vm.evaluacion.modalidad).precio;
+
 	}
 
 
@@ -71,7 +77,6 @@ angular.module('EvaluacionControllers',[])
 			$http.post('/inv/evaluacion', evaluacion).then(function(res){
 				vm.getEvaluaciones();
 				vm.evaluacion="";
-				vm.evaluaciones = "";
 			});
 		}
 		else {

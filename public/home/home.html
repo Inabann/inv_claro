@@ -15,7 +15,7 @@
                     <a class="list-group-item" ng-click="vm.cambiar('telefonia fija')">Telefonia Fija</a>
                     <a class="list-group-item" ng-click="vm.cambiar('television')">Televisión</a>
                     <a class="list-group-item" ng-click="vm.cambiar('accesorio')">Accesorios</a>
-                    <a class="list-group-item" ng-click="vm.cambiar('')">Todos</a>
+                    <a class="list-group-item" ng-click="vm.cambiar('todos')">Todos</a>
                 </div>
             </div>
             <div class="widget-wrapper">
@@ -41,33 +41,40 @@
                         </div>
                         <div class="md-form" >
                             <i class="fa fa-list prefix"></i>
-                            <angucomplete-alt id="ex1"
-                              placeholder="buscar plan"
-                              pause="100"
-                              selected-object="vm.evaluacion.plan"
-                              local-data="vm.planes"
-                              search-fields="plan"
-                              title-field="plan"
-                              minlength="1"
-                              input-class="form-control"/>
+                            <select required type="text"  ng-model="vm.evaluacion.plan" id="plan" class="form-control" style="width:200px; border-radius: 10px;"> 
+                                <option>Claro Max 29</option>
+                                <option>Claro Max 39</option>
+                                <option>Claro Max 49</option>
+                                <option>Claro Max 59</option>
+                                <option>Claro Max 69</option>
+                                <option>Claro Max 79</option>
+                                <option>Claro Max 89</option>
+                                <option>Claro Max 99</option>
+                                <option>Claro Max 119</option>
+                                <option>Claro Max 149</option>
+                                <option>Claro Max 189</option>
+                                <option>Claro Max 289</option>
+                            </select>
                             
                             <label for="plan">Plan</label>
                             
                         </div>
-                        <!-- añadir modalidad de consulta
+                       
                         <div class="md-form">
                             
                             <h5>Modalidad</h5>
-                            <select type="text" id="modalidad" ng-model="vm.modalidad" class="form-control" style="width:200px;border-radius: 10px;">
+                            <select type="text" id="modalidad" ng-model="vm.evaluacion.modalidad" class="form-control" style="width:200px;border-radius: 10px;">
                                 <option value="Linea Nueva">Linea Nueva</option>
                                 <option value="Portabilidad">Portabilidad</option>
                                 <option value="Renovación">Renovación</option>
                             </select>
                         </div> 
-                        <div class="text-center">
-                            <button class="btn btn-primary" ng-click = "vm.mostrarPrecio(vm.equipo.originalObject,vm.plan.originalObject)">Precio</button>
+                        <div class="text-left">
+                            <button class="btn btn-primary" ng-click = "vm.prueba()">Calcular</button>
+                            <h5 ng-show="vm.precioCalc">S/.{{vm.precioCalc}}</h5>
+                            
                         </div>
--->
+
                         <div class="md-form">
                             <i class="fa fa-user prefix"></i>
                             <input type="text" id="nombre" class="form-control" ng-model="vm.evaluacion.nombre">
@@ -93,7 +100,17 @@
                         <div class="text-center">
                         <button class="btn danger-color btn-danger" ng-click = "vm.addEvaluacion(vm.evaluacion)">Enviar</button>
                         </div>
+                        <div class="row show-hide-message" ng-show="vm.successMsg">
+                            <div class="alert alert-success">
+                                {{vm.successMsg}}
+                            </div>
+                        </div>
 
+                        <div class="row show-hide-message" ng-show="vm.errorMsg">
+                            <div class="alert alert-danger">
+                                {{vm.errorMsg}}
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -170,30 +187,34 @@
             <br>
             <hr class="extra-margins">
             <!--Second row-->
+
             <div class="row">
                 
-            <div class="col-lg-4" ng-repeat="tarjeta in vm.tarjetas | filter: vm.cat">
-                <!--Card-->
-                <div class="card">
-                    <!--Card image-->
-                    <img ng-src="{{tarjeta.url}}" class="img-fluid">
-                    <!--/.Card image-->
-                    <!--Card content-->
-                    <div class="card-block">
-                        <!--Title-->
-                        <h4 class="card-title">{{tarjeta.titulo}}</h4>
-                        <!--Text-->
-                        <p class="card-text">{{tarjeta.descripcion}}</p>
+                <div class="col-lg-4" dir-paginate="tarjeta in vm.tarjetas | filter: vm.cat | itemsPerPage:vm.cantidad">
+                    
+                    <div class="card">
+                        
+                        <img ng-src="{{tarjeta.url}}" class="img-fluid">
+                        
+                        <div class="card-block">
+                          
+                            <h4 class="card-title">{{tarjeta.titulo}}</h4>
+                            
+                            <p class="card-text">{{tarjeta.descripcion}}</p>
+                        </div>
+                      
                     </div>
-                    <!--/.Card content-->
+                   <br class="extra-margins">
                 </div>
-                <!--/.Card-->
+                
             </div>
-            </div>
-            
+            <br class="extra-margins">
+            <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" ></dir-pagination-controls>
+
             <!--/.Second row-->
         </div>
         <!--/.Main column-->
     </div>
+
 </div>
 <!--/.Main layout-->

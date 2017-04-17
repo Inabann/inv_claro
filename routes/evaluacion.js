@@ -25,7 +25,6 @@ router.get('/',function(req,res){
 //actualizar estado de revision
 
 router.put('/',function(req,res){
-	console.log('estado');
 	evaluacionModel.findByIdAndUpdate(req.body._id,{$set:req.body},{new:true},function(err, revisado){
 		if(err){
 			res.status(404).send(err);
@@ -45,6 +44,7 @@ router.post('/', function(req,res){
 	model.correo = req.body.correo;
 	model.celular = req.body.celular;
 	model.plan = req.body.plan;
+	model.modalidad = req.body.modalidad;
 	model.equipo = req.body.equipo;
 
 	model.save(function(err, evaluacion){

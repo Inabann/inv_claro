@@ -18,6 +18,7 @@ app.controller('EquipoCtrl', function ($http) {
 			vm.detalleEquipo.precio.push({modalidad : data.modalidad, fecha : data.fecha, plan : data.plan, precio : data.precio});
 			$http.put('/inv/equipos/precio', vm.detalleEquipo).then(function(res){
 				vm.data = undefined;
+				vm.detalleEquipo = res.data;
 			});
 		}
 		else{
@@ -26,17 +27,15 @@ app.controller('EquipoCtrl', function ($http) {
 		
 	}
 	vm.removePrecio_Equipo = function(precio){
-		console.log(precio);
-		
 		vm.detalleEquipo.precio = vm.detalleEquipo.precio.filter(function(returnableObjects){
                return returnableObjects._id !== precio._id;
         });
-		console.log(vm.detalleEquipo.precio);
 		$http.put('/inv/equipos/precio', vm.detalleEquipo).then(function(res){
 			console.log(res.data);
 			vm.detalleEquipo = res.data;
 		});
 	}
+
 	vm.addEquipo = function(equipo){
 		if(equipo && equipo.nombre){
 			console.log("nuevo equipo");
