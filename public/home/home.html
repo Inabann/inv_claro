@@ -19,10 +19,27 @@
                 </div>
             </div>
             <div class="widget-wrapper">
+            <!-- Nav tabs -->
+
+
                 <h4>Deja aqui tus datos:</h4>
                 <br>
                 <div class="card">
-                    <div class="card-block">
+                    <ul class="nav nav-tabs tabs-2 red" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" data-target="#panel1" role="tab">Planes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" data-target="#panel2" role="tab">Internet</a>
+                        </li>
+
+                    </ul>
+                    <!-- Tab panels -->
+                    <div class="tab-content card">
+                        <!--Panel 1-->
+                        <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
+                            
+                        <div class="card-block">
                         <p><strong>Tus datos</strong></p>
                         <p>Arma el plan que mas se acomode a tus necesidades</p>
                         <div class="md-form">
@@ -37,8 +54,7 @@
                               title-field="nombre"
                               minlength="1"
                               input-class="form-control"/>
-                              </div>
-                        
+                            </div>
                         </div>
                         <div class="md-form" >
                             <i class="fa fa-list prefix"></i>
@@ -64,21 +80,33 @@
                         </div>
                        
                         <div class="md-form">
-                            <i class="fa fa-list prefix"></i>
-                            <div style="padding-left: 50px;">
-                            <select type="text" id="modalidad" ng-model="vm.evaluacion.modalidad" class="form-control" style="width:200px;border-radius: 10px;">
-                                 <option value="" disabled selected>Modalidad</option> 
-                                <option value="Linea Nueva">Linea Nueva</option>
-                                <option value="Portabilidad">Portabilidad</option>
-                                <option value="Renovación">Renovación</option>
-                            </select>
+                            <div class="form-inline">
+                                <div class="md-form">
+                                     <i class="fa fa-list prefix"></i>
+                                    <div style="padding-left: 50px;">
+                                    <select type="text" id="modalidad" ng-model="vm.evaluacion.modalidad" class="form-control" style="width:112px;border-radius: 10px;">
+                                         <option value="" disabled selected>Modalidad</option> 
+                                        <option value="Linea Nueva">Linea Nueva</option>
+                                        <option value="Portabilidad">Portabilidad</option>
+                                        <option value="Renovación">Renovación</option>
+                                    </select>
+                                    <select type="text" id="operadora" ng-model="vm.evaluacion.operadora" ng-show="vm.evaluacion.modalidad === 'Portabilidad'" class="form-control" style="width:90px;border-radius: 10px;">
+                                         <option value="" disabled selected>Operadora</option> 
+                                        <option value="movistar">Movistar</option>
+                                        <option value="entel">Entel</option>
+                                        <option value="bitel">Bitel</option>
+                                    </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                            <h4 ng-show="vm.precioCalc">S/.{{vm.precioCalc}}</h4>
+                            <button class="btn btn-primary" ng-click = "vm.prueba()">Calcular</button>
+
                             </div>
                         </div> 
-                        <div class="text-left">
-                            <button class="btn btn-primary" ng-click = "vm.prueba()">Calcular</button>
-                            <h5 ng-show="vm.precioCalc">S/.{{vm.precioCalc}}</h5>
-                            
-                        </div>
+
 
                         <div class="md-form">
                             <i class="fa fa-user prefix"></i>
@@ -118,6 +146,60 @@
                         </div>
 
                     </div>
+                    </div>
+                        <!--/.Panel 1-->
+                        <!--Panel 2-->
+                        <div class="tab-pane fade" id="panel2" role="tabpanel">
+                        <div class="card-block">
+                            <p><strong>Moderniza el Internet de tu casa</strong></p>
+                            <div class="md-form" >
+                                <i class="fa fa-list prefix"></i>
+                                <div style="padding-left: 50px;">
+                                    <select required type="text"  ng-model="vm.evaluacion.plan" id="plan" class="form-control" style="width:200px; border-radius: 10px;">
+                                    <option value="" disabled selected>Seleccione un paquete</option> 
+                                        <option>Internet 8Mb + Telefonia Fija</option>
+                                        <option>Internet 16Mb + Telefonia Fija</option>
+                                        <option>Internet 30Mb + Telefonia Fija</option>
+                                        <option>Internet 60Mb + Telefonia Fija + TV</option>
+                                        <option>Internet 8Mb</option>
+                                        <option>Internet 16Mb</option>
+                                        <option>Internet 30Mb</option>
+                                        <option>Internet 60Mb</option>
+                                        <option>Internet 120Mb</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="md-form">
+                            <i class="fa fa-user prefix"></i>
+                            <input type="text" id="nombre" class="form-control" ng-model="vm.evaluacion.nombre">
+                            <label for="nombre">Nombres y Apellidos</label>
+                            </div>
+                            <div class="md-form">
+                                <i class="fa fa-credit-card prefix"></i>
+                                <input type="text" id="dni" class="form-control" ng-model="vm.evaluacion.dni">
+                                <label for="dni">DNI</label>
+                            </div>
+                            <div class="md-form">
+                                <i class="fa fa-home prefix"></i>
+                                <input type="text" id="correo" class="form-control" ng-model="vm.evaluacion.correo">
+                                <label for="correo">Dirección</label>
+                            </div>
+                            <div class="md-form">
+                                <i class="fa fa-phone prefix"></i>
+                                <input type="text" id="num_celular" class="form-control" ng-model="vm.evaluacion.celular">
+                                <label for="num_celular">Numero de Celular</label>
+                            </div>
+                        
+                       
+                        <div class="text-center">
+                        <button class="btn danger-color btn-danger" ng-click = "vm.addEvaluacion(vm.evaluacion)">Enviar</button>
+                        </div>
+                        </div>
+                        </div>
+                        <!--/.Panel 2-->
+
+                    </div>
+                    
                 </div>
             </div>
         </div>

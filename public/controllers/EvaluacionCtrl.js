@@ -68,11 +68,11 @@ angular.module('EvaluacionControllers',[])
 	};
 
 	vm.addEvaluacion = function(evaluacion){
-		
-		evaluacion.equipo = evaluacion.equipo.title;
-
+		if (evaluacion.equipo) {
+			evaluacion.equipo = evaluacion.equipo.title;
+		}
 		if(evaluacion && evaluacion.dni){
-			console.log("evaluacion agregado");
+			
 			$http.post('/inv/evaluacion', evaluacion).then(function(res){
 				vm.getEvaluaciones();
 				vm.evaluacion="";
