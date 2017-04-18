@@ -28,6 +28,7 @@ router.post('/', function(req,res){
 	model.sub_total = req.body.sub_total;
 	model.igv = req.body.igv;
 	model.total = req.body.total;
+	model.tipo = req.body.tipo;
 	model.save(function(err, factura){
 		if(err){
 			res.status(500).send(err);

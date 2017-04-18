@@ -20,7 +20,6 @@ router.get('/ofertas',function(req,res){
 
 router.post('/', multiPartyMiddleware, function(req, res){
 	cloudinary.uploader.upload(req.files.file.path, function(result){
-		console.log(result);
 		var model = new tarjetaModel();
 		model.titulo = req.body.datos.titulo;
 		model.descripcion = req.body.datos.descripcion;
@@ -36,8 +35,6 @@ router.post('/', multiPartyMiddleware, function(req, res){
 			}
 		});
 	});
-	//req.body.datos
-	//req.files.file.path
 });
 
 router.delete('/:id/:p_id',function(req,res){
@@ -49,7 +46,6 @@ router.delete('/:id/:p_id',function(req,res){
 		}
 		else {
 			res.status(200).send({message: 'eliminacion completa'});
-			console.log('listo');
 			cloudinary.uploader.destroy(p_id, function(result) { console.log(result) });
 		}
 	})

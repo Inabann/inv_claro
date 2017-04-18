@@ -13,9 +13,9 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(multiPartyMiddleware);
-//mongodb://32-3a.mongo.evennode.com:27017,32-3b.mongo.evennode.com:27017/9c054367fba80df1044f23efc1c99cfe?replicaSet=us32-1
-//mongodb://io:123456@ds053216.mlab.com:53216/global-les
-var db = "mongodb://io:123456@ds053216.mlab.com:53216/global-les";
+
+var db = "mongodb://63a05c4a6cf135a523ccdd89754ed244:globalles@32-3a.mongo.evennode.com:27017/63a05c4a6cf135a523ccdd89754ed244";
+//var db = "mongodb://io:123456@ds053216.mlab.com:53216/global-les";
 mongoose.connect(db, function(err, res){
 	if(err){
 		console.log('error al conectar a bd: '+ err);
@@ -26,9 +26,9 @@ mongoose.connect(db, function(err, res){
 })
 
 cloudinary.config({
-	cloud_name: 'api-images',
-	api_key: '869832633943739',
-	api_secret: 'M-Mlnrr2f4mpuvTi77JvG--LRPc'
+	cloud_name: 'dvgrmqhdf',
+	api_key: '164834886648217',
+	api_secret: 'FpKbkK9ApTnmpLr8IXqWDf4vbrY'
 });
 
 app.use(express.static(__dirname+'/public'));

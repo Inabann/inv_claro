@@ -38,7 +38,6 @@ router.get('/', function(req, res){
 });
 
 router.post('/', function(req, res){
-	console.log(req.body);
 	var model = new ventaModel();
 	model.producto1 = req.body.producto1;
 	model.producto2 = req.body.producto2;
@@ -109,7 +108,6 @@ router.delete('/:id', function(req, res){
 
 router.get('/:id', function(req, res){
     var id = req.params.id;
-    console.log(id);
     ventaModel.find({'empleado':id}, function (err, ventas) {
         if (err) {
             res.send(err);

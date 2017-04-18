@@ -8,6 +8,7 @@
             <th>Serie</th>
             <th>n° factura</th>
             <th>Fecha</th>
+            <th>Tipo</th>
             <th>Productos</th>
             <th>Sub Total</th>
             <th>IGV</th>
@@ -18,36 +19,40 @@
                 <td ng-if="!editing" >{{factura.serie}}</td>
                 <td ng-if="!editing">{{factura.num_fact}}</td>
                 <td ng-if="!editing">{{factura.fecha | date:"dd/MM/y"}}</td>
+                <td ng-if="!editing">{{factura.tipo}}</td>
                 <td ng-if="!editing"><button class="btn btn-link " ng-click="vm.showDetalles(factura)" >productos</button></td>
                 <td ng-if="!editing">{{factura.sub_total}}</td>
                 <td ng-if="!editing">{{factura.igv}}</td>
                 <td ng-if="!editing">{{factura.total}}</td>
                 <td ng-if="editing">
-                	<input type="text" ng-model="factura.serie" class="form-control" style="width:150px;">
+                	<input type="text" ng-model="factura.serie" class="form-control" style="width:70px;">
                 </td>
                 <td ng-if="editing">
-                	<input type="text" ng-model="factura.num_fact" class="form-control" style="width:150px;">
+                	<input type="text" ng-model="factura.num_fact" class="form-control" style="width:70px;">
                 </td>
                 <td ng-if="editing">
-                	<input type="text" ng-model="factura.fecha" class="form-control" style="width:150px;">
+                	<input type="text" ng-model="factura.fecha" class="form-control" style="width:70px;">
+                </td>
+                <td ng-if="editing">
+                    <input type="text" ng-model="factura.tipo" class="form-control" style="width:70px;">
                 </td>
                 <td ng-if="editing">
                     Productos
                 </td>
                 <td ng-if="editing">
-                	<input type="text" ng-model="factura.sub_total" class="form-control" style="width:150px;">
+                	<input type="text" ng-model="factura.sub_total" class="form-control" style="width:70px;">
                 </td>
                 <td ng-if="editing">
-                	<input type="text" ng-model="factura.igv" class="form-control" style="width:150px;">
+                	<input type="text" ng-model="factura.igv" class="form-control" style="width:70px;">
                 </td>
                 <td ng-if="editing">
-                	<input type="text" ng-model="factura.total" class="form-control" style="width:150px;">
+                	<input type="text" ng-model="factura.total" class="form-control" style="width:70px;">
                 </td>
                 <td>
                     <a ng-hide="editing" class="btn warning-color btn-warning btn-md" ng-click="editing=!editing" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     <a ng-hide="!editing" class="btn success-color btn-success btn-md" ng-click="vm.updateFactura(factura);editing=false;" title="Guardar"><i class="fa fa-save" aria-hidden="true"></i></a>
                     <a class="btn info-color btn-primary btn-md"  ng-hide="!editing" ng-click="editing=!editing" title="Regresar"><i class="fa fa-reply" aria-hidden="true"></i></a>
-                    <a class="btn danger-color btn-danger btn-md" ng-click="vm.removeFactura(factura);"  title="Eliminar" ng-show="vm.deleteAccess"><i class="fa fa-trash-o"></i></a>
+                    <a class="btn danger-color btn-danger btn-md" ng-click="vm.removeFactura(factura);" ng-if="!editing" title="Eliminar" ng-show="vm.deleteAccess"><i class="fa fa-trash-o"></i></a>
                 </td>
             </tr>
         </table>
@@ -72,6 +77,13 @@
                             <div class="md-form">
                                 <label for="fecha"></label>
                                 <input type="date" id="fecha" class="form-control" style="width:150px;" ng-model="vm.factura.fecha">
+                            </div>
+                            <div class="md-form">
+                            <select id="tipo" required type="text" ng-model="vm.factura.tipo" class="form-control" style="width:200px;border-radius: 10px;">
+                                <option value="" disabled selected>Tipo de Factura</option>
+                                <option value="debito">Debito</option>
+                                <option value="credito">Credito</option>
+                            </select>
                             </div>
                             <div class="md-form">
                                 <label for="sub_total">Sub Total</label>
@@ -203,23 +215,24 @@
                         </div>
                         <div class="modal-body">
                             <div class="container show-num_serie">
-                            <div>
-                                 <input type="number" ng-model="num_serie" class="form-control" style="width:90px;">
-                                 <button class="btn success-color btn-success btn-md" ng-click="vm.addSerie(num_serie)">+</button>
+                            <div class="d-flex flex-row">
+                                 <input type="number" ng-model="num_serie" class="form-control p-2" placeholder="Numero de serie" style="width:110px;">
+                                  <i class="fa fa-minus p-4" aria-hidden="true"></i>
+                                  <input type="number" ng-model="ultimo" class="form-control p-2" placeholder="Ultimo N°serie" style="width:110px;">
+                                 <a class="green-text p-4" ng-click="vm.addSerie(num_serie,ultimo)" ng-keypress="$event.which === 13 && vm.addSerie(num_serie)"><i class="fa fa-plus" aria-hidden="true"></i></a>
                             </div>
-                               
+                              
                                 <table class="table table-bordered table-hovered table-condensed">
                                     <th>ICCID / IMEI</th>
                                     <th></th>
-                                        <tr ng-repeat="num_serie in vm.detalleProducto.num_serie">
+                                        <tr dir-paginate="num_serie in vm.detalleProducto.num_serie | itemsPerPage:10">
                                             <td>{{num_serie.num}}</td>
-                                            <td><button class="btn danger-color btn-danger btn-md" ng-click="vm.removeSerie(num_serie)">X</button></td>
+                                            <td><a class="red-text" ng-click="vm.removeSerie(num_serie)"><i class="fa fa-times"></i></a></td>
                                         </tr>
                                 </table>
-                                
+                                <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" ></dir-pagination-controls>
                             </div>
 
-                                
                             </div>
                         <div class="modal-footer">
                             

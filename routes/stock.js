@@ -35,13 +35,11 @@ router.get('/',function(req,res){
 
 router.get('/num_serie/:id', function(req, res){
     var serie = req.params.id;
-    console.log(serie);
     productoModel.find({'num_serie.num':serie}, function (err, result) {
         if (err) {
             res.send(err);
         } else {
             res.send(result);
-            console.log(result);
         }
     });
 });

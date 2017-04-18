@@ -29,7 +29,8 @@ var FacturaSchema = new Schema({
 	sub_total: Number,
 	igv: Number,
 	total: Number,
-	guia: { type: Schema.ObjectId, ref: "Guia" }
+	guia: { type: Schema.ObjectId, ref: "Guia" },
+	tipo: String
 });
 
 var model = mongoose.model('Facturas', FacturaSchema);

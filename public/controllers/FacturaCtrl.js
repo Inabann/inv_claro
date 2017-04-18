@@ -58,15 +58,25 @@ app.controller('FacturaCtrl', function ($http, User) {
 
 
 
-	vm.addSerie = function(num_serie){
-		if (typeof num_serie === 'number'){
-			vm.detalleProducto.num_serie.push({num : num_serie});
-			console.log(vm.detalleProducto);
-			$http.put('/inv/productos', vm.detalleProducto).then(function(res){
-				console.log(res.data);
-				//vm.detalleProducto = res.data;
-			});
-			vm.getProductos();
+	vm.addSerie = function(num_serie, ultimo){
+		//&& (typeof ultimo === 'number')
+		if ((typeof num_serie === 'number')){
+			if(!ultimo){
+				vm.detalleProducto.num_serie.push({num : num_serie});	
+				$http.put('/inv/productos', vm.detalleProducto).then(function(res){
+					//vm.detalleProducto = res.data;
+				});
+				vm.getProductos();
+			} else if (num_serie && ultimo){
+				if(typeof ultimo === 'number'){
+					if(ultimo > num_serie){
+						for (var i = num_serie; i <= ultimo; i++) {
+						   vm.detalleProducto.num_serie.push({num: i});
+						}
+						$http.put('/inv/productos', vm.detalleProducto);
+					}
+				} 
+			}
 		}
 		else{
 			console.log("ingrese un numero");
@@ -74,7 +84,6 @@ app.controller('FacturaCtrl', function ($http, User) {
 	}
 
 	vm.removeSerie = function(num_serie){
-		console.log(num_serie);
 		Array.prototype.removeValue = function(name, value){
 		   var array = $.map(this, function(v,i){
 		      return v[name] === value ? null : v;
@@ -83,9 +92,7 @@ app.controller('FacturaCtrl', function ($http, User) {
 		   this.push.apply(this, array);
 		};
 		vm.detalleProducto.num_serie.removeValue("num", num_serie.num);
-		console.log(vm.detalleProducto.num_serie);
-		$http.put('/inv/productos', vm.detalleProducto).then(function(res){
-			console.log(res.data);
+		$http.put('/inv/productos', vm.detalleProducto).then(function(res){			
 		});
 	}
 	
@@ -116,7 +123,8 @@ app.controller('FacturaCtrl', function ($http, User) {
 				productos: vm.detalleFactura.productos,
 				sub_total : vm.detalleFactura.sub_total,
 				igv : vm.detalleFactura.igv,
-				total : vm.detalleFactura.total
+				total : vm.detalleFactura.total,
+				tipo :  vm.detalleFactura.tipo
         	}
         	
         	$http.put('/inv/facturas', facturaJSON).then(function(res){
@@ -155,7 +163,7 @@ app.controller('FacturaCtrl', function ($http, User) {
 	vm.updateProducto = function(producto){
 		if(producto){
 			$http.put('/inv/productos', producto).then(function(res){
-				console.log('update producto');
+
 			});
 			$http.get('/inv/productos/'+vm.detalleFactura._id).then(function(res){
 				vm.detalleFactura = res.data;
@@ -166,7 +174,6 @@ app.controller('FacturaCtrl', function ($http, User) {
 	vm.updateFactura = function(factura){
 		if(factura){
 			$http.put('/inv/facturas', factura).then(function(res){
-				console.log('update factura');
 				vm.getFacturas();
 			})
 		}
@@ -182,8 +189,6 @@ app.controller('FacturaCtrl', function ($http, User) {
 	
 	vm.addFactura = function(factura){
 		if(factura && factura.serie && factura.num_fact){
-			console.log("crear factura");
-			
 			$http.post('/inv/facturas', factura).then(function(res){
 				vm.getFacturas();
 				vm.facturas="";

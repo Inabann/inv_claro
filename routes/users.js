@@ -14,7 +14,6 @@ router.post('/', function(req,res){
 	user.save(function(err){
 		if (err) {
 			res.json({success: false, message: 'Usuario existente'});
-			console.log(err);
 		} else{
 			res.json({success: true, message: 'Usuario creado'});
 		}
