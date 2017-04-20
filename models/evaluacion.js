@@ -10,6 +10,7 @@ var EvaluacionSchema = new Schema ({
 	plan: String,
 	modalidad: String,
 	operadora: String,
+	lineaActual: String,
 	equipo: String,
 	revisado: {type: Boolean, default: false}
 	

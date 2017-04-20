@@ -40,7 +40,8 @@ router.post('/', function(req,res){
 	model.plan = req.body.plan;
 	model.modalidad = req.body.modalidad;
 	model.equipo = req.body.equipo;
-	model.operadora = req.body.operadora;
+	model.operadora = req.body.operadora.nombre;
+	model.lineaActual = req.body.operadora.linea;
 
 	model.save(function(err, evaluacion){
 		if(err){

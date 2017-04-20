@@ -10,7 +10,7 @@
                 <div class="list-group">
 
                     <a class="list-group-item" ng-click="vm.cambiar('plan')">Planes</a>
-                    <a class="list-group-item" ng-click="vm.cambiar('smartphone')">Smartphones</a>
+                    <a class="list-group-item" ng-click="vm.cambiar('smarthphone')">Smartphones</a>
                     <a class="list-group-item" ng-click="vm.cambiar('internet')">Internet</a>
                     <a class="list-group-item" ng-click="vm.cambiar('telefonia fija')">Telefonia Fija</a>
                     <a class="list-group-item" ng-click="vm.cambiar('television')">Televisión</a>
@@ -92,23 +92,33 @@
                                         <option value="Portabilidad">Portabilidad</option>
                                         <option value="Renovación">Renovación</option>
                                     </select>
-                                    <select type="text" id="operadora" ng-model="vm.evaluacion.operadora" ng-show="vm.evaluacion.modalidad === 'Portabilidad'" class="form-control" style="width:90px;border-radius: 10px;">
+                                    <select type="text" id="operadora" ng-model="vm.evaluacion.operadora.nombre" ng-show="vm.evaluacion.modalidad === 'Portabilidad'" class="form-control" style="width:90px;border-radius: 10px;">
                                          <option value="" disabled selected>Operadora</option> 
                                         <option value="movistar">Movistar</option>
                                         <option value="entel">Entel</option>
                                         <option value="bitel">Bitel</option>
                                         <option value="bitel">Virgin</option>
                                     </select>
-
+                                    <select type="text" id="operadora" ng-model="vm.evaluacion.operadora.linea" ng-show="vm.evaluacion.modalidad === 'Portabilidad'" class="form-control" style="width:110px;border-radius: 10px;">
+                                         <option value="" disabled selected>Linea actual</option> 
+                                        <option value="prepago">Prepago</option>
+                                        <option value="postpago">Postpago</option>
+                                        
+                                    </select>
+                                   
+                                        
+                                    </div>
+                                        
                                     </div>
                                 </div>
                             </div>
+
                             <div class="text-center">
                             <h4 ng-show="vm.precioCalc">S/.{{vm.precioCalc}}</h4>
                             <button class="btn btn-primary" ng-click = "vm.prueba()">Calcular</button>
 
                             </div>
-                        </div> 
+                         
 
 
                         <div class="md-form">
