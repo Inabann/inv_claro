@@ -1,7 +1,9 @@
 <div class="container">
     <div class="container">
+   
        <table class="table table-sm">
             <h2>Evaluaciones</h2>
+             <label>Buscar: <input ng-model ="buscarText"></label>
             <thead>
             <tr>            
                 <th>#</th>
@@ -17,7 +19,7 @@
                 <th>Opciones</th>
 
             </tr>
-            <tr ng-repeat="evaluacion in vm.evaluaciones ">
+            <tr dir-paginate="evaluacion in vm.evaluaciones |filter:buscarText| itemsPerPage:10">
                     <td>{{$index+1}}</td>
                     <td>{{evaluacion.nombre}}</td>
                     <td>{{evaluacion.dni}}</td>
@@ -39,7 +41,7 @@
             </thead>
 
         </table>
-        
+         <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" ></dir-pagination-controls>
     </div>
 
 </div>

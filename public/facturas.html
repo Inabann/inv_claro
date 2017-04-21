@@ -3,6 +3,7 @@
     <h1 ng-hide="vm.detalle" >Facturas</h1>
     <button href="#ventana1" class="btn info-color btn-primary btn-md" data-toggle="modal" ng-hide="vm.detalle">Agregar Factura</button>
     <br><br>
+    <label>Buscar: <input ng-model ="buscarText"></label>
         <table class="table table-bordered table-striped table-hovered table-condensed table-sm" ng-hide="vm.detalle">
             <td>#</td>
             <th>Serie</th>
@@ -14,7 +15,7 @@
             <th>IGV</th>
             <th>Total</th>
             <th>Opciones</th>
-            <tr ng-repeat="factura in vm.facturas">
+            <tr dir-paginate="factura in vm.facturas|filter:buscarText | itemsPerPage:10">
                 <td>{{$index+1}}</td>
                 <td ng-if="!editing" >{{factura.serie}}</td>
                 <td ng-if="!editing">{{factura.num_fact}}</td>
@@ -56,6 +57,7 @@
                 </td>
             </tr>
         </table>
+         <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" ></dir-pagination-controls>
         
         <div class="modal fade" id="ventana1">
             <div class="modal-dialog">
@@ -83,6 +85,7 @@
                                 <option value="" disabled selected>Tipo de Factura</option>
                                 <option value="debito">Debito</option>
                                 <option value="credito">Credito</option>
+                                <option value="factura electronica">Factura Electronica</option>
                             </select>
                             </div>
                             <div class="md-form">

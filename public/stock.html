@@ -5,11 +5,12 @@
         <th>Codigo</th>
         <th>Descripcion</th>
         <th>Cantidad</th>
-        <tr ng-repeat="producto in vm.stock | filter:buscarText">
+        <tr dir-paginate="producto in vm.stock | filter:buscarText | itemsPerPage:15">
             <td>{{producto._id}}</td>
             <td>{{producto.nombre}}</td>
             <td>{{producto.cantidad_res}}</td>
         </tr>
         </table>
+         <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" ></dir-pagination-controls>
     </div>
 </div>

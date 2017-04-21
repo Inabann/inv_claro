@@ -72,10 +72,17 @@ angular.module('EvaluacionControllers',[])
 			evaluacion.equipo = evaluacion.equipo.title;
 		}
 		if(evaluacion && evaluacion.dni){
-			
+			if(vm.dir){
+				evaluacion.correo = vm.dir.calle +'/'+ vm.dir.distrito+'/' + vm.dir.ciudad +'/'+ vm.dir.ref;
+				vm.dir.calle = '';
+				vm.dir.distrito = "";
+				vm.dir.ciudad = "";
+				vm.dir.ref = "";
+			}
+			console.log(evaluacion);
 			$http.post('/inv/evaluacion', evaluacion).then(function(res){
 				vm.getEvaluaciones();
-				vm.evaluacion="";
+			//	vm.evaluacion=null;
 			});
 		}
 		else {
